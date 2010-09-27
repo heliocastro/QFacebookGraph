@@ -1,0 +1,192 @@
+/*
+ * Copyright 2010 Helio Chissini de Castro <helio@collabora.co.uk>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+
+#ifndef QFACEBOOKGRAPHUSER_H
+#define QFACEBOOKGRAPHUSER_H
+
+#include <QObject>
+#include <bool>
+#include <QDateTime>
+#include <QString>
+#include <QStringList>
+#include <QUrl>
+
+class QFacebookGraphUser : public QObject
+{
+    Q_OBJECT
+
+    Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
+    Q_PROPERTY(QString first_name READ first_name WRITE setFirst_name NOTIFY first_nameChanged)
+    Q_PROPERTY(QString last_name READ last_name WRITE setLast_name NOTIFY last_nameChanged)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
+    Q_PROPERTY(QString about READ about WRITE setAbout NOTIFY aboutChanged)
+    Q_PROPERTY(QString birthday READ birthday WRITE setBirthday NOTIFY birthdayChanged)
+    Q_PROPERTY(QStringList work READ work WRITE setWork NOTIFY workChanged)
+    Q_PROPERTY(QStringList education READ education WRITE setEducation NOTIFY educationChanged)
+    Q_PROPERTY(QString email READ email WRITE setEmail NOTIFY emailChanged)
+    Q_PROPERTY(QUrl website READ website WRITE setWebsite NOTIFY websiteChanged)
+    Q_PROPERTY(QUrl hometown READ hometown WRITE setHometown NOTIFY hometownChanged)
+    Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
+    Q_PROPERTY(QString bio READ bio WRITE setBio NOTIFY bioChanged)
+    Q_PROPERTY(QString quotes READ quotes WRITE setQuotes NOTIFY quotesChanged)
+    Q_PROPERTY(QString gender READ gender WRITE setGender NOTIFY genderChanged)
+    Q_PROPERTY(QString interested_in READ interested_in WRITE setInterested_in NOTIFY interested_inChanged)
+    Q_PROPERTY(QStringList meeting_for READ meeting_for WRITE setMeeting_for NOTIFY meeting_forChanged)
+    Q_PROPERTY(QString relationship_status READ relationship_status WRITE setRelationship_status NOTIFY relationship_statusChanged)
+    Q_PROPERTY(QString religion READ religion WRITE setReligion NOTIFY religionChanged)
+    Q_PROPERTY(QString political READ political WRITE setPolitical NOTIFY politicalChanged)
+    Q_PROPERTY(bool verified READ verified WRITE setVerified NOTIFY verifiedChanged)
+    Q_PROPERTY(QString significant_other READ significant_other WRITE setSignificant_other NOTIFY significant_otherChanged)
+    Q_PROPERTY(QString timezone READ timezone WRITE setTimezone NOTIFY timezoneChanged)
+    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    
+public:
+    explicit QFacebookGraphUser(QObject *parent = 0);
+	
+    QString id() const;
+    void setId(const QString &id);
+
+    QString first_name() const;
+    void setFirst_name(const QString &first_name);
+
+    QString last_name() const;
+    void setLast_name(const QString &last_name);
+
+    QString name() const;
+    void setName(const QString &name);
+
+    QUrl link() const;
+    void setLink(const QUrl &link);
+
+    QString about() const;
+    void setAbout(const QString &about);
+
+    QString birthday() const;
+    void setBirthday(const QString &birthday);
+
+    QStringList work() const;
+    void setWork(const QStringList &work);
+
+    QStringList education() const;
+    void setEducation(const QStringList &education);
+
+    QString email() const;
+    void setEmail(const QString &email);
+
+    QUrl website() const;
+    void setWebsite(const QUrl &website);
+
+    QUrl hometown() const;
+    void setHometown(const QUrl &hometown);
+
+    QString location() const;
+    void setLocation(const QString &location);
+
+    QString bio() const;
+    void setBio(const QString &bio);
+
+    QString quotes() const;
+    void setQuotes(const QString &quotes);
+
+    QString gender() const;
+    void setGender(const QString &gender);
+
+    QString interested_in() const;
+    void setInterested_in(const QString &interested_in);
+
+    QStringList meeting_for() const;
+    void setMeeting_for(const QStringList &meeting_for);
+
+    QString relationship_status() const;
+    void setRelationship_status(const QString &relationship_status);
+
+    QString religion() const;
+    void setReligion(const QString &religion);
+
+    QString political() const;
+    void setPolitical(const QString &political);
+
+    bool verified() const;
+    void setVerified(const bool &verified);
+
+    QString significant_other() const;
+    void setSignificant_other(const QString &significant_other);
+
+    QString timezone() const;
+    void setTimezone(const QString &timezone);
+
+    QDateTime updated_time() const;
+    void setUpdated_time(const QDateTime &updated_time);
+
+signals:
+    void idChanged();
+    void first_nameChanged();
+    void last_nameChanged();
+    void nameChanged();
+    void linkChanged();
+    void aboutChanged();
+    void birthdayChanged();
+    void workChanged();
+    void educationChanged();
+    void emailChanged();
+    void websiteChanged();
+    void hometownChanged();
+    void locationChanged();
+    void bioChanged();
+    void quotesChanged();
+    void genderChanged();
+    void interested_inChanged();
+    void meeting_forChanged();
+    void relationship_statusChanged();
+    void religionChanged();
+    void politicalChanged();
+    void verifiedChanged();
+    void significant_otherChanged();
+    void timezoneChanged();
+    void updated_timeChanged();
+
+private:
+    QString m_id;
+    QString m_first_name;
+    QString m_last_name;
+    QString m_name;
+    QUrl m_link;
+    QString m_about;
+    QString m_birthday;
+    QStringList m_work;
+    QStringList m_education;
+    QString m_email;
+    QUrl m_website;
+    QUrl m_hometown;
+    QString m_location;
+    QString m_bio;
+    QString m_quotes;
+    QString m_gender;
+    QString m_interested_in;
+    QStringList m_meeting_for;
+    QString m_relationship_status;
+    QString m_religion;
+    QString m_political;
+    bool m_verified;
+    QString m_significant_other;
+    QString m_timezone;
+    QDateTime m_updated_time;
+
+};
+
+#endif //QFACEBOOKGRAPHUSER_H
+
