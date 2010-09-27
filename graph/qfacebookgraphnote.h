@@ -31,8 +31,8 @@ class QFacebookGraphNote : public QObject
     Q_PROPERTY(QStringList from READ from WRITE setFrom NOTIFY fromChanged)
     Q_PROPERTY(QStringList subject READ subject WRITE setSubject NOTIFY subjectChanged)
     Q_PROPERTY(QStringList message READ message WRITE setMessage NOTIFY messageChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
     
 public:
@@ -50,11 +50,11 @@ public:
     QStringList message() const;
     void setMessage(const QStringList &message);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
     QUrl icon() const;
     void setIcon(const QUrl &icon);
@@ -64,8 +64,8 @@ signals:
     void fromChanged();
     void subjectChanged();
     void messageChanged();
-    void created_timeChanged();
-    void updated_timeChanged();
+    void createdTimeChanged();
+    void updatedTimeChanged();
     void iconChanged();
 
 private:
@@ -73,8 +73,8 @@ private:
     QStringList m_from;
     QStringList m_subject;
     QStringList m_message;
-    QDateTime m_created_time;
-    QDateTime m_updated_time;
+    QDateTime m_createdTime;
+    QDateTime m_updatedTime;
     QUrl m_icon;
 
 };

@@ -20,14 +20,14 @@ QFacebookGraphAlbum::QFacebookGraphAlbum(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
+    m_from = QHashFrom();
     m_description = QString::null;
     m_location = QString::null;
-    m_link = 0;
+    m_link = QUrl();
     m_privacy = QString::null;
     m_count = 0;
-    m_created_time = 0;
-    m_updated_time = 0;
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
     m_comments = 0;
 }
 
@@ -36,15 +36,15 @@ QString QFacebookGraphAlbum::id() const {
 }
 void QFacebookGraphAlbum::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
-QObject QFacebookGraphAlbum::from() const {
+QHashFrom QFacebookGraphAlbum::from() const {
      return m_from;
 }
-void QFacebookGraphAlbum::setFrom(const QObject &from) {
+void QFacebookGraphAlbum::setFrom(const QHashFrom &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QString QFacebookGraphAlbum::description() const {
@@ -52,7 +52,7 @@ QString QFacebookGraphAlbum::description() const {
 }
 void QFacebookGraphAlbum::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
 QString QFacebookGraphAlbum::location() const {
@@ -60,7 +60,7 @@ QString QFacebookGraphAlbum::location() const {
 }
 void QFacebookGraphAlbum::setLocation(const QString &location) {
     if( m_location != location )
-	    m_location != location;
+	    m_location = location;
 }
 
 QUrl QFacebookGraphAlbum::link() const {
@@ -68,7 +68,7 @@ QUrl QFacebookGraphAlbum::link() const {
 }
 void QFacebookGraphAlbum::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
 QString QFacebookGraphAlbum::privacy() const {
@@ -76,7 +76,7 @@ QString QFacebookGraphAlbum::privacy() const {
 }
 void QFacebookGraphAlbum::setPrivacy(const QString &privacy) {
     if( m_privacy != privacy )
-	    m_privacy != privacy;
+	    m_privacy = privacy;
 }
 
 quint32 QFacebookGraphAlbum::count() const {
@@ -84,23 +84,23 @@ quint32 QFacebookGraphAlbum::count() const {
 }
 void QFacebookGraphAlbum::setCount(const quint32 &count) {
     if( m_count != count )
-	    m_count != count;
+	    m_count = count;
 }
 
-QDateTime QFacebookGraphAlbum::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphAlbum::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphAlbum::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphAlbum::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 
-QDateTime QFacebookGraphAlbum::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphAlbum::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphAlbum::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphAlbum::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 
 quint32 QFacebookGraphAlbum::comments() const {
@@ -108,6 +108,6 @@ quint32 QFacebookGraphAlbum::comments() const {
 }
 void QFacebookGraphAlbum::setComments(const quint32 &comments) {
     if( m_comments != comments )
-	    m_comments != comments;
+	    m_comments = comments;
 }
 

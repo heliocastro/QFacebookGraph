@@ -33,7 +33,7 @@ class QFacebookGraphCheckin : public QObject
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QString coordinates READ coordinates WRITE setCoordinates NOTIFY coordinatesChanged)
     Q_PROPERTY(QStringList application READ application WRITE setApplication NOTIFY applicationChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
     
 public:
     explicit QFacebookGraphCheckin(QObject *parent = 0);
@@ -59,8 +59,8 @@ public:
     QStringList application() const;
     void setApplication(const QStringList &application);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
 signals:
     void idChanged();
@@ -70,7 +70,7 @@ signals:
     void messageChanged();
     void coordinatesChanged();
     void applicationChanged();
-    void created_timeChanged();
+    void createdTimeChanged();
 
 private:
     QString m_id;
@@ -80,7 +80,7 @@ private:
     QString m_message;
     QString m_coordinates;
     QStringList m_application;
-    QDateTime m_created_time;
+    QDateTime m_createdTime;
 
 };
 

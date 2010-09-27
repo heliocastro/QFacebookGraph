@@ -19,12 +19,15 @@
 
 #include <QObject>
 #include <QDateTime>
-#include <QHash+QString,QUrl->
-#include <QList+QStringList->
+#include <QHash>
+#include <QList>
 #include <QString>
 #include <QStringList>
-#include <quint64>
+
 #include <QUrl>
+
+typedef QHash<QString,QString> QHashTo;
+typedef QHash<QString,QUrl> QHashAction;
 
 class QFacebookGraphPost : public QObject
 {
@@ -32,7 +35,7 @@ class QFacebookGraphPost : public QObject
 
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QStringList from READ from WRITE setFrom NOTIFY fromChanged)
-    Q_PROPERTY(QList+QStringList- to READ to WRITE setTo NOTIFY toChanged)
+    Q_PROPERTY(QHashTo to READ to WRITE setTo NOTIFY toChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
@@ -42,10 +45,10 @@ class QFacebookGraphPost : public QObject
     Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
     Q_PROPERTY(QString attribution READ attribution WRITE setAttribution NOTIFY attributionChanged)
-    Q_PROPERTY(QHash+QString,QUrl- actions READ actions WRITE setActions NOTIFY actionsChanged)
+    Q_PROPERTY(QHashAction actions READ actions WRITE setActions NOTIFY actionsChanged)
     Q_PROPERTY(quint64 likes READ likes WRITE setLikes NOTIFY likesChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
     explicit QFacebookGraphPost(QObject *parent = 0);
@@ -56,8 +59,8 @@ public:
     QStringList from() const;
     void setFrom(const QStringList &from);
 
-    QList+QStringList- to() const;
-    void setTo(const QList+QStringList- &to);
+    QHashTo to() const;
+    void setTo(const QHashTo &to);
 
     QString message() const;
     void setMessage(const QString &message);
@@ -86,17 +89,17 @@ public:
     QString attribution() const;
     void setAttribution(const QString &attribution);
 
-    QHash+QString,QUrl- actions() const;
-    void setActions(const QHash+QString,QUrl- &actions);
+    QHashAction actions() const;
+    void setActions(const QHashAction &actions);
 
     quint64 likes() const;
     void setLikes(const quint64 &likes);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
 signals:
     void idChanged();
@@ -113,13 +116,13 @@ signals:
     void attributionChanged();
     void actionsChanged();
     void likesChanged();
-    void created_timeChanged();
-    void updated_timeChanged();
+    void createdTimeChanged();
+    void updatedTimeChanged();
 
 private:
     QString m_id;
     QStringList m_from;
-    QList+QStringList- m_to;
+    QHashTo m_to;
     QString m_message;
     QUrl m_picture;
     QUrl m_link;
@@ -129,10 +132,10 @@ private:
     QUrl m_source;
     QUrl m_icon;
     QString m_attribution;
-    QHash+QString,QUrl- m_actions;
+    QHashAction m_actions;
     quint64 m_likes;
-    QDateTime m_created_time;
-    QDateTime m_updated_time;
+    QDateTime m_createdTime;
+    QDateTime m_updatedTime;
 
 };
 

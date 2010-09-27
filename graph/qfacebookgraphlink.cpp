@@ -20,15 +20,15 @@ QFacebookGraphLink::QFacebookGraphLink(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
-    m_link = 0;
+    m_from = QStringList();
+    m_link = QUrl();
     m_name = QString::null;
     m_caption = QString::null;
     m_description = QString::null;
-    m_icon = 0;
+    m_icon = QUrl();
     m_picture = 0;
     m_message = QString::null;
-    m_created_time = 0;
+    m_createdTime = QDateTime();
 }
 
 QString QFacebookGraphLink::id() const {
@@ -36,7 +36,7 @@ QString QFacebookGraphLink::id() const {
 }
 void QFacebookGraphLink::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphLink::from() const {
@@ -44,7 +44,7 @@ QStringList QFacebookGraphLink::from() const {
 }
 void QFacebookGraphLink::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QUrl QFacebookGraphLink::link() const {
@@ -52,7 +52,7 @@ QUrl QFacebookGraphLink::link() const {
 }
 void QFacebookGraphLink::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
 QString QFacebookGraphLink::name() const {
@@ -60,7 +60,7 @@ QString QFacebookGraphLink::name() const {
 }
 void QFacebookGraphLink::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QString QFacebookGraphLink::caption() const {
@@ -68,7 +68,7 @@ QString QFacebookGraphLink::caption() const {
 }
 void QFacebookGraphLink::setCaption(const QString &caption) {
     if( m_caption != caption )
-	    m_caption != caption;
+	    m_caption = caption;
 }
 
 QString QFacebookGraphLink::description() const {
@@ -76,7 +76,7 @@ QString QFacebookGraphLink::description() const {
 }
 void QFacebookGraphLink::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
 QUrl QFacebookGraphLink::icon() const {
@@ -84,15 +84,15 @@ QUrl QFacebookGraphLink::icon() const {
 }
 void QFacebookGraphLink::setIcon(const QUrl &icon) {
     if( m_icon != icon )
-	    m_icon != icon;
+	    m_icon = icon;
 }
 
-Qurl QFacebookGraphLink::picture() const {
+QUrl QFacebookGraphLink::picture() const {
      return m_picture;
 }
-void QFacebookGraphLink::setPicture(const Qurl &picture) {
+void QFacebookGraphLink::setPicture(const QUrl &picture) {
     if( m_picture != picture )
-	    m_picture != picture;
+	    m_picture = picture;
 }
 
 QString QFacebookGraphLink::message() const {
@@ -100,14 +100,14 @@ QString QFacebookGraphLink::message() const {
 }
 void QFacebookGraphLink::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
-QDateTime QFacebookGraphLink::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphLink::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphLink::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphLink::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 

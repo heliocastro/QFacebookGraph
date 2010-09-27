@@ -21,7 +21,6 @@
 #include <QDateTime>
 #include <QString>
 #include <QStringList>
-#include <Qurl>
 #include <QUrl>
 
 class QFacebookGraphLink : public QObject
@@ -35,9 +34,9 @@ class QFacebookGraphLink : public QObject
     Q_PROPERTY(QString caption READ caption WRITE setCaption NOTIFY captionChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
-    Q_PROPERTY(Qurl picture READ picture WRITE setPicture NOTIFY pictureChanged)
+    Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
     
 public:
     explicit QFacebookGraphLink(QObject *parent = 0);
@@ -63,14 +62,14 @@ public:
     QUrl icon() const;
     void setIcon(const QUrl &icon);
 
-    Qurl picture() const;
-    void setPicture(const Qurl &picture);
+    QUrl picture() const;
+    void setPicture(const QUrl &picture);
 
     QString message() const;
     void setMessage(const QString &message);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
 signals:
     void idChanged();
@@ -82,7 +81,7 @@ signals:
     void iconChanged();
     void pictureChanged();
     void messageChanged();
-    void created_timeChanged();
+    void createdTimeChanged();
 
 private:
     QString m_id;
@@ -92,9 +91,9 @@ private:
     QString m_caption;
     QString m_description;
     QUrl m_icon;
-    Qurl m_picture;
+    QUrl m_picture;
     QString m_message;
-    QDateTime m_created_time;
+    QDateTime m_createdTime;
 
 };
 

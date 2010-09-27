@@ -20,12 +20,12 @@ QFacebookGraphNote::QFacebookGraphNote(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
-    m_subject = 0;
-    m_message = 0;
-    m_created_time = 0;
-    m_updated_time = 0;
-    m_icon = 0;
+    m_from = QStringList();
+    m_subject = QStringList();
+    m_message = QStringList();
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
+    m_icon = QUrl();
 }
 
 QString QFacebookGraphNote::id() const {
@@ -33,7 +33,7 @@ QString QFacebookGraphNote::id() const {
 }
 void QFacebookGraphNote::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphNote::from() const {
@@ -41,7 +41,7 @@ QStringList QFacebookGraphNote::from() const {
 }
 void QFacebookGraphNote::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QStringList QFacebookGraphNote::subject() const {
@@ -49,7 +49,7 @@ QStringList QFacebookGraphNote::subject() const {
 }
 void QFacebookGraphNote::setSubject(const QStringList &subject) {
     if( m_subject != subject )
-	    m_subject != subject;
+	    m_subject = subject;
 }
 
 QStringList QFacebookGraphNote::message() const {
@@ -57,23 +57,23 @@ QStringList QFacebookGraphNote::message() const {
 }
 void QFacebookGraphNote::setMessage(const QStringList &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
-QDateTime QFacebookGraphNote::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphNote::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphNote::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphNote::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 
-QDateTime QFacebookGraphNote::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphNote::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphNote::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphNote::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 
 QUrl QFacebookGraphNote::icon() const {
@@ -81,6 +81,6 @@ QUrl QFacebookGraphNote::icon() const {
 }
 void QFacebookGraphNote::setIcon(const QUrl &icon) {
     if( m_icon != icon )
-	    m_icon != icon;
+	    m_icon = icon;
 }
 

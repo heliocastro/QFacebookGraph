@@ -23,7 +23,7 @@ QFacebookGraphApplication::QFacebookGraphApplication(QObject *parent) :
     m_name = QString::null;
     m_description = QString::null;
     m_category = QString::null;
-    m_link = 0;
+    m_link = QUrl();
 }
 
 QString QFacebookGraphApplication::id() const {
@@ -31,7 +31,7 @@ QString QFacebookGraphApplication::id() const {
 }
 void QFacebookGraphApplication::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QString QFacebookGraphApplication::name() const {
@@ -39,7 +39,7 @@ QString QFacebookGraphApplication::name() const {
 }
 void QFacebookGraphApplication::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QString QFacebookGraphApplication::description() const {
@@ -47,7 +47,7 @@ QString QFacebookGraphApplication::description() const {
 }
 void QFacebookGraphApplication::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
 QString QFacebookGraphApplication::category() const {
@@ -55,7 +55,7 @@ QString QFacebookGraphApplication::category() const {
 }
 void QFacebookGraphApplication::setCategory(const QString &category) {
     if( m_category != category )
-	    m_category != category;
+	    m_category = category;
 }
 
 QUrl QFacebookGraphApplication::link() const {
@@ -63,6 +63,6 @@ QUrl QFacebookGraphApplication::link() const {
 }
 void QFacebookGraphApplication::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 

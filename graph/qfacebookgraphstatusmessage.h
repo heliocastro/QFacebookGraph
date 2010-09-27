@@ -29,7 +29,7 @@ class QFacebookGraphStatusMessage : public QObject
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QStringList from READ from WRITE setFrom NOTIFY fromChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
-    Q_PROPERTY(QDateTime updated_message READ updated_message WRITE setUpdated_message NOTIFY updated_messageChanged)
+    Q_PROPERTY(QDateTime updatedMessage READ updatedMessage WRITE setUpdatedmessage NOTIFY updatedMessageChanged)
     
 public:
     explicit QFacebookGraphStatusMessage(QObject *parent = 0);
@@ -43,20 +43,20 @@ public:
     QString message() const;
     void setMessage(const QString &message);
 
-    QDateTime updated_message() const;
-    void setUpdated_message(const QDateTime &updated_message);
+    QDateTime updatedMessage() const;
+    void setUpdatedmessage(const QDateTime &updatedMessage);
 
 signals:
     void idChanged();
     void fromChanged();
     void messageChanged();
-    void updated_messageChanged();
+    void updatedMessageChanged();
 
 private:
     QString m_id;
     QStringList m_from;
     QString m_message;
-    QDateTime m_updated_message;
+    QDateTime m_updatedMessage;
 
 };
 

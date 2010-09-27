@@ -31,8 +31,8 @@ class QFacebookGraphVideo : public QObject
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QString lenght READ lenght WRITE setLenght NOTIFY lenghtChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
     explicit QFacebookGraphVideo(QObject *parent = 0);
@@ -52,11 +52,11 @@ public:
     QString lenght() const;
     void setLenght(const QString &lenght);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
 signals:
     void idChanged();
@@ -64,8 +64,8 @@ signals:
     void messageChanged();
     void descriptionChanged();
     void lenghtChanged();
-    void created_timeChanged();
-    void updated_timeChanged();
+    void createdTimeChanged();
+    void updatedTimeChanged();
 
 private:
     QString m_id;
@@ -73,8 +73,8 @@ private:
     QString m_message;
     QString m_description;
     QString m_lenght;
-    QDateTime m_created_time;
-    QDateTime m_updated_time;
+    QDateTime m_createdTime;
+    QDateTime m_updatedTime;
 
 };
 

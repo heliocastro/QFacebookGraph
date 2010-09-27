@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Helio Chissini de Castro
+ * Copyright 2010 Helio Chissini de Castro <helio@collabora.co.uk>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
 */
 
-#ifndef QFACEBOOK_GLOBAL_H
-#define QFACEBOOK_GLOBAL_H
+#ifndef QFACEBOOKGRAPH_GLOBAL_H
+#define QFACEBOOKGRAPH_GLOBAL_H
 
 #include <QtCore/qglobal.h>
 
-#if defined(QFACEBOOK_LIBRARY)
-#  define QFACEBOOKSHARED_EXPORT Q_DECL_EXPORT
+#if defined(QFACEBOOKGRAPH_LIBRARY)
+#  define QFACEBOOKGRAPHSHARED_EXPORT Q_DECL_EXPORT
 #else
-#  define QFACEBOOKSHARED_EXPORT Q_DECL_IMPORT
+#  define QFACEBOOKGRAPHSHARED_EXPORT Q_DECL_IMPORT
 #endif
 
-#endif // QFACEBOOK_GLOBAL_H
+#endif // QFACEBOOKGRAPH_GLOBAL_H

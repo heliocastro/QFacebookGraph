@@ -20,17 +20,17 @@ QFacebookGraphPhoto::QFacebookGraphPhoto(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
-    m_tags = 0;
+    m_from = QStringList();
+    m_tags = QStringList();
     m_name = QString::null;
-    m_picture = 0;
-    m_icon = 0;
-    m_source = 0;
+    m_picture = QUrl();
+    m_icon = QUrl();
+    m_source = QUrl();
     m_height = 0;
     m_width = 0;
-    m_link = 0;
-    m_created_time = 0;
-    m_updated_time = 0;
+    m_link = QUrl();
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
 }
 
 QString QFacebookGraphPhoto::id() const {
@@ -38,7 +38,7 @@ QString QFacebookGraphPhoto::id() const {
 }
 void QFacebookGraphPhoto::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphPhoto::from() const {
@@ -46,7 +46,7 @@ QStringList QFacebookGraphPhoto::from() const {
 }
 void QFacebookGraphPhoto::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QStringList QFacebookGraphPhoto::tags() const {
@@ -54,7 +54,7 @@ QStringList QFacebookGraphPhoto::tags() const {
 }
 void QFacebookGraphPhoto::setTags(const QStringList &tags) {
     if( m_tags != tags )
-	    m_tags != tags;
+	    m_tags = tags;
 }
 
 QString QFacebookGraphPhoto::name() const {
@@ -62,7 +62,7 @@ QString QFacebookGraphPhoto::name() const {
 }
 void QFacebookGraphPhoto::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QUrl QFacebookGraphPhoto::picture() const {
@@ -70,7 +70,7 @@ QUrl QFacebookGraphPhoto::picture() const {
 }
 void QFacebookGraphPhoto::setPicture(const QUrl &picture) {
     if( m_picture != picture )
-	    m_picture != picture;
+	    m_picture = picture;
 }
 
 QUrl QFacebookGraphPhoto::icon() const {
@@ -78,7 +78,7 @@ QUrl QFacebookGraphPhoto::icon() const {
 }
 void QFacebookGraphPhoto::setIcon(const QUrl &icon) {
     if( m_icon != icon )
-	    m_icon != icon;
+	    m_icon = icon;
 }
 
 QUrl QFacebookGraphPhoto::source() const {
@@ -86,7 +86,7 @@ QUrl QFacebookGraphPhoto::source() const {
 }
 void QFacebookGraphPhoto::setSource(const QUrl &source) {
     if( m_source != source )
-	    m_source != source;
+	    m_source = source;
 }
 
 quint32 QFacebookGraphPhoto::height() const {
@@ -94,7 +94,7 @@ quint32 QFacebookGraphPhoto::height() const {
 }
 void QFacebookGraphPhoto::setHeight(const quint32 &height) {
     if( m_height != height )
-	    m_height != height;
+	    m_height = height;
 }
 
 quint32 QFacebookGraphPhoto::width() const {
@@ -102,7 +102,7 @@ quint32 QFacebookGraphPhoto::width() const {
 }
 void QFacebookGraphPhoto::setWidth(const quint32 &width) {
     if( m_width != width )
-	    m_width != width;
+	    m_width = width;
 }
 
 QUrl QFacebookGraphPhoto::link() const {
@@ -110,22 +110,22 @@ QUrl QFacebookGraphPhoto::link() const {
 }
 void QFacebookGraphPhoto::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
-QDateTime QFacebookGraphPhoto::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphPhoto::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphPhoto::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphPhoto::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 
-QDateTime QFacebookGraphPhoto::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphPhoto::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphPhoto::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphPhoto::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 

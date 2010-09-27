@@ -30,12 +30,12 @@ class QFacebookGraphEvent : public QObject
     Q_PROPERTY(QStringList owner READ owner WRITE setOwner NOTIFY ownerChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
-    Q_PROPERTY(QDateTime start_time READ start_time WRITE setStart_time NOTIFY start_timeChanged)
-    Q_PROPERTY(QDateTime end_time READ end_time WRITE setEnd_time NOTIFY end_timeChanged)
+    Q_PROPERTY(QDateTime startTime READ startTime WRITE setStarttime NOTIFY startTimeChanged)
+    Q_PROPERTY(QDateTime endTime READ endTime WRITE setEndtime NOTIFY endTimeChanged)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
     Q_PROPERTY(QStringList venue READ venue WRITE setVenue NOTIFY venueChanged)
     Q_PROPERTY(QString privacy READ privacy WRITE setPrivacy NOTIFY privacyChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
     explicit QFacebookGraphEvent(QObject *parent = 0);
@@ -52,11 +52,11 @@ public:
     QString description() const;
     void setDescription(const QString &description);
 
-    QDateTime start_time() const;
-    void setStart_time(const QDateTime &start_time);
+    QDateTime startTime() const;
+    void setStarttime(const QDateTime &startTime);
 
-    QDateTime end_time() const;
-    void setEnd_time(const QDateTime &end_time);
+    QDateTime endTime() const;
+    void setEndtime(const QDateTime &endTime);
 
     QString location() const;
     void setLocation(const QString &location);
@@ -67,32 +67,32 @@ public:
     QString privacy() const;
     void setPrivacy(const QString &privacy);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
 signals:
     void idChanged();
     void ownerChanged();
     void nameChanged();
     void descriptionChanged();
-    void start_timeChanged();
-    void end_timeChanged();
+    void startTimeChanged();
+    void endTimeChanged();
     void locationChanged();
     void venueChanged();
     void privacyChanged();
-    void updated_timeChanged();
+    void updatedTimeChanged();
 
 private:
     QString m_id;
     QStringList m_owner;
     QString m_name;
     QString m_description;
-    QDateTime m_start_time;
-    QDateTime m_end_time;
+    QDateTime m_startTime;
+    QDateTime m_endTime;
     QString m_location;
     QStringList m_venue;
     QString m_privacy;
-    QDateTime m_updated_time;
+    QDateTime m_updatedTime;
 
 };
 

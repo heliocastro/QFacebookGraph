@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Helio Chissini de Castro
+ * Copyright 2010 Helio Chissini de Castro <helio@collabora.co.uk>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 #include <QMap>
 #include <QUrl>
 
-#include "qfacebook_global.h"
+#include "qfacebookgraph_global.h"
 
 /**
 * @brief Main class for Facebook API
@@ -49,7 +49,7 @@ private:
     QVariantMap Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args) const;
     QString MakeRequest(const QUrl &url, HttpVerb httpVerb, QMap<QString,QString> args ) const;
     QString EncodeMap(QMap<QString,QString> dict, bool questionMark) const;
-	QString getAccessToken() const;
+    QString accessToken() const;
 
 private:
     QString m_accessToken;

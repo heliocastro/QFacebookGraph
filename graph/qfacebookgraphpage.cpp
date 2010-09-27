@@ -21,9 +21,9 @@ QFacebookGraphPage::QFacebookGraphPage(QObject *parent) :
 {
     m_id = QString::null;
     m_name = QString::null;
-    m_picture = 0;
+    m_picture = QUrl();
     m_category = QString::null;
-    m_fan_count = 0;
+    m_fanCount = 0;
 }
 
 QString QFacebookGraphPage::id() const {
@@ -31,7 +31,7 @@ QString QFacebookGraphPage::id() const {
 }
 void QFacebookGraphPage::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QString QFacebookGraphPage::name() const {
@@ -39,7 +39,7 @@ QString QFacebookGraphPage::name() const {
 }
 void QFacebookGraphPage::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QUrl QFacebookGraphPage::picture() const {
@@ -47,7 +47,7 @@ QUrl QFacebookGraphPage::picture() const {
 }
 void QFacebookGraphPage::setPicture(const QUrl &picture) {
     if( m_picture != picture )
-	    m_picture != picture;
+	    m_picture = picture;
 }
 
 QString QFacebookGraphPage::category() const {
@@ -55,14 +55,14 @@ QString QFacebookGraphPage::category() const {
 }
 void QFacebookGraphPage::setCategory(const QString &category) {
     if( m_category != category )
-	    m_category != category;
+	    m_category = category;
 }
 
-quint64 QFacebookGraphPage::fan_count() const {
-     return m_fan_count;
+quint64 QFacebookGraphPage::fanCount() const {
+     return m_fanCount;
 }
-void QFacebookGraphPage::setFan_count(const quint64 &fan_count) {
-    if( m_fan_count != fan_count )
-	    m_fan_count != fan_count;
+void QFacebookGraphPage::setFancount(const quint64 &fanCount) {
+    if( m_fanCount != fanCount )
+	    m_fanCount = fanCount;
 }
 

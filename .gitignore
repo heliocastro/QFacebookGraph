@@ -1,0 +1,5 @@
+qfacebookgraph.pro.user
+moc_*
+*.o
+Makefile
+libqfacebookgraph.*

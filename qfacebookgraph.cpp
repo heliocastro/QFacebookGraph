@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Helio Chissini de Castro
+ * Copyright 2010 Helio Chissini de Castro <helio@collabora.co.uk>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 
 QFacebookGraph::QFacebookGraph()
 {
-	m_accessToken = QString::null;
+    m_accessToken = QString::null;
 }
 
 QFacebookGraph::QFacebookGraph( const QString &accessToken )
@@ -31,7 +31,9 @@ QFacebookGraph::QFacebookGraph( const QString &accessToken )
 
 QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret )
 {
-	m_accessToken = QString::null;
+    Q_UNUSED( apiKey )
+    Q_UNUSED( apiSecret )
+    m_accessToken = QString::null;
 }
 
 QVariantMap QFacebookGraph::Get(const QString &relativePath, QMap<QString,QString> args) const
@@ -54,9 +56,9 @@ QVariantMap QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb,
 {
     QUrl url("https://graph.facebook.com" + relativePath);
 
-    if( AccessToken.isNull() || AccessToken.isEmpty())
+    if( accessToken().isNull() || accessToken().isEmpty())
     {
-        args["access_token"] = AccessToken;
+        args["access_token"] = accessToken();
     }
 
     QJson::Parser parser;
@@ -70,7 +72,10 @@ QVariantMap QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb,
 
 QString QFacebookGraph::MakeRequest(const QUrl &url, HttpVerb httpVerb, QMap<QString,QString> args) const
 {
-
+    Q_UNUSED( url )
+    Q_UNUSED( httpVerb )
+    Q_UNUSED( args )
+    return QString::null;
 }
 
 QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark) const
@@ -95,6 +100,6 @@ QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark)
 
 QString QFacebookGraph::accessToken() const
 {
-	return m_accessToken();
+    return m_accessToken;
 }
 

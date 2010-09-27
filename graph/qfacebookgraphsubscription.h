@@ -18,7 +18,6 @@
 #define QFACEBOOKGRAPHSUBSCRIPTION_H
 
 #include <QObject>
-#include <bool>
 #include <QString>
 #include <QStringList>
 #include <QUrl>
@@ -29,7 +28,7 @@ class QFacebookGraphSubscription : public QObject
 
     Q_PROPERTY(QString object READ object WRITE setObject NOTIFY objectChanged)
     Q_PROPERTY(QStringList fields READ fields WRITE setFields NOTIFY fieldsChanged)
-    Q_PROPERTY(QUrl callback_url READ callback_url WRITE setCallback_url NOTIFY callback_urlChanged)
+    Q_PROPERTY(QUrl callbackUrl READ callbackUrl WRITE setCallbackurl NOTIFY callbackUrlChanged)
     Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
     
 public:
@@ -41,8 +40,8 @@ public:
     QStringList fields() const;
     void setFields(const QStringList &fields);
 
-    QUrl callback_url() const;
-    void setCallback_url(const QUrl &callback_url);
+    QUrl callbackUrl() const;
+    void setCallbackurl(const QUrl &callbackUrl);
 
     bool active() const;
     void setActive(const bool &active);
@@ -50,13 +49,13 @@ public:
 signals:
     void objectChanged();
     void fieldsChanged();
-    void callback_urlChanged();
+    void callbackUrlChanged();
     void activeChanged();
 
 private:
     QString m_object;
     QStringList m_fields;
-    QUrl m_callback_url;
+    QUrl m_callbackUrl;
     bool m_active;
 
 };

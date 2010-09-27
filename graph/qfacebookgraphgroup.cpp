@@ -20,13 +20,13 @@ QFacebookGraphGroup::QFacebookGraphGroup(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_owner = 0;
+    m_owner = QStringList();
     m_name = QString::null;
     m_description = QString::null;
-    m_link = 0;
-    m_venue = 0;
+    m_link = QUrl();
+    m_venue = QStringList();
     m_privacy = QString::null;
-    m_updated_time = 0;
+    m_updatedTime = QDateTime();
 }
 
 QString QFacebookGraphGroup::id() const {
@@ -34,7 +34,7 @@ QString QFacebookGraphGroup::id() const {
 }
 void QFacebookGraphGroup::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphGroup::owner() const {
@@ -42,7 +42,7 @@ QStringList QFacebookGraphGroup::owner() const {
 }
 void QFacebookGraphGroup::setOwner(const QStringList &owner) {
     if( m_owner != owner )
-	    m_owner != owner;
+	    m_owner = owner;
 }
 
 QString QFacebookGraphGroup::name() const {
@@ -50,7 +50,7 @@ QString QFacebookGraphGroup::name() const {
 }
 void QFacebookGraphGroup::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QString QFacebookGraphGroup::description() const {
@@ -58,7 +58,7 @@ QString QFacebookGraphGroup::description() const {
 }
 void QFacebookGraphGroup::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
 QUrl QFacebookGraphGroup::link() const {
@@ -66,7 +66,7 @@ QUrl QFacebookGraphGroup::link() const {
 }
 void QFacebookGraphGroup::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
 QStringList QFacebookGraphGroup::venue() const {
@@ -74,7 +74,7 @@ QStringList QFacebookGraphGroup::venue() const {
 }
 void QFacebookGraphGroup::setVenue(const QStringList &venue) {
     if( m_venue != venue )
-	    m_venue != venue;
+	    m_venue = venue;
 }
 
 QString QFacebookGraphGroup::privacy() const {
@@ -82,14 +82,14 @@ QString QFacebookGraphGroup::privacy() const {
 }
 void QFacebookGraphGroup::setPrivacy(const QString &privacy) {
     if( m_privacy != privacy )
-	    m_privacy != privacy;
+	    m_privacy = privacy;
 }
 
-QDateTime QFacebookGraphGroup::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphGroup::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphGroup::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphGroup::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 

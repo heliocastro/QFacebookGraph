@@ -21,22 +21,24 @@
 #include <QDateTime>
 #include <QObject>
 #include <QString>
-#include <quint32>
+#include <QHash>
 #include <QUrl>
+
+typedef QHash<QString,QString> QHashFrom;
 
 class QFacebookGraphAlbum : public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
-    Q_PROPERTY(QObject from READ from WRITE setFrom NOTIFY fromChanged)
+    Q_PROPERTY(QHashFrom from READ from WRITE setFrom NOTIFY fromChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QString privacy READ privacy WRITE setPrivacy NOTIFY privacyChanged)
     Q_PROPERTY(quint32 count READ count WRITE setCount NOTIFY countChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     Q_PROPERTY(quint32 comments READ comments WRITE setComments NOTIFY commentsChanged)
     
 public:
@@ -45,8 +47,8 @@ public:
     QString id() const;
     void setId(const QString &id);
 
-    QObject from() const;
-    void setFrom(const QObject &from);
+    QHashFrom from() const;
+    void setFrom(const QHashFrom &from);
 
     QString description() const;
     void setDescription(const QString &description);
@@ -63,11 +65,11 @@ public:
     quint32 count() const;
     void setCount(const quint32 &count);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
     quint32 comments() const;
     void setComments(const quint32 &comments);
@@ -80,20 +82,20 @@ signals:
     void linkChanged();
     void privacyChanged();
     void countChanged();
-    void created_timeChanged();
-    void updated_timeChanged();
+    void createdTimeChanged();
+    void updatedTimeChanged();
     void commentsChanged();
 
 private:
     QString m_id;
-    QObject m_from;
+    QHashFrom m_from;
     QString m_description;
     QString m_location;
     QUrl m_link;
     QString m_privacy;
     quint32 m_count;
-    QDateTime m_created_time;
-    QDateTime m_updated_time;
+    QDateTime m_createdTime;
+    QDateTime m_updatedTime;
     quint32 m_comments;
 
 };

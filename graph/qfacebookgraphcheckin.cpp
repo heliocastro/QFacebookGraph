@@ -20,13 +20,13 @@ QFacebookGraphCheckin::QFacebookGraphCheckin(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
-    m_tags = 0;
-    m_place = 0;
+    m_from = QStringList();
+    m_tags = QStringList();
+    m_place = QStringList();
     m_message = QString::null;
     m_coordinates = QString::null;
-    m_application = 0;
-    m_created_time = 0;
+    m_application = QStringList();
+    m_createdTime = QDateTime();
 }
 
 QString QFacebookGraphCheckin::id() const {
@@ -34,7 +34,7 @@ QString QFacebookGraphCheckin::id() const {
 }
 void QFacebookGraphCheckin::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphCheckin::from() const {
@@ -42,7 +42,7 @@ QStringList QFacebookGraphCheckin::from() const {
 }
 void QFacebookGraphCheckin::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QStringList QFacebookGraphCheckin::tags() const {
@@ -50,7 +50,7 @@ QStringList QFacebookGraphCheckin::tags() const {
 }
 void QFacebookGraphCheckin::setTags(const QStringList &tags) {
     if( m_tags != tags )
-	    m_tags != tags;
+	    m_tags = tags;
 }
 
 QStringList QFacebookGraphCheckin::place() const {
@@ -58,7 +58,7 @@ QStringList QFacebookGraphCheckin::place() const {
 }
 void QFacebookGraphCheckin::setPlace(const QStringList &place) {
     if( m_place != place )
-	    m_place != place;
+	    m_place = place;
 }
 
 QString QFacebookGraphCheckin::message() const {
@@ -66,7 +66,7 @@ QString QFacebookGraphCheckin::message() const {
 }
 void QFacebookGraphCheckin::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
 QString QFacebookGraphCheckin::coordinates() const {
@@ -74,7 +74,7 @@ QString QFacebookGraphCheckin::coordinates() const {
 }
 void QFacebookGraphCheckin::setCoordinates(const QString &coordinates) {
     if( m_coordinates != coordinates )
-	    m_coordinates != coordinates;
+	    m_coordinates = coordinates;
 }
 
 QStringList QFacebookGraphCheckin::application() const {
@@ -82,14 +82,14 @@ QStringList QFacebookGraphCheckin::application() const {
 }
 void QFacebookGraphCheckin::setApplication(const QStringList &application) {
     if( m_application != application )
-	    m_application != application;
+	    m_application = application;
 }
 
-QDateTime QFacebookGraphCheckin::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphCheckin::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphCheckin::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphCheckin::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 

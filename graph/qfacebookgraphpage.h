@@ -19,7 +19,6 @@
 
 #include <QObject>
 #include <QString>
-#include <quint64>
 #include <QUrl>
 
 class QFacebookGraphPage : public QObject
@@ -30,7 +29,7 @@ class QFacebookGraphPage : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
-    Q_PROPERTY(quint64 fan_count READ fan_count WRITE setFan_count NOTIFY fan_countChanged)
+    Q_PROPERTY(quint64 fanCount READ fanCount WRITE setFancount NOTIFY fanCountChanged)
     
 public:
     explicit QFacebookGraphPage(QObject *parent = 0);
@@ -47,22 +46,22 @@ public:
     QString category() const;
     void setCategory(const QString &category);
 
-    quint64 fan_count() const;
-    void setFan_count(const quint64 &fan_count);
+    quint64 fanCount() const;
+    void setFancount(const quint64 &fanCount);
 
 signals:
     void idChanged();
     void nameChanged();
     void pictureChanged();
     void categoryChanged();
-    void fan_countChanged();
+    void fanCountChanged();
 
 private:
     QString m_id;
     QString m_name;
     QUrl m_picture;
     QString m_category;
-    quint64 m_fan_count;
+    quint64 m_fanCount;
 
 };
 

@@ -20,9 +20,9 @@ QFacebookGraphStatusMessage::QFacebookGraphStatusMessage(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
+    m_from = QStringList();
     m_message = QString::null;
-    m_updated_message = 0;
+    m_updatedMessage = QDateTime();
 }
 
 QString QFacebookGraphStatusMessage::id() const {
@@ -30,7 +30,7 @@ QString QFacebookGraphStatusMessage::id() const {
 }
 void QFacebookGraphStatusMessage::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphStatusMessage::from() const {
@@ -38,7 +38,7 @@ QStringList QFacebookGraphStatusMessage::from() const {
 }
 void QFacebookGraphStatusMessage::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QString QFacebookGraphStatusMessage::message() const {
@@ -46,14 +46,14 @@ QString QFacebookGraphStatusMessage::message() const {
 }
 void QFacebookGraphStatusMessage::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
-QDateTime QFacebookGraphStatusMessage::updated_message() const {
-     return m_updated_message;
+QDateTime QFacebookGraphStatusMessage::updatedMessage() const {
+     return m_updatedMessage;
 }
-void QFacebookGraphStatusMessage::setUpdated_message(const QDateTime &updated_message) {
-    if( m_updated_message != updated_message )
-	    m_updated_message != updated_message;
+void QFacebookGraphStatusMessage::setUpdatedmessage(const QDateTime &updatedMessage) {
+    if( m_updatedMessage != updatedMessage )
+	    m_updatedMessage = updatedMessage;
 }
 

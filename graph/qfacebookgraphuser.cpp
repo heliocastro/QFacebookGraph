@@ -20,30 +20,30 @@ QFacebookGraphUser::QFacebookGraphUser(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_first_name = QString::null;
-    m_last_name = QString::null;
+    m_firstName = QString::null;
+    m_lastName = QString::null;
     m_name = QString::null;
-    m_link = 0;
+    m_link = QUrl();
     m_about = QString::null;
     m_birthday = QString::null;
-    m_work = 0;
-    m_education = 0;
+    m_work = QStringList();
+    m_education = QStringList();
     m_email = QString::null;
-    m_website = 0;
-    m_hometown = 0;
+    m_website = QUrl();
+    m_hometown = QUrl();
     m_location = QString::null;
     m_bio = QString::null;
     m_quotes = QString::null;
     m_gender = QString::null;
-    m_interested_in = QString::null;
-    m_meeting_for = 0;
-    m_relationship_status = QString::null;
+    m_interestedIn = QString::null;
+    m_meetingFor = QStringList();
+    m_relationshipStatus = QString::null;
     m_religion = QString::null;
     m_political = QString::null;
     m_verified = 0;
-    m_significant_other = QString::null;
+    m_significantOther = QString::null;
     m_timezone = QString::null;
-    m_updated_time = 0;
+    m_updatedTime = QDateTime();
 }
 
 QString QFacebookGraphUser::id() const {
@@ -51,23 +51,23 @@ QString QFacebookGraphUser::id() const {
 }
 void QFacebookGraphUser::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
-QString QFacebookGraphUser::first_name() const {
-     return m_first_name;
+QString QFacebookGraphUser::firstName() const {
+     return m_firstName;
 }
-void QFacebookGraphUser::setFirst_name(const QString &first_name) {
-    if( m_first_name != first_name )
-	    m_first_name != first_name;
+void QFacebookGraphUser::setFirstname(const QString &firstName) {
+    if( m_firstName != firstName )
+	    m_firstName = firstName;
 }
 
-QString QFacebookGraphUser::last_name() const {
-     return m_last_name;
+QString QFacebookGraphUser::lastName() const {
+     return m_lastName;
 }
-void QFacebookGraphUser::setLast_name(const QString &last_name) {
-    if( m_last_name != last_name )
-	    m_last_name != last_name;
+void QFacebookGraphUser::setLastname(const QString &lastName) {
+    if( m_lastName != lastName )
+	    m_lastName = lastName;
 }
 
 QString QFacebookGraphUser::name() const {
@@ -75,7 +75,7 @@ QString QFacebookGraphUser::name() const {
 }
 void QFacebookGraphUser::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QUrl QFacebookGraphUser::link() const {
@@ -83,7 +83,7 @@ QUrl QFacebookGraphUser::link() const {
 }
 void QFacebookGraphUser::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
 QString QFacebookGraphUser::about() const {
@@ -91,7 +91,7 @@ QString QFacebookGraphUser::about() const {
 }
 void QFacebookGraphUser::setAbout(const QString &about) {
     if( m_about != about )
-	    m_about != about;
+	    m_about = about;
 }
 
 QString QFacebookGraphUser::birthday() const {
@@ -99,7 +99,7 @@ QString QFacebookGraphUser::birthday() const {
 }
 void QFacebookGraphUser::setBirthday(const QString &birthday) {
     if( m_birthday != birthday )
-	    m_birthday != birthday;
+	    m_birthday = birthday;
 }
 
 QStringList QFacebookGraphUser::work() const {
@@ -107,7 +107,7 @@ QStringList QFacebookGraphUser::work() const {
 }
 void QFacebookGraphUser::setWork(const QStringList &work) {
     if( m_work != work )
-	    m_work != work;
+	    m_work = work;
 }
 
 QStringList QFacebookGraphUser::education() const {
@@ -115,7 +115,7 @@ QStringList QFacebookGraphUser::education() const {
 }
 void QFacebookGraphUser::setEducation(const QStringList &education) {
     if( m_education != education )
-	    m_education != education;
+	    m_education = education;
 }
 
 QString QFacebookGraphUser::email() const {
@@ -123,7 +123,7 @@ QString QFacebookGraphUser::email() const {
 }
 void QFacebookGraphUser::setEmail(const QString &email) {
     if( m_email != email )
-	    m_email != email;
+	    m_email = email;
 }
 
 QUrl QFacebookGraphUser::website() const {
@@ -131,7 +131,7 @@ QUrl QFacebookGraphUser::website() const {
 }
 void QFacebookGraphUser::setWebsite(const QUrl &website) {
     if( m_website != website )
-	    m_website != website;
+	    m_website = website;
 }
 
 QUrl QFacebookGraphUser::hometown() const {
@@ -139,7 +139,7 @@ QUrl QFacebookGraphUser::hometown() const {
 }
 void QFacebookGraphUser::setHometown(const QUrl &hometown) {
     if( m_hometown != hometown )
-	    m_hometown != hometown;
+	    m_hometown = hometown;
 }
 
 QString QFacebookGraphUser::location() const {
@@ -147,7 +147,7 @@ QString QFacebookGraphUser::location() const {
 }
 void QFacebookGraphUser::setLocation(const QString &location) {
     if( m_location != location )
-	    m_location != location;
+	    m_location = location;
 }
 
 QString QFacebookGraphUser::bio() const {
@@ -155,7 +155,7 @@ QString QFacebookGraphUser::bio() const {
 }
 void QFacebookGraphUser::setBio(const QString &bio) {
     if( m_bio != bio )
-	    m_bio != bio;
+	    m_bio = bio;
 }
 
 QString QFacebookGraphUser::quotes() const {
@@ -163,7 +163,7 @@ QString QFacebookGraphUser::quotes() const {
 }
 void QFacebookGraphUser::setQuotes(const QString &quotes) {
     if( m_quotes != quotes )
-	    m_quotes != quotes;
+	    m_quotes = quotes;
 }
 
 QString QFacebookGraphUser::gender() const {
@@ -171,31 +171,31 @@ QString QFacebookGraphUser::gender() const {
 }
 void QFacebookGraphUser::setGender(const QString &gender) {
     if( m_gender != gender )
-	    m_gender != gender;
+	    m_gender = gender;
 }
 
-QString QFacebookGraphUser::interested_in() const {
-     return m_interested_in;
+QString QFacebookGraphUser::interestedIn() const {
+     return m_interestedIn;
 }
-void QFacebookGraphUser::setInterested_in(const QString &interested_in) {
-    if( m_interested_in != interested_in )
-	    m_interested_in != interested_in;
-}
-
-QStringList QFacebookGraphUser::meeting_for() const {
-     return m_meeting_for;
-}
-void QFacebookGraphUser::setMeeting_for(const QStringList &meeting_for) {
-    if( m_meeting_for != meeting_for )
-	    m_meeting_for != meeting_for;
+void QFacebookGraphUser::setInterestedin(const QString &interestedIn) {
+    if( m_interestedIn != interestedIn )
+	    m_interestedIn = interestedIn;
 }
 
-QString QFacebookGraphUser::relationship_status() const {
-     return m_relationship_status;
+QStringList QFacebookGraphUser::meetingFor() const {
+     return m_meetingFor;
 }
-void QFacebookGraphUser::setRelationship_status(const QString &relationship_status) {
-    if( m_relationship_status != relationship_status )
-	    m_relationship_status != relationship_status;
+void QFacebookGraphUser::setMeetingfor(const QStringList &meetingFor) {
+    if( m_meetingFor != meetingFor )
+	    m_meetingFor = meetingFor;
+}
+
+QString QFacebookGraphUser::relationshipStatus() const {
+     return m_relationshipStatus;
+}
+void QFacebookGraphUser::setRelationshipstatus(const QString &relationshipStatus) {
+    if( m_relationshipStatus != relationshipStatus )
+	    m_relationshipStatus = relationshipStatus;
 }
 
 QString QFacebookGraphUser::religion() const {
@@ -203,7 +203,7 @@ QString QFacebookGraphUser::religion() const {
 }
 void QFacebookGraphUser::setReligion(const QString &religion) {
     if( m_religion != religion )
-	    m_religion != religion;
+	    m_religion = religion;
 }
 
 QString QFacebookGraphUser::political() const {
@@ -211,7 +211,7 @@ QString QFacebookGraphUser::political() const {
 }
 void QFacebookGraphUser::setPolitical(const QString &political) {
     if( m_political != political )
-	    m_political != political;
+	    m_political = political;
 }
 
 bool QFacebookGraphUser::verified() const {
@@ -219,15 +219,15 @@ bool QFacebookGraphUser::verified() const {
 }
 void QFacebookGraphUser::setVerified(const bool &verified) {
     if( m_verified != verified )
-	    m_verified != verified;
+	    m_verified = verified;
 }
 
-QString QFacebookGraphUser::significant_other() const {
-     return m_significant_other;
+QString QFacebookGraphUser::significantOther() const {
+     return m_significantOther;
 }
-void QFacebookGraphUser::setSignificant_other(const QString &significant_other) {
-    if( m_significant_other != significant_other )
-	    m_significant_other != significant_other;
+void QFacebookGraphUser::setSignificantother(const QString &significantOther) {
+    if( m_significantOther != significantOther )
+	    m_significantOther = significantOther;
 }
 
 QString QFacebookGraphUser::timezone() const {
@@ -235,14 +235,14 @@ QString QFacebookGraphUser::timezone() const {
 }
 void QFacebookGraphUser::setTimezone(const QString &timezone) {
     if( m_timezone != timezone )
-	    m_timezone != timezone;
+	    m_timezone = timezone;
 }
 
-QDateTime QFacebookGraphUser::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphUser::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphUser::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphUser::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 

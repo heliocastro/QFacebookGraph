@@ -20,12 +20,12 @@ QFacebookGraphVideo::QFacebookGraphVideo(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
+    m_from = QStringList();
     m_message = QString::null;
     m_description = QString::null;
     m_lenght = QString::null;
-    m_created_time = 0;
-    m_updated_time = 0;
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
 }
 
 QString QFacebookGraphVideo::id() const {
@@ -33,7 +33,7 @@ QString QFacebookGraphVideo::id() const {
 }
 void QFacebookGraphVideo::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphVideo::from() const {
@@ -41,7 +41,7 @@ QStringList QFacebookGraphVideo::from() const {
 }
 void QFacebookGraphVideo::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QString QFacebookGraphVideo::message() const {
@@ -49,7 +49,7 @@ QString QFacebookGraphVideo::message() const {
 }
 void QFacebookGraphVideo::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
 QString QFacebookGraphVideo::description() const {
@@ -57,7 +57,7 @@ QString QFacebookGraphVideo::description() const {
 }
 void QFacebookGraphVideo::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
 QString QFacebookGraphVideo::lenght() const {
@@ -65,22 +65,22 @@ QString QFacebookGraphVideo::lenght() const {
 }
 void QFacebookGraphVideo::setLenght(const QString &lenght) {
     if( m_lenght != lenght )
-	    m_lenght != lenght;
+	    m_lenght = lenght;
 }
 
-QDateTime QFacebookGraphVideo::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphVideo::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphVideo::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphVideo::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 
-QDateTime QFacebookGraphVideo::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphVideo::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphVideo::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphVideo::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 

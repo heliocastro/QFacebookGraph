@@ -34,7 +34,7 @@ class QFacebookGraphGroup : public QObject
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QStringList venue READ venue WRITE setVenue NOTIFY venueChanged)
     Q_PROPERTY(QString privacy READ privacy WRITE setPrivacy NOTIFY privacyChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
     explicit QFacebookGraphGroup(QObject *parent = 0);
@@ -60,8 +60,8 @@ public:
     QString privacy() const;
     void setPrivacy(const QString &privacy);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
 signals:
     void idChanged();
@@ -71,7 +71,7 @@ signals:
     void linkChanged();
     void venueChanged();
     void privacyChanged();
-    void updated_timeChanged();
+    void updatedTimeChanged();
 
 private:
     QString m_id;
@@ -81,7 +81,7 @@ private:
     QUrl m_link;
     QStringList m_venue;
     QString m_privacy;
-    QDateTime m_updated_time;
+    QDateTime m_updatedTime;
 
 };
 

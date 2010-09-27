@@ -20,15 +20,15 @@ QFacebookGraphEvent::QFacebookGraphEvent(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_owner = 0;
+    m_owner = QStringList();
     m_name = QString::null;
     m_description = QString::null;
-    m_start_time = 0;
-    m_end_time = 0;
+    m_startTime = QDateTime();
+    m_endTime = QDateTime();
     m_location = QString::null;
-    m_venue = 0;
+    m_venue = QStringList();
     m_privacy = QString::null;
-    m_updated_time = 0;
+    m_updatedTime = QDateTime();
 }
 
 QString QFacebookGraphEvent::id() const {
@@ -36,7 +36,7 @@ QString QFacebookGraphEvent::id() const {
 }
 void QFacebookGraphEvent::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphEvent::owner() const {
@@ -44,7 +44,7 @@ QStringList QFacebookGraphEvent::owner() const {
 }
 void QFacebookGraphEvent::setOwner(const QStringList &owner) {
     if( m_owner != owner )
-	    m_owner != owner;
+	    m_owner = owner;
 }
 
 QString QFacebookGraphEvent::name() const {
@@ -52,7 +52,7 @@ QString QFacebookGraphEvent::name() const {
 }
 void QFacebookGraphEvent::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QString QFacebookGraphEvent::description() const {
@@ -60,23 +60,23 @@ QString QFacebookGraphEvent::description() const {
 }
 void QFacebookGraphEvent::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
-QDateTime QFacebookGraphEvent::start_time() const {
-     return m_start_time;
+QDateTime QFacebookGraphEvent::startTime() const {
+     return m_startTime;
 }
-void QFacebookGraphEvent::setStart_time(const QDateTime &start_time) {
-    if( m_start_time != start_time )
-	    m_start_time != start_time;
+void QFacebookGraphEvent::setStarttime(const QDateTime &startTime) {
+    if( m_startTime != startTime )
+	    m_startTime = startTime;
 }
 
-QDateTime QFacebookGraphEvent::end_time() const {
-     return m_end_time;
+QDateTime QFacebookGraphEvent::endTime() const {
+     return m_endTime;
 }
-void QFacebookGraphEvent::setEnd_time(const QDateTime &end_time) {
-    if( m_end_time != end_time )
-	    m_end_time != end_time;
+void QFacebookGraphEvent::setEndtime(const QDateTime &endTime) {
+    if( m_endTime != endTime )
+	    m_endTime = endTime;
 }
 
 QString QFacebookGraphEvent::location() const {
@@ -84,7 +84,7 @@ QString QFacebookGraphEvent::location() const {
 }
 void QFacebookGraphEvent::setLocation(const QString &location) {
     if( m_location != location )
-	    m_location != location;
+	    m_location = location;
 }
 
 QStringList QFacebookGraphEvent::venue() const {
@@ -92,7 +92,7 @@ QStringList QFacebookGraphEvent::venue() const {
 }
 void QFacebookGraphEvent::setVenue(const QStringList &venue) {
     if( m_venue != venue )
-	    m_venue != venue;
+	    m_venue = venue;
 }
 
 QString QFacebookGraphEvent::privacy() const {
@@ -100,14 +100,14 @@ QString QFacebookGraphEvent::privacy() const {
 }
 void QFacebookGraphEvent::setPrivacy(const QString &privacy) {
     if( m_privacy != privacy )
-	    m_privacy != privacy;
+	    m_privacy = privacy;
 }
 
-QDateTime QFacebookGraphEvent::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphEvent::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphEvent::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphEvent::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 

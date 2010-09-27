@@ -21,7 +21,6 @@
 #include <QDateTime>
 #include <QString>
 #include <QStringList>
-#include <quint32>
 #include <QUrl>
 
 class QFacebookGraphPhoto : public QObject
@@ -38,8 +37,8 @@ class QFacebookGraphPhoto : public QObject
     Q_PROPERTY(quint32 height READ height WRITE setHeight NOTIFY heightChanged)
     Q_PROPERTY(quint32 width READ width WRITE setWidth NOTIFY widthChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
-    Q_PROPERTY(QDateTime created_time READ created_time WRITE setCreated_time NOTIFY created_timeChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
     explicit QFacebookGraphPhoto(QObject *parent = 0);
@@ -74,11 +73,11 @@ public:
     QUrl link() const;
     void setLink(const QUrl &link);
 
-    QDateTime created_time() const;
-    void setCreated_time(const QDateTime &created_time);
+    QDateTime createdTime() const;
+    void setCreatedtime(const QDateTime &createdTime);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
 signals:
     void idChanged();
@@ -91,8 +90,8 @@ signals:
     void heightChanged();
     void widthChanged();
     void linkChanged();
-    void created_timeChanged();
-    void updated_timeChanged();
+    void createdTimeChanged();
+    void updatedTimeChanged();
 
 private:
     QString m_id;
@@ -105,8 +104,8 @@ private:
     quint32 m_height;
     quint32 m_width;
     QUrl m_link;
-    QDateTime m_created_time;
-    QDateTime m_updated_time;
+    QDateTime m_createdTime;
+    QDateTime m_updatedTime;
 
 };
 

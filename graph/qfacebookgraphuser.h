@@ -18,7 +18,6 @@
 #define QFACEBOOKGRAPHUSER_H
 
 #include <QObject>
-#include <bool>
 #include <QDateTime>
 #include <QString>
 #include <QStringList>
@@ -29,8 +28,8 @@ class QFacebookGraphUser : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
-    Q_PROPERTY(QString first_name READ first_name WRITE setFirst_name NOTIFY first_nameChanged)
-    Q_PROPERTY(QString last_name READ last_name WRITE setLast_name NOTIFY last_nameChanged)
+    Q_PROPERTY(QString firstName READ firstName WRITE setFirstname NOTIFY firstNameChanged)
+    Q_PROPERTY(QString lastName READ lastName WRITE setLastname NOTIFY lastNameChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QString about READ about WRITE setAbout NOTIFY aboutChanged)
@@ -44,15 +43,15 @@ class QFacebookGraphUser : public QObject
     Q_PROPERTY(QString bio READ bio WRITE setBio NOTIFY bioChanged)
     Q_PROPERTY(QString quotes READ quotes WRITE setQuotes NOTIFY quotesChanged)
     Q_PROPERTY(QString gender READ gender WRITE setGender NOTIFY genderChanged)
-    Q_PROPERTY(QString interested_in READ interested_in WRITE setInterested_in NOTIFY interested_inChanged)
-    Q_PROPERTY(QStringList meeting_for READ meeting_for WRITE setMeeting_for NOTIFY meeting_forChanged)
-    Q_PROPERTY(QString relationship_status READ relationship_status WRITE setRelationship_status NOTIFY relationship_statusChanged)
+    Q_PROPERTY(QString interestedIn READ interestedIn WRITE setInterestedin NOTIFY interestedInChanged)
+    Q_PROPERTY(QStringList meetingFor READ meetingFor WRITE setMeetingfor NOTIFY meetingForChanged)
+    Q_PROPERTY(QString relationshipStatus READ relationshipStatus WRITE setRelationshipstatus NOTIFY relationshipStatusChanged)
     Q_PROPERTY(QString religion READ religion WRITE setReligion NOTIFY religionChanged)
     Q_PROPERTY(QString political READ political WRITE setPolitical NOTIFY politicalChanged)
     Q_PROPERTY(bool verified READ verified WRITE setVerified NOTIFY verifiedChanged)
-    Q_PROPERTY(QString significant_other READ significant_other WRITE setSignificant_other NOTIFY significant_otherChanged)
+    Q_PROPERTY(QString significantOther READ significantOther WRITE setSignificantother NOTIFY significantOtherChanged)
     Q_PROPERTY(QString timezone READ timezone WRITE setTimezone NOTIFY timezoneChanged)
-    Q_PROPERTY(QDateTime updated_time READ updated_time WRITE setUpdated_time NOTIFY updated_timeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
     explicit QFacebookGraphUser(QObject *parent = 0);
@@ -60,11 +59,11 @@ public:
     QString id() const;
     void setId(const QString &id);
 
-    QString first_name() const;
-    void setFirst_name(const QString &first_name);
+    QString firstName() const;
+    void setFirstname(const QString &firstName);
 
-    QString last_name() const;
-    void setLast_name(const QString &last_name);
+    QString lastName() const;
+    void setLastname(const QString &lastName);
 
     QString name() const;
     void setName(const QString &name);
@@ -105,14 +104,14 @@ public:
     QString gender() const;
     void setGender(const QString &gender);
 
-    QString interested_in() const;
-    void setInterested_in(const QString &interested_in);
+    QString interestedIn() const;
+    void setInterestedin(const QString &interestedIn);
 
-    QStringList meeting_for() const;
-    void setMeeting_for(const QStringList &meeting_for);
+    QStringList meetingFor() const;
+    void setMeetingfor(const QStringList &meetingFor);
 
-    QString relationship_status() const;
-    void setRelationship_status(const QString &relationship_status);
+    QString relationshipStatus() const;
+    void setRelationshipstatus(const QString &relationshipStatus);
 
     QString religion() const;
     void setReligion(const QString &religion);
@@ -123,19 +122,19 @@ public:
     bool verified() const;
     void setVerified(const bool &verified);
 
-    QString significant_other() const;
-    void setSignificant_other(const QString &significant_other);
+    QString significantOther() const;
+    void setSignificantother(const QString &significantOther);
 
     QString timezone() const;
     void setTimezone(const QString &timezone);
 
-    QDateTime updated_time() const;
-    void setUpdated_time(const QDateTime &updated_time);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
 signals:
     void idChanged();
-    void first_nameChanged();
-    void last_nameChanged();
+    void firstNameChanged();
+    void lastNameChanged();
     void nameChanged();
     void linkChanged();
     void aboutChanged();
@@ -149,20 +148,20 @@ signals:
     void bioChanged();
     void quotesChanged();
     void genderChanged();
-    void interested_inChanged();
-    void meeting_forChanged();
-    void relationship_statusChanged();
+    void interestedInChanged();
+    void meetingForChanged();
+    void relationshipStatusChanged();
     void religionChanged();
     void politicalChanged();
     void verifiedChanged();
-    void significant_otherChanged();
+    void significantOtherChanged();
     void timezoneChanged();
-    void updated_timeChanged();
+    void updatedTimeChanged();
 
 private:
     QString m_id;
-    QString m_first_name;
-    QString m_last_name;
+    QString m_firstName;
+    QString m_lastName;
     QString m_name;
     QUrl m_link;
     QString m_about;
@@ -176,15 +175,15 @@ private:
     QString m_bio;
     QString m_quotes;
     QString m_gender;
-    QString m_interested_in;
-    QStringList m_meeting_for;
-    QString m_relationship_status;
+    QString m_interestedIn;
+    QStringList m_meetingFor;
+    QString m_relationshipStatus;
     QString m_religion;
     QString m_political;
     bool m_verified;
-    QString m_significant_other;
+    QString m_significantOther;
     QString m_timezone;
-    QDateTime m_updated_time;
+    QDateTime m_updatedTime;
 
 };
 

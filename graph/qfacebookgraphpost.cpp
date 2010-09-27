@@ -20,21 +20,21 @@ QFacebookGraphPost::QFacebookGraphPost(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
-    m_to = 0;
+    m_from = QStringList();
+    m_to = QHashTo();
     m_message = QString::null;
-    m_picture = 0;
-    m_link = 0;
+    m_picture = QUrl();
+    m_link = QUrl();
     m_name = QString::null;
     m_caption = QString::null;
     m_description = QString::null;
-    m_source = 0;
-    m_icon = 0;
+    m_source = QUrl();
+    m_icon = QUrl();
     m_attribution = QString::null;
-    m_actions = 0;
+    m_actions = QHashAction();
     m_likes = 0;
-    m_created_time = 0;
-    m_updated_time = 0;
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
 }
 
 QString QFacebookGraphPost::id() const {
@@ -42,7 +42,7 @@ QString QFacebookGraphPost::id() const {
 }
 void QFacebookGraphPost::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphPost::from() const {
@@ -50,15 +50,15 @@ QStringList QFacebookGraphPost::from() const {
 }
 void QFacebookGraphPost::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
-QList+QStringList- QFacebookGraphPost::to() const {
+QHashTo QFacebookGraphPost::to() const {
      return m_to;
 }
-void QFacebookGraphPost::setTo(const QList+QStringList- &to) {
+void QFacebookGraphPost::setTo(const QHashTo &to) {
     if( m_to != to )
-	    m_to != to;
+	    m_to = to;
 }
 
 QString QFacebookGraphPost::message() const {
@@ -66,7 +66,7 @@ QString QFacebookGraphPost::message() const {
 }
 void QFacebookGraphPost::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
 QUrl QFacebookGraphPost::picture() const {
@@ -74,7 +74,7 @@ QUrl QFacebookGraphPost::picture() const {
 }
 void QFacebookGraphPost::setPicture(const QUrl &picture) {
     if( m_picture != picture )
-	    m_picture != picture;
+	    m_picture = picture;
 }
 
 QUrl QFacebookGraphPost::link() const {
@@ -82,7 +82,7 @@ QUrl QFacebookGraphPost::link() const {
 }
 void QFacebookGraphPost::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
 QString QFacebookGraphPost::name() const {
@@ -90,7 +90,7 @@ QString QFacebookGraphPost::name() const {
 }
 void QFacebookGraphPost::setName(const QString &name) {
     if( m_name != name )
-	    m_name != name;
+	    m_name = name;
 }
 
 QString QFacebookGraphPost::caption() const {
@@ -98,7 +98,7 @@ QString QFacebookGraphPost::caption() const {
 }
 void QFacebookGraphPost::setCaption(const QString &caption) {
     if( m_caption != caption )
-	    m_caption != caption;
+	    m_caption = caption;
 }
 
 QString QFacebookGraphPost::description() const {
@@ -106,7 +106,7 @@ QString QFacebookGraphPost::description() const {
 }
 void QFacebookGraphPost::setDescription(const QString &description) {
     if( m_description != description )
-	    m_description != description;
+	    m_description = description;
 }
 
 QUrl QFacebookGraphPost::source() const {
@@ -114,7 +114,7 @@ QUrl QFacebookGraphPost::source() const {
 }
 void QFacebookGraphPost::setSource(const QUrl &source) {
     if( m_source != source )
-	    m_source != source;
+	    m_source = source;
 }
 
 QUrl QFacebookGraphPost::icon() const {
@@ -122,7 +122,7 @@ QUrl QFacebookGraphPost::icon() const {
 }
 void QFacebookGraphPost::setIcon(const QUrl &icon) {
     if( m_icon != icon )
-	    m_icon != icon;
+	    m_icon = icon;
 }
 
 QString QFacebookGraphPost::attribution() const {
@@ -130,15 +130,15 @@ QString QFacebookGraphPost::attribution() const {
 }
 void QFacebookGraphPost::setAttribution(const QString &attribution) {
     if( m_attribution != attribution )
-	    m_attribution != attribution;
+	    m_attribution = attribution;
 }
 
-QHash+QString,QUrl- QFacebookGraphPost::actions() const {
+QHashAction QFacebookGraphPost::actions() const {
      return m_actions;
 }
-void QFacebookGraphPost::setActions(const QHash+QString,QUrl- &actions) {
+void QFacebookGraphPost::setActions(const QHashAction &actions) {
     if( m_actions != actions )
-	    m_actions != actions;
+	    m_actions = actions;
 }
 
 quint64 QFacebookGraphPost::likes() const {
@@ -146,22 +146,22 @@ quint64 QFacebookGraphPost::likes() const {
 }
 void QFacebookGraphPost::setLikes(const quint64 &likes) {
     if( m_likes != likes )
-	    m_likes != likes;
+	    m_likes = likes;
 }
 
-QDateTime QFacebookGraphPost::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphPost::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphPost::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphPost::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 
-QDateTime QFacebookGraphPost::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphPost::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphPost::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphPost::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 

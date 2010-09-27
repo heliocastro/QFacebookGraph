@@ -20,14 +20,14 @@ QFacebookGraphConnectionHomeModel::QFacebookGraphConnectionHomeModel(QObject *pa
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = 0;
+    m_from = QStringList();
     m_message = QString::null;
-    m_link = 0;
-    m_icon = 0;
-    m_actions = 0;
+    m_link = QUrl();
+    m_icon = QUrl();
+    m_actions = QHashActions();
     m_type = QString::null;
-    m_created_time = 0;
-    m_updated_time = 0;
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
     m_attribution = QString::null;
 }
 
@@ -36,7 +36,7 @@ QString QFacebookGraphConnectionHomeModel::id() const {
 }
 void QFacebookGraphConnectionHomeModel::setId(const QString &id) {
     if( m_id != id )
-	    m_id != id;
+	    m_id = id;
 }
 
 QStringList QFacebookGraphConnectionHomeModel::from() const {
@@ -44,7 +44,7 @@ QStringList QFacebookGraphConnectionHomeModel::from() const {
 }
 void QFacebookGraphConnectionHomeModel::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from != from;
+	    m_from = from;
 }
 
 QString QFacebookGraphConnectionHomeModel::message() const {
@@ -52,7 +52,7 @@ QString QFacebookGraphConnectionHomeModel::message() const {
 }
 void QFacebookGraphConnectionHomeModel::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message != message;
+	    m_message = message;
 }
 
 QUrl QFacebookGraphConnectionHomeModel::link() const {
@@ -60,7 +60,7 @@ QUrl QFacebookGraphConnectionHomeModel::link() const {
 }
 void QFacebookGraphConnectionHomeModel::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link != link;
+	    m_link = link;
 }
 
 QUrl QFacebookGraphConnectionHomeModel::icon() const {
@@ -68,15 +68,15 @@ QUrl QFacebookGraphConnectionHomeModel::icon() const {
 }
 void QFacebookGraphConnectionHomeModel::setIcon(const QUrl &icon) {
     if( m_icon != icon )
-	    m_icon != icon;
+	    m_icon = icon;
 }
 
-QHash+QString,QUrl- QFacebookGraphConnectionHomeModel::actions() const {
+QHashActions QFacebookGraphConnectionHomeModel::actions() const {
      return m_actions;
 }
-void QFacebookGraphConnectionHomeModel::setActions(const QHash+QString,QUrl- &actions) {
+void QFacebookGraphConnectionHomeModel::setActions(const QHashActions &actions) {
     if( m_actions != actions )
-	    m_actions != actions;
+	    m_actions = actions;
 }
 
 QString QFacebookGraphConnectionHomeModel::type() const {
@@ -84,23 +84,23 @@ QString QFacebookGraphConnectionHomeModel::type() const {
 }
 void QFacebookGraphConnectionHomeModel::setType(const QString &type) {
     if( m_type != type )
-	    m_type != type;
+	    m_type = type;
 }
 
-QDateTime QFacebookGraphConnectionHomeModel::created_time() const {
-     return m_created_time;
+QDateTime QFacebookGraphConnectionHomeModel::createdTime() const {
+     return m_createdTime;
 }
-void QFacebookGraphConnectionHomeModel::setCreated_time(const QDateTime &created_time) {
-    if( m_created_time != created_time )
-	    m_created_time != created_time;
+void QFacebookGraphConnectionHomeModel::setCreatedtime(const QDateTime &createdTime) {
+    if( m_createdTime != createdTime )
+	    m_createdTime = createdTime;
 }
 
-QDateTime QFacebookGraphConnectionHomeModel::updated_time() const {
-     return m_updated_time;
+QDateTime QFacebookGraphConnectionHomeModel::updatedTime() const {
+     return m_updatedTime;
 }
-void QFacebookGraphConnectionHomeModel::setUpdated_time(const QDateTime &updated_time) {
-    if( m_updated_time != updated_time )
-	    m_updated_time != updated_time;
+void QFacebookGraphConnectionHomeModel::setUpdatedtime(const QDateTime &updatedTime) {
+    if( m_updatedTime != updatedTime )
+	    m_updatedTime = updatedTime;
 }
 
 QString QFacebookGraphConnectionHomeModel::attribution() const {
@@ -108,6 +108,6 @@ QString QFacebookGraphConnectionHomeModel::attribution() const {
 }
 void QFacebookGraphConnectionHomeModel::setAttribution(const QString &attribution) {
     if( m_attribution != attribution )
-	    m_attribution != attribution;
+	    m_attribution = attribution;
 }
 
