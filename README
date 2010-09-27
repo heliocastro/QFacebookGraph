@@ -1,0 +1,9 @@
+QFacebookGraph - A Qt model/view based Facebook Graph API sdk.
+
+This is very early alpha stages, so at this moment is just a skeleton library.
+In a few days we expect a fully functional API.
+
+The initial intentions is have the most minimal possible requirements to use it.
+The only current requires are Qt <qt.nokia.com> and QJson <http://qjson.sourceforge.net/>
+
+Helio / September 2010
