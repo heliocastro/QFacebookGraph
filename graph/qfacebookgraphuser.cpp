@@ -16,9 +16,10 @@
 
 #include "qfacebookgraphuser.h"
 
-QFacebookGraphUser::QFacebookGraphUser(QObject *parent) :
+QFacebookGraphUser::QFacebookGraphUser(QFacebookGraph *graph, QObject *parent) :
     QObject(parent)
 {
+    m_graph = graph;
     m_id = QString::null;
     m_firstName = QString::null;
     m_lastName = QString::null;

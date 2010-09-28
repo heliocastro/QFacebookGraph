@@ -41,6 +41,7 @@ public:
     QFacebookGraph(const QString &accessToken);
     QFacebookGraph(const QString &apiKey, const QString &apiSecret);
 
+    QVariantMap Get(const QString &relativePath) const;
     QVariantMap Get(const QString &relativePath, QMap<QString,QString> args) const;
     QVariantMap Delete(const QString &relativePath) const;
     QVariantMap Post(const QString &relativePath, QMap<QString, QString> args) const;

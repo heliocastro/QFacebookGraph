@@ -22,11 +22,10 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include <QStringList>
-
 #include <QUrl>
 
-typedef QHash<QString,QString> QHashTo;
+typedef QHash<QString, QString> QHashFrom;
+typedef QList< QHash<QString,QString> > QListTo;
 typedef QHash<QString,QUrl> QHashAction;
 
 class QFacebookGraphPost : public QObject
@@ -34,8 +33,8 @@ class QFacebookGraphPost : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
-    Q_PROPERTY(QStringList from READ from WRITE setFrom NOTIFY fromChanged)
-    Q_PROPERTY(QHashTo to READ to WRITE setTo NOTIFY toChanged)
+    Q_PROPERTY(QHashFrom from READ from WRITE setFrom NOTIFY fromChanged)
+    Q_PROPERTY(QListTo to READ to WRITE setTo NOTIFY toChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
@@ -56,11 +55,11 @@ public:
     QString id() const;
     void setId(const QString &id);
 
-    QStringList from() const;
-    void setFrom(const QStringList &from);
+    QHashFrom from() const;
+    void setFrom(const QHashFrom &from);
 
-    QHashTo to() const;
-    void setTo(const QHashTo &to);
+    QListTo to() const;
+    void setTo(const QListTo &to);
 
     QString message() const;
     void setMessage(const QString &message);
@@ -121,8 +120,8 @@ signals:
 
 private:
     QString m_id;
-    QStringList m_from;
-    QHashTo m_to;
+    QHashFrom m_from;
+    QListTo m_to;
     QString m_message;
     QUrl m_picture;
     QUrl m_link;

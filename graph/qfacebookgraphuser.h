@@ -23,6 +23,8 @@
 #include <QStringList>
 #include <QUrl>
 
+#include "../qfacebookgraph.h"
+
 class QFacebookGraphUser : public QObject
 {
     Q_OBJECT
@@ -54,7 +56,7 @@ class QFacebookGraphUser : public QObject
     Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     
 public:
-    explicit QFacebookGraphUser(QObject *parent = 0);
+    explicit QFacebookGraphUser(QFacebookGraph *fbg, QObject *parent = 0);
 	
     QString id() const;
     void setId(const QString &id);
@@ -184,7 +186,7 @@ private:
     QString m_significantOther;
     QString m_timezone;
     QDateTime m_updatedTime;
-
+    QFacebookGraph *m_graph;
 };
 
 #endif //QFACEBOOKGRAPHUSER_H

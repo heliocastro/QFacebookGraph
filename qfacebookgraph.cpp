@@ -19,41 +19,38 @@
 #include "qfacebookgraph.h"
 
 
-QFacebookGraph::QFacebookGraph()
-{
+QFacebookGraph::QFacebookGraph() {
     m_accessToken = QString::null;
 }
 
-QFacebookGraph::QFacebookGraph( const QString &accessToken )
-{
+QFacebookGraph::QFacebookGraph( const QString &accessToken ) {
     m_accessToken = accessToken;
 }
 
-QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret )
-{
+QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret ) {
     Q_UNUSED( apiKey )
     Q_UNUSED( apiSecret )
     m_accessToken = QString::null;
 }
 
-QVariantMap QFacebookGraph::Get(const QString &relativePath, QMap<QString,QString> args) const
-{
+QVariantMap QFacebookGraph::Get(const QString &relativePath) const {
+
+}
+
+QVariantMap QFacebookGraph::Get(const QString &relativePath, QMap<QString,QString> args) const {
     return Call(relativePath, GET, args);
 }
 
-QVariantMap QFacebookGraph::Delete(const QString &relativePath) const
-{
+QVariantMap QFacebookGraph::Delete(const QString &relativePath) const {
     QMap<QString,QString> empty = QMap<QString,QString>();
     return Call(relativePath, DELETE, empty);
 }
 
-QVariantMap QFacebookGraph::Post(const QString &relativePath, QMap<QString,QString> args) const
-{
+QVariantMap QFacebookGraph::Post(const QString &relativePath, QMap<QString,QString> args) const {
     return Call(relativePath, POST, args);
 }
 
-QVariantMap QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args) const
-{
+QVariantMap QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args) const {
     QUrl url("https://graph.facebook.com" + relativePath);
 
     if( accessToken().isNull() || accessToken().isEmpty())
@@ -70,16 +67,14 @@ QVariantMap QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb,
     return result;
 }
 
-QString QFacebookGraph::MakeRequest(const QUrl &url, HttpVerb httpVerb, QMap<QString,QString> args) const
-{
+QString QFacebookGraph::MakeRequest(const QUrl &url, HttpVerb httpVerb, QMap<QString,QString> args) const {
     Q_UNUSED( url )
     Q_UNUSED( httpVerb )
     Q_UNUSED( args )
     return QString::null;
 }
 
-QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark) const
-{
+QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark) const {
     QString result;
 
     if(questionMark)
@@ -98,8 +93,7 @@ QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark)
     return result;
 }
 
-QString QFacebookGraph::accessToken() const
-{
+QString QFacebookGraph::accessToken() const {
     return m_accessToken;
 }
 

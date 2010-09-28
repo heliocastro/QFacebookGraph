@@ -1,7 +1,9 @@
-QT       += network
+QT += network core
+QT -= gui
 
 TARGET = qfacebookgraph
 TEMPLATE = lib
+CONFIG += link_pkgconfig debug
 
 DEFINES += QFACEBOOKGRAPH_LIBRARY
 

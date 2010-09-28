@@ -20,8 +20,8 @@ QFacebookGraphPost::QFacebookGraphPost(QObject *parent) :
     QObject(parent)
 {
     m_id = QString::null;
-    m_from = QStringList();
-    m_to = QHashTo();
+    m_from = QHashFrom();
+    m_to = QListTo();
     m_message = QString::null;
     m_picture = QUrl();
     m_link = QUrl();
@@ -45,18 +45,18 @@ void QFacebookGraphPost::setId(const QString &id) {
 	    m_id = id;
 }
 
-QStringList QFacebookGraphPost::from() const {
+QHashFrom QFacebookGraphPost::from() const {
      return m_from;
 }
-void QFacebookGraphPost::setFrom(const QStringList &from) {
+void QFacebookGraphPost::setFrom(const QHashFrom &from) {
     if( m_from != from )
 	    m_from = from;
 }
 
-QHashTo QFacebookGraphPost::to() const {
+QListTo QFacebookGraphPost::to() const {
      return m_to;
 }
-void QFacebookGraphPost::setTo(const QHashTo &to) {
+void QFacebookGraphPost::setTo(const QListTo &to) {
     if( m_to != to )
 	    m_to = to;
 }
