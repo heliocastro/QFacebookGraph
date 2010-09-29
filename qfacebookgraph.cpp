@@ -14,64 +14,63 @@
  * limitations under the License.
 */
 
+#include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QObject>
+
 #include <qjson/parser.h>
+
 
 #include "qfacebookgraph.h"
 
-
-QFacebookGraph::QFacebookGraph() {
-    m_accessToken = QString::null;
-}
-
 QFacebookGraph::QFacebookGraph( const QString &accessToken ) {
     m_accessToken = accessToken;
+    m_httpResult = QByteArray();
+    m_mapResult = QVariantMap();
+    m_httpRequestSucessfull = false;
 }
 
 QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret ) {
     Q_UNUSED( apiKey )
     Q_UNUSED( apiSecret )
     m_accessToken = QString::null;
+    m_httpResult = QByteArray();
+    m_mapResult = QVariantMap();
+    m_httpRequestSucessfull = false;
 }
 
-QVariantMap QFacebookGraph::Get(const QString &relativePath) const {
-
+void QFacebookGraph::Get(const QString &relativePath) {
+    Call(relativePath, GET);
 }
 
-QVariantMap QFacebookGraph::Get(const QString &relativePath, QMap<QString,QString> args) const {
-    return Call(relativePath, GET, args);
+void QFacebookGraph::Get(const QString &relativePath, QMap<QString,QString> args) {
+    Call(relativePath, GET, args);
 }
 
-QVariantMap QFacebookGraph::Delete(const QString &relativePath) const {
-    QMap<QString,QString> empty = QMap<QString,QString>();
-    return Call(relativePath, DELETE, empty);
+void QFacebookGraph::Delete(const QString &relativePath) {
+    Call(relativePath, DELETE);
 }
 
-QVariantMap QFacebookGraph::Post(const QString &relativePath, QMap<QString,QString> args) const {
-    return Call(relativePath, POST, args);
+void QFacebookGraph::Post(const QString &relativePath, QMap<QString,QString> args) {
+    Call(relativePath, POST, args);
 }
 
-QVariantMap QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args) const {
+void QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args) {
     QUrl url("https://graph.facebook.com" + relativePath);
 
-    if( accessToken().isNull() || accessToken().isEmpty())
-    {
+    if( !accessToken().isNull() || !accessToken().isEmpty())
         args["access_token"] = accessToken();
-    }
 
-    QJson::Parser parser;
-    bool ok;
+    if ( ! args.empty() && httpVerb == GET )
+        url = QUrl( url.toString() + EncodeMap(args,true) );
 
-    const QByteArray data = MakeRequest(url, httpVerb, args).toAscii();
-    QVariantMap result = parser.parse(data, &ok).toMap();
+    qDebug() << "Call URL: " << url;
 
-    return result;
-}
-
-QString QFacebookGraph::MakeRequest(const QUrl &url, HttpVerb httpVerb, QMap<QString,QString> args) const {
-    Q_UNUSED( url )
-    Q_UNUSED( httpVerb )
-    Q_UNUSED( args )
-    return QString::null;
+    m_reply = m_qnam.get( QNetworkRequest(url));
+    connect(m_reply, SIGNAL(finished()), this, SLOT(httpFinished()));
+    connect(m_reply, SIGNAL(readyRead()), this, SLOT(httpReadyRead()));
 }
 
 QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark) const {
@@ -97,3 +96,32 @@ QString QFacebookGraph::accessToken() const {
     return m_accessToken;
 }
 
+void QFacebookGraph::httpReadyRead() {
+    m_httpResult.append(m_reply->readAll());
+}
+
+void QFacebookGraph::httpFinished() {
+    if( m_reply->error() )
+    {
+        qDebug() << "HTTP connection failed.";
+        emit requestDone(false);
+    }
+
+    QJson::Parser parser;
+    bool ok;
+
+    m_mapResult = parser.parse(m_httpResult, &ok).toMap();
+
+    emit requestDone(true);
+
+    m_reply->deleteLater();
+    m_reply = 0;
+}
+
+bool QFacebookGraph::isRequestOk() {
+    return m_httpRequestSucessfull;
+}
+
+QVariantMap QFacebookGraph::getResult() const {
+    return m_mapResult;
+}

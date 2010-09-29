@@ -7,6 +7,8 @@ CONFIG += link_pkgconfig debug
 
 DEFINES += QFACEBOOKGRAPH_LIBRARY
 
+LIBS += -Wl,--no-undefined
+
 SOURCES += qfacebookgraph.cpp \
     graph/qfacebookgraphvideo.cpp \
     graph/qfacebookgraphuser.cpp \

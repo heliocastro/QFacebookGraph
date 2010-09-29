@@ -4,12 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core network
 QT       -= gui
 
 INCLUDEPATH += ../..
 
-CONFIG += link_pkgconfig
+CONFIG += link_pkgconfig debug
 PKGCONFIG += QJson
 LIBS += -L../../ -lqfacebookgraph
 
@@ -21,3 +21,5 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp
+
+HEADERS += userdata.h

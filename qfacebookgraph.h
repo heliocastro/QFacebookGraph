@@ -22,13 +22,18 @@
 #include <QVariant>
 #include <QMap>
 #include <QUrl>
+#include <QObject>
+#include <QNetworkAccessManager>
 
 #include "qfacebookgraph_global.h"
 
 /**
 * @brief Main class for Facebook API
 */
-class QFACEBOOKGRAPHSHARED_EXPORT QFacebookGraph {
+class QFACEBOOKGRAPHSHARED_EXPORT QFacebookGraph : public QObject {
+
+    Q_OBJECT
+
     enum HttpVerb
     {
         GET,
@@ -37,23 +42,35 @@ class QFACEBOOKGRAPHSHARED_EXPORT QFacebookGraph {
     };
 
 public:
-    QFacebookGraph();
-    QFacebookGraph(const QString &accessToken);
+    QFacebookGraph(const QString &accessToken = QString::null);
     QFacebookGraph(const QString &apiKey, const QString &apiSecret);
 
-    QVariantMap Get(const QString &relativePath) const;
-    QVariantMap Get(const QString &relativePath, QMap<QString,QString> args) const;
-    QVariantMap Delete(const QString &relativePath) const;
-    QVariantMap Post(const QString &relativePath, QMap<QString, QString> args) const;
-
-private:
-    QVariantMap Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args) const;
-    QString MakeRequest(const QUrl &url, HttpVerb httpVerb, QMap<QString,QString> args ) const;
-    QString EncodeMap(QMap<QString,QString> dict, bool questionMark) const;
+    void Get(const QString &relativePath);
+    void Get(const QString &relativePath, QMap<QString,QString> args);
+    void Delete(const QString &relativePath);
+    void Post(const QString &relativePath, QMap<QString, QString> args);
     QString accessToken() const;
+    bool isRequestOk();
+    QVariantMap getResult() const;
+
+signals:
+    void requestDone( bool res );
 
 private:
+    void Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args = QMap<QString,QString>() );
+    QString EncodeMap(QMap<QString,QString> dict, bool questionMark) const;
+
+private slots:
+    void httpFinished();
+    void httpReadyRead();
+
+public:
     QString m_accessToken;
+    QByteArray m_httpResult;
+    QNetworkAccessManager m_qnam;
+    QNetworkReply *m_reply;
+    bool m_httpRequestSucessfull;
+    QVariantMap m_mapResult;
 };
 
 #endif // QFACEBOOKGRAPH_H
