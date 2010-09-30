@@ -50,7 +50,6 @@ public:
     void Delete(const QString &relativePath);
     void Post(const QString &relativePath, QMap<QString, QString> args);
     QString accessToken() const;
-    bool isRequestOk();
     QVariantMap getResult() const;
 
 signals:
@@ -58,7 +57,6 @@ signals:
 
 private:
     void Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args = QMap<QString,QString>() );
-    QString EncodeMap(QMap<QString,QString> dict, bool questionMark) const;
 
 private slots:
     void httpFinished();

@@ -29,7 +29,6 @@ QFacebookGraph::QFacebookGraph( const QString &accessToken ) {
     m_accessToken = accessToken;
     m_httpResult = QByteArray();
     m_mapResult = QVariantMap();
-    m_httpRequestSucessfull = false;
 }
 
 QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret ) {
@@ -38,7 +37,6 @@ QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret 
     m_accessToken = QString::null;
     m_httpResult = QByteArray();
     m_mapResult = QVariantMap();
-    m_httpRequestSucessfull = false;
 }
 
 void QFacebookGraph::Get(const QString &relativePath) {
@@ -61,11 +59,16 @@ void QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb, QMap<Q
     QUrl url("https://graph.facebook.com" + relativePath);
 
     if( !accessToken().isNull() || !accessToken().isEmpty())
-        args["access_token"] = accessToken();
+        url.addQueryItem( "access_token", accessToken());
 
-    if ( ! args.empty() && httpVerb == GET )
-        url = QUrl( url.toString() + EncodeMap(args,true) );
-
+    if ( ! args.empty() && httpVerb == GET ) {
+        QMapIterator<QString,QString> argsIt(args);
+        while(argsIt.hasNext())
+        {
+            argsIt.next();
+            url.addQueryItem(argsIt.key(), argsIt.value());
+        }
+    }
     qDebug() << "Call URL: " << url;
 
     m_reply = m_qnam.get( QNetworkRequest(url));
@@ -73,24 +76,6 @@ void QFacebookGraph::Call(const QString &relativePath, HttpVerb httpVerb, QMap<Q
     connect(m_reply, SIGNAL(readyRead()), this, SLOT(httpReadyRead()));
 }
 
-QString QFacebookGraph::EncodeMap(QMap<QString,QString> dict, bool questionMark) const {
-    QString result;
-
-    if(questionMark)
-        result.append("?");
-
-    QMapIterator<QString,QString> i(dict);
-    while (i.hasNext())
-    {
-        i.next();
-        result.append(i.key());
-        result.append('=');
-        result.append(i.value());
-        result.append('&');
-    }
-    result.remove(result.length() -1, 1);
-    return result;
-}
 
 QString QFacebookGraph::accessToken() const {
     return m_accessToken;
@@ -116,10 +101,6 @@ void QFacebookGraph::httpFinished() {
 
     m_reply->deleteLater();
     m_reply = 0;
-}
-
-bool QFacebookGraph::isRequestOk() {
-    return m_httpRequestSucessfull;
 }
 
 QVariantMap QFacebookGraph::getResult() const {
