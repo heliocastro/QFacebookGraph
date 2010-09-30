@@ -1,2 +1,2 @@
 TEMPLATE =  subdirs
-SUBDIRS = userdata
+SUBDIRS = userpublicdata
