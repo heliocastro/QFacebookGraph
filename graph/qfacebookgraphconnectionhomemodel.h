@@ -97,7 +97,6 @@ private:
     QDateTime m_createdTime;
     QDateTime m_updatedTime;
     QString m_attribution;
-
 };
 
 #endif //QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H

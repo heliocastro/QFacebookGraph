@@ -32,82 +32,81 @@ QFacebookGraphConnectionHomeModel::QFacebookGraphConnectionHomeModel(QObject *pa
 }
 
 QString QFacebookGraphConnectionHomeModel::id() const {
-     return m_id;
+    return m_id;
 }
 void QFacebookGraphConnectionHomeModel::setId(const QString &id) {
     if( m_id != id )
-	    m_id = id;
+        m_id = id;
 }
 
 QStringList QFacebookGraphConnectionHomeModel::from() const {
-     return m_from;
+    return m_from;
 }
 void QFacebookGraphConnectionHomeModel::setFrom(const QStringList &from) {
     if( m_from != from )
-	    m_from = from;
+        m_from = from;
 }
 
 QString QFacebookGraphConnectionHomeModel::message() const {
-     return m_message;
+    return m_message;
 }
 void QFacebookGraphConnectionHomeModel::setMessage(const QString &message) {
     if( m_message != message )
-	    m_message = message;
+        m_message = message;
 }
 
 QUrl QFacebookGraphConnectionHomeModel::link() const {
-     return m_link;
+    return m_link;
 }
 void QFacebookGraphConnectionHomeModel::setLink(const QUrl &link) {
     if( m_link != link )
-	    m_link = link;
+        m_link = link;
 }
 
 QUrl QFacebookGraphConnectionHomeModel::icon() const {
-     return m_icon;
+    return m_icon;
 }
 void QFacebookGraphConnectionHomeModel::setIcon(const QUrl &icon) {
     if( m_icon != icon )
-	    m_icon = icon;
+        m_icon = icon;
 }
 
 QHashActions QFacebookGraphConnectionHomeModel::actions() const {
-     return m_actions;
+    return m_actions;
 }
 void QFacebookGraphConnectionHomeModel::setActions(const QHashActions &actions) {
     if( m_actions != actions )
-	    m_actions = actions;
+        m_actions = actions;
 }
 
 QString QFacebookGraphConnectionHomeModel::type() const {
-     return m_type;
+    return m_type;
 }
 void QFacebookGraphConnectionHomeModel::setType(const QString &type) {
     if( m_type != type )
-	    m_type = type;
+        m_type = type;
 }
 
 QDateTime QFacebookGraphConnectionHomeModel::createdTime() const {
-     return m_createdTime;
+    return m_createdTime;
 }
 void QFacebookGraphConnectionHomeModel::setCreatedtime(const QDateTime &createdTime) {
     if( m_createdTime != createdTime )
-	    m_createdTime = createdTime;
+        m_createdTime = createdTime;
 }
 
 QDateTime QFacebookGraphConnectionHomeModel::updatedTime() const {
-     return m_updatedTime;
+    return m_updatedTime;
 }
 void QFacebookGraphConnectionHomeModel::setUpdatedtime(const QDateTime &updatedTime) {
     if( m_updatedTime != updatedTime )
-	    m_updatedTime = updatedTime;
+        m_updatedTime = updatedTime;
 }
 
 QString QFacebookGraphConnectionHomeModel::attribution() const {
-     return m_attribution;
+    return m_attribution;
 }
 void QFacebookGraphConnectionHomeModel::setAttribution(const QString &attribution) {
     if( m_attribution != attribution )
-	    m_attribution = attribution;
+        m_attribution = attribution;
 }
-

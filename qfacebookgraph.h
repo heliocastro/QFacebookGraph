@@ -45,30 +45,31 @@ public:
     QFacebookGraph(const QString &accessToken = QString::null);
     QFacebookGraph(const QString &apiKey, const QString &apiSecret);
 
-    void Get(const QString &relativePath);
-    void Get(const QString &relativePath, QMap<QString,QString> args);
-    void Delete(const QString &relativePath);
-    void Post(const QString &relativePath, QMap<QString, QString> args);
+    void Get(const QUrl &url);
+    void Delete(const QUrl &url);
+    void Post(const QUrl &url);
     QString accessToken() const;
-    QVariantMap getResult() const;
+    QVariantMap result() const;
+    QUrl baseUrl() const;
 
 signals:
     void requestDone( bool res );
 
 private:
-    void Call(const QString &relativePath, HttpVerb httpVerb, QMap<QString,QString> args = QMap<QString,QString>() );
+    void Call(const QUrl &url, HttpVerb httpVerb);
 
 private slots:
     void httpFinished();
     void httpReadyRead();
 
-public:
+protected:
     QString m_accessToken;
     QByteArray m_httpResult;
     QNetworkAccessManager m_qnam;
     QNetworkReply *m_reply;
     bool m_httpRequestSucessfull;
     QVariantMap m_mapResult;
+    QUrl m_url;
 };
 
 #endif // QFACEBOOKGRAPH_H

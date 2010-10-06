@@ -23,7 +23,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include "../qfacebookgraph.h"
+#include "<qfacebookgraph.h>
 
 class QFacebookGraphUser : public QObject
 {
