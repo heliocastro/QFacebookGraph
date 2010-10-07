@@ -19,75 +19,164 @@
 QFacebookGraphConnectionFeedModel::QFacebookGraphConnectionFeedModel(QObject *parent) :
     QObject(parent)
 {
-    m_id = QString::null;
-    m_from = QStringList();
-    m_to = QHashTo();
-    m_picture = QUrl();
+    m_fbid = QString::null;
+    m_fromName = QString::null;
+    m_fromFbid = QString::null;
+    m_message = QString::null;
     m_link = QUrl();
     m_icon = QUrl();
-    m_name = QString::null;
-    m_caption = QString::null;
+    m_picture = QUrl();
     m_actions = QHashActions();
     m_type = QString::null;
-    m_createdTime = QDateTime();
-    m_updatedTime = QDateTime();
+    m_createdTime = QString::null;
+    m_updatedTime = QString::null;
     m_attribution = QString::null;
+    m_caption = QString::null;
+    m_description = QString::null;
 }
 
-QString QFacebookGraphConnectionFeedModel::id() const {
-    return m_id;
+QString QFacebookGraphConnectionFeedModel::fbid() const {
+    return m_fbid;
 }
-void QFacebookGraphConnectionFeedModel::setId(const QString &id) {
-    if( m_id != id )
-        m_id = id;
-}
-
-QStringList QFacebookGraphConnectionFeedModel::from() const {
-    return m_from;
-}
-void QFacebookGraphConnectionFeedModel::setFrom(const QStringList &from) {
-    if( m_from != from )
-        m_from = from;
+void QFacebookGraphConnectionFeedModel::setFbid(const QString &fbid) {
+    if( m_fbid != fbid )
+    {
+        m_fbid = fbid;
+        emit fbidChanged();
+    }
 }
 
-QHashTo QFacebookGraphConnectionFeedModel::to() const {
-    return m_to;
-}
-void QFacebookGraphConnectionFeedModel::setTo(const QHashTo &to) {
-    if( m_to != to )
-        m_to = to;
+QString QFacebookGraphConnectionFeedModel::fromName() const {
+    return m_fromName;
 }
 
-QUrl QFacebookGraphConnectionFeedModel::picture() const {
-    return m_picture;
+void QFacebookGraphConnectionFeedModel::setFromName(const QString &fromName) {
+    if( m_fromName != fromName ) {
+        m_fromName = fromName;
+        emit fromNameChanged();
+    }
 }
-void QFacebookGraphConnectionFeedModel::setPicture(const QUrl &picture) {
-    if( m_picture != picture )
-        m_picture = picture;
+
+QString QFacebookGraphConnectionFeedModel::fromFbid() const {
+    return m_fromFbid;
+}
+
+void QFacebookGraphConnectionFeedModel::setFromFbid(const QString &fromFbid) {
+    if( m_fromFbid != fromFbid ) {
+        m_fromFbid = fromFbid;
+        emit fromFbidChanged();
+    }
+}
+
+QString QFacebookGraphConnectionFeedModel::message() const {
+    return m_message;
+}
+void QFacebookGraphConnectionFeedModel::setMessage(const QString &message) {
+    if( m_message != message ) {
+        m_message = message;
+        emit messageChanged();
+    }
 }
 
 QUrl QFacebookGraphConnectionFeedModel::link() const {
     return m_link;
 }
 void QFacebookGraphConnectionFeedModel::setLink(const QUrl &link) {
-    if( m_link != link )
+    if( m_link != link ) {
         m_link = link;
+        emit linkChanged();
+    }
 }
 
 QUrl QFacebookGraphConnectionFeedModel::icon() const {
     return m_icon;
 }
 void QFacebookGraphConnectionFeedModel::setIcon(const QUrl &icon) {
-    if( m_icon != icon )
+    if( m_icon != icon ) {
         m_icon = icon;
+        emit iconChanged();
+    }
 }
 
-QString QFacebookGraphConnectionFeedModel::name() const {
-    return m_name;
+QUrl QFacebookGraphConnectionFeedModel::picture() const {
+    return m_picture;
 }
-void QFacebookGraphConnectionFeedModel::setName(const QString &name) {
-    if( m_name != name )
-        m_name = name;
+void QFacebookGraphConnectionFeedModel::setPicture(const QUrl &picture) {
+    if( m_picture != picture ) {
+        m_picture = picture;
+        emit pictureChanged();
+    }
+}
+
+QHashActions QFacebookGraphConnectionFeedModel::actions() const {
+    return m_actions;
+}
+void QFacebookGraphConnectionFeedModel::setActions(const QHashActions &actions) {
+    if( m_actions != actions ) {
+        m_actions = actions;
+        emit actionsChanged();
+    }
+}
+
+QString QFacebookGraphConnectionFeedModel::type() const {
+    return m_type;
+}
+void QFacebookGraphConnectionFeedModel::setType(const QString &type) {
+    if( m_type != type ) {
+        m_type = type;
+        emit typeChanged();
+    }
+}
+
+QString QFacebookGraphConnectionFeedModel::createdTime() const {
+    return m_createdTime;
+}
+void QFacebookGraphConnectionFeedModel::setCreatedtime(const QString &createdTime) {
+    if( m_createdTime != createdTime ) {
+        m_createdTime = createdTime;
+        emit createdTimeChanged();
+    }
+}
+
+QString QFacebookGraphConnectionFeedModel::updatedTime() const {
+    return m_updatedTime;
+}
+void QFacebookGraphConnectionFeedModel::setUpdatedtime(const QString &updatedTime) {
+    if( m_updatedTime != updatedTime ) {
+        m_updatedTime = updatedTime;
+        emit updatedTimeChanged();
+    }
+}
+
+QString QFacebookGraphConnectionFeedModel::attribution() const {
+    return m_attribution;
+}
+void QFacebookGraphConnectionFeedModel::setAttribution(const QString &attribution) {
+    if( m_attribution != attribution ) {
+        m_attribution = attribution;
+        emit attributionChanged();
+    }
+}
+
+qulonglong QFacebookGraphConnectionFeedModel::likes() const {
+    return m_likes;
+}
+void QFacebookGraphConnectionFeedModel::setLikes(qulonglong likes) {
+    if( m_likes != likes ) {
+        m_likes = likes;
+        emit likesChanged();
+    }
+}
+
+QString QFacebookGraphConnectionFeedModel::description() const {
+    return m_description;
+}
+void QFacebookGraphConnectionFeedModel::setDescription(const QString &description) {
+    if( m_description != description )
+    {
+        m_description = description;
+        emit descriptionChanged();
+    }
 }
 
 QString QFacebookGraphConnectionFeedModel::caption() const {
@@ -95,46 +184,8 @@ QString QFacebookGraphConnectionFeedModel::caption() const {
 }
 void QFacebookGraphConnectionFeedModel::setCaption(const QString &caption) {
     if( m_caption != caption )
+    {
         m_caption = caption;
+        emit captionChanged();
+    }
 }
-
-QHashActions QFacebookGraphConnectionFeedModel::actions() const {
-    return m_actions;
-}
-void QFacebookGraphConnectionFeedModel::setActions(const QHashActions &actions) {
-    if( m_actions != actions )
-        m_actions = actions;
-}
-
-QString QFacebookGraphConnectionFeedModel::type() const {
-    return m_type;
-}
-void QFacebookGraphConnectionFeedModel::setType(const QString &type) {
-    if( m_type != type )
-        m_type = type;
-}
-
-QDateTime QFacebookGraphConnectionFeedModel::createdTime() const {
-    return m_createdTime;
-}
-void QFacebookGraphConnectionFeedModel::setCreatedtime(const QDateTime &createdTime) {
-    if( m_createdTime != createdTime )
-        m_createdTime = createdTime;
-}
-
-QDateTime QFacebookGraphConnectionFeedModel::updatedTime() const {
-    return m_updatedTime;
-}
-void QFacebookGraphConnectionFeedModel::setUpdatedtime(const QDateTime &updatedTime) {
-    if( m_updatedTime != updatedTime )
-        m_updatedTime = updatedTime;
-}
-
-QString QFacebookGraphConnectionFeedModel::attribution() const {
-    return m_attribution;
-}
-void QFacebookGraphConnectionFeedModel::setAttribution(const QString &attribution) {
-    if( m_attribution != attribution )
-        m_attribution = attribution;
-}
-

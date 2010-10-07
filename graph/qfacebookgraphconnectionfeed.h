@@ -1,20 +1,20 @@
-#ifndef QFACEBOOKGRAPHCONNECTIONHOME_H
-#define QFACEBOOKGRAPHCONNECTIONHOME_H
+#ifndef QFACEBOOKGRAPHCONNECTIONFEED_H
+#define QFACEBOOKGRAPHCONNECTIONFEED_H
 
 #include <QObject>
 #include <QList>
 
-#include "qfacebookgraphconnectionhomemodel.h"
+#include "qfacebookgraphconnectionfeedmodel.h"
 
 class QFacebookGraph;
 
-typedef QList<QObject*> HomeModelList;
+typedef QList<QObject*> FeedModelList;
 
-class QFacebookGraphConnectionHome : public QObject
+class QFacebookGraphConnectionFeed : public QObject
 {
     Q_OBJECT
 public:
-    explicit QFacebookGraphConnectionHome(QString token = QString::null, QObject *parent = 0);
+    explicit QFacebookGraphConnectionFeed(QString token = QString::null, QObject *parent = 0);
 
 signals:
 
@@ -24,7 +24,7 @@ private slots:
     void requestDone(bool ok = false);
 
 public:
-    HomeModelList getHomeModel();
+    FeedModelList getFeedModel();
     void previous(int howMany = 25 );
     void next(int howMany = 25);
     void update(int howMany = 25);
@@ -36,10 +36,10 @@ private:
     void populateModel();
 
 private:
-    HomeModelList m_homeModel;
+    FeedModelList m_feedModel;
     QFacebookGraph *m_graph;
     QString m_previous;
     QString m_next;
 };
 
-#endif // QFACEBOOKGRAPHCONNECTIONHOME_H
+#endif // QFACEBOOKGRAPHCONNECTIONFEED_H

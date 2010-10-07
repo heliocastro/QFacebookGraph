@@ -1,53 +1,53 @@
 #include <QDebug>
 
 #include <qfacebookgraph.h>
-#include <graph/qfacebookgraphconnectionhome.h>
-#include <graph/qfacebookgraphconnectionhomemodel.h>
+#include <graph/qfacebookgraphconnectionfeed.h>
+#include <graph/qfacebookgraphconnectionfeedmodel.h>
 
-QFacebookGraphConnectionHome::QFacebookGraphConnectionHome(QString token, QObject *parent) :
+QFacebookGraphConnectionFeed::QFacebookGraphConnectionFeed(QString token, QObject *parent) :
     QObject(parent)
 {
     m_graph = new QFacebookGraph(token);
     m_previous = QString::null;
     m_next = QString::null;
-    m_homeModel = HomeModelList();
+    m_feedModel = FeedModelList();
 
     // Inital connection
     update();
 }
 
-HomeModelList QFacebookGraphConnectionHome::getHomeModel() {
-    return m_homeModel;
+FeedModelList QFacebookGraphConnectionFeed::getFeedModel() {
+    return m_feedModel;
 }
 
-void QFacebookGraphConnectionHome::update(int howMany) {
+void QFacebookGraphConnectionFeed::update(int howMany) {
     QUrl url = m_graph->baseUrl();
-    url.setEncodedPath("/me/home");
+    url.setEncodedPath("/me/feed");
     url.addQueryItem("limit", QString::number(howMany));
     m_graph->Get( url );
     connect( m_graph, SIGNAL(requestDone( bool )), this, SLOT( requestDone( bool ) ) );
 }
 
-void QFacebookGraphConnectionHome::next(int howMany) {
+void QFacebookGraphConnectionFeed::next(int howMany) {
     QUrl url = m_graph->baseUrl();
-    url.setEncodedPath("/me/home");
+    url.setEncodedPath("/me/feed");
     url.addQueryItem("limit", QString::number(howMany));
     url.addQueryItem("until", m_next);
     m_graph->Get( url );
     connect( m_graph, SIGNAL(requestDone( bool )), this, SLOT( requestDone( bool ) ) );
 }
 
-void QFacebookGraphConnectionHome::previous(int howMany) {
+void QFacebookGraphConnectionFeed::previous(int howMany) {
     QUrl url = m_graph->baseUrl();
-    url.setEncodedPath("/me/home");
+    url.setEncodedPath("/me/feed");
     url.addQueryItem("limit", QString::number(howMany));
     url.addQueryItem("since", m_next);
     m_graph->Get( url );
     connect( m_graph, SIGNAL(requestDone( bool )), this, SLOT( requestDone( bool ) ) );
 }
 
-void QFacebookGraphConnectionHome::requestDone(bool ok) {
-    m_homeModel.clear();
+void QFacebookGraphConnectionFeed::requestDone(bool ok) {
+    m_feedModel.clear();
 
     if (ok)
     {
@@ -74,8 +74,8 @@ void QFacebookGraphConnectionHome::requestDone(bool ok) {
     disconnect(this,SLOT( requestDone( bool )));
 }
 
-void QFacebookGraphConnectionHome::populateModel() {
-    QFacebookGraphConnectionHomeModel *homeObj = new QFacebookGraphConnectionHomeModel();
+void QFacebookGraphConnectionFeed::populateModel() {
+    QFacebookGraphConnectionFeedModel *feedObj = new QFacebookGraphConnectionFeedModel();
 
     QVariantList list = m_graph->result().value("data").toList();
     QVariantList::const_iterator i;
@@ -85,38 +85,38 @@ void QFacebookGraphConnectionHome::populateModel() {
         for(j = (*i).toMap().constBegin(); j != (*i).toMap().constEnd(); ++j)
         {
             if(j.key() == "attribution")
-                homeObj->setAttribution(j.value().toString());
+                feedObj->setAttribution(j.value().toString());
             if(j.key() == "created_time")
-                homeObj->setCreatedtime(j.value().toString());
+                feedObj->setCreatedtime(j.value().toString());
             if(j.key() == "id")
-                homeObj->setFbid(j.value().toString());
+                feedObj->setFbid(j.value().toString());
             if(j.key() == "from") {
-                homeObj->setFromFbid(j.value().toMap().value("id").toString());
-                homeObj->setFromName(j.value().toMap().value("name").toString());
+                feedObj->setFromFbid(j.value().toMap().value("id").toString());
+                feedObj->setFromName(j.value().toMap().value("name").toString());
             }
             if(j.key() == "type")
-                homeObj->setType(j.value().toString());
+                feedObj->setType(j.value().toString());
             if(j.key() == "message")
-                homeObj->setMessage(j.value().toString());
+                feedObj->setMessage(j.value().toString());
             if(j.key() == "caption")
-                homeObj->setCaption(j.value().toString());
+                feedObj->setCaption(j.value().toString());
             if(j.key() == "description")
-                homeObj->setDescription(j.value().toString());
+                feedObj->setDescription(j.value().toString());
             if(j.key() == "likes")
-                homeObj->setLikes(j.value().toULongLong());
+                feedObj->setLikes(j.value().toULongLong());
             if(j.key() == "updated_time")
-                homeObj->setUpdatedtime(j.value().toString());
+                feedObj->setUpdatedtime(j.value().toString());
             if(j.key() == "icon")
-                homeObj->setIcon(j.value().toUrl());
+                feedObj->setIcon(j.value().toUrl());
             if(j.key() == "picture")
-                homeObj->setPicture(j.value().toUrl());
+                feedObj->setPicture(j.value().toUrl());
             if(j.key() == "link")
-                homeObj->setLink(j.value().toUrl());
+                feedObj->setLink(j.value().toUrl());
         }
 
-        //qDebug() << "Id: " << homeObj->fbid();
-        m_homeModel.append(homeObj);
-        homeObj = new QFacebookGraphConnectionHomeModel();
+        //qDebug() << "Id: " << feedObj->fbid();
+        m_feedModel.append(feedObj);
+        feedObj = new QFacebookGraphConnectionFeedModel();
     }
     qDebug() << endl;
 

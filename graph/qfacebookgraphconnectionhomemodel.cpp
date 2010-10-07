@@ -19,94 +19,173 @@
 QFacebookGraphConnectionHomeModel::QFacebookGraphConnectionHomeModel(QObject *parent) :
     QObject(parent)
 {
-    m_id = QString::null;
-    m_from = QStringList();
+    m_fbid = QString::null;
+    m_fromName = QString::null;
+    m_fromFbid = QString::null;
     m_message = QString::null;
     m_link = QUrl();
     m_icon = QUrl();
+    m_picture = QUrl();
     m_actions = QHashActions();
     m_type = QString::null;
-    m_createdTime = QDateTime();
-    m_updatedTime = QDateTime();
+    m_createdTime = QString::null;
+    m_updatedTime = QString::null;
     m_attribution = QString::null;
+    m_caption = QString::null;
+    m_description = QString::null;
 }
 
-QString QFacebookGraphConnectionHomeModel::id() const {
-    return m_id;
+QString QFacebookGraphConnectionHomeModel::fbid() const {
+    return m_fbid;
 }
-void QFacebookGraphConnectionHomeModel::setId(const QString &id) {
-    if( m_id != id )
-        m_id = id;
+void QFacebookGraphConnectionHomeModel::setFbid(const QString &fbid) {
+    if( m_fbid != fbid )
+    {
+        m_fbid = fbid;
+        emit fbidChanged();
+    }
 }
 
-QStringList QFacebookGraphConnectionHomeModel::from() const {
-    return m_from;
+QString QFacebookGraphConnectionHomeModel::fromName() const {
+    return m_fromName;
 }
-void QFacebookGraphConnectionHomeModel::setFrom(const QStringList &from) {
-    if( m_from != from )
-        m_from = from;
+
+void QFacebookGraphConnectionHomeModel::setFromName(const QString &fromName) {
+    if( m_fromName != fromName ) {
+        m_fromName = fromName;
+        emit fromNameChanged();
+    }
+}
+
+QString QFacebookGraphConnectionHomeModel::fromFbid() const {
+    return m_fromFbid;
+}
+
+void QFacebookGraphConnectionHomeModel::setFromFbid(const QString &fromFbid) {
+    if( m_fromFbid != fromFbid ) {
+        m_fromFbid = fromFbid;
+        emit fromFbidChanged();
+    }
 }
 
 QString QFacebookGraphConnectionHomeModel::message() const {
     return m_message;
 }
 void QFacebookGraphConnectionHomeModel::setMessage(const QString &message) {
-    if( m_message != message )
+    if( m_message != message ) {
         m_message = message;
+        emit messageChanged();
+    }
 }
 
 QUrl QFacebookGraphConnectionHomeModel::link() const {
     return m_link;
 }
 void QFacebookGraphConnectionHomeModel::setLink(const QUrl &link) {
-    if( m_link != link )
+    if( m_link != link ) {
         m_link = link;
+        emit linkChanged();
+    }
 }
 
 QUrl QFacebookGraphConnectionHomeModel::icon() const {
     return m_icon;
 }
 void QFacebookGraphConnectionHomeModel::setIcon(const QUrl &icon) {
-    if( m_icon != icon )
+    if( m_icon != icon ) {
         m_icon = icon;
+        emit iconChanged();
+    }
+}
+
+QUrl QFacebookGraphConnectionHomeModel::picture() const {
+    return m_picture;
+}
+void QFacebookGraphConnectionHomeModel::setPicture(const QUrl &picture) {
+    if( m_picture != picture ) {
+        m_picture = picture;
+        emit pictureChanged();
+    }
 }
 
 QHashActions QFacebookGraphConnectionHomeModel::actions() const {
     return m_actions;
 }
 void QFacebookGraphConnectionHomeModel::setActions(const QHashActions &actions) {
-    if( m_actions != actions )
+    if( m_actions != actions ) {
         m_actions = actions;
+        emit actionsChanged();
+    }
 }
 
 QString QFacebookGraphConnectionHomeModel::type() const {
     return m_type;
 }
 void QFacebookGraphConnectionHomeModel::setType(const QString &type) {
-    if( m_type != type )
+    if( m_type != type ) {
         m_type = type;
+        emit typeChanged();
+    }
 }
 
-QDateTime QFacebookGraphConnectionHomeModel::createdTime() const {
+QString QFacebookGraphConnectionHomeModel::createdTime() const {
     return m_createdTime;
 }
-void QFacebookGraphConnectionHomeModel::setCreatedtime(const QDateTime &createdTime) {
-    if( m_createdTime != createdTime )
+void QFacebookGraphConnectionHomeModel::setCreatedtime(const QString &createdTime) {
+    if( m_createdTime != createdTime ) {
         m_createdTime = createdTime;
+        emit createdTimeChanged();
+    }
 }
 
-QDateTime QFacebookGraphConnectionHomeModel::updatedTime() const {
+QString QFacebookGraphConnectionHomeModel::updatedTime() const {
     return m_updatedTime;
 }
-void QFacebookGraphConnectionHomeModel::setUpdatedtime(const QDateTime &updatedTime) {
-    if( m_updatedTime != updatedTime )
+void QFacebookGraphConnectionHomeModel::setUpdatedtime(const QString &updatedTime) {
+    if( m_updatedTime != updatedTime ) {
         m_updatedTime = updatedTime;
+        emit updatedTimeChanged();
+    }
 }
 
 QString QFacebookGraphConnectionHomeModel::attribution() const {
     return m_attribution;
 }
 void QFacebookGraphConnectionHomeModel::setAttribution(const QString &attribution) {
-    if( m_attribution != attribution )
+    if( m_attribution != attribution ) {
         m_attribution = attribution;
+        emit attributionChanged();
+    }
+}
+
+qulonglong QFacebookGraphConnectionHomeModel::likes() const {
+    return m_likes;
+}
+void QFacebookGraphConnectionHomeModel::setLikes(qulonglong likes) {
+    if( m_likes != likes ) {
+        m_likes = likes;
+        emit likesChanged();
+    }
+}
+
+QString QFacebookGraphConnectionHomeModel::description() const {
+    return m_description;
+}
+void QFacebookGraphConnectionHomeModel::setDescription(const QString &description) {
+    if( m_description != description )
+    {
+        m_description = description;
+        emit descriptionChanged();
+    }
+}
+
+QString QFacebookGraphConnectionHomeModel::caption() const {
+    return m_caption;
+}
+void QFacebookGraphConnectionHomeModel::setCaption(const QString &caption) {
+    if( m_caption != caption )
+    {
+        m_caption = caption;
+        emit captionChanged();
+    }
 }
