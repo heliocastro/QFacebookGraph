@@ -25,7 +25,18 @@
 
 #include "qfacebookgraph.h"
 
-QFacebookGraph::QFacebookGraph( const QString &accessToken ) {
+QFacebookGraph::QFacebookGraph(QObject *parent) :
+    QObject(parent)
+{
+    m_accessToken = QString::null;
+    m_httpResult = QByteArray();
+    m_mapResult = QVariantMap();
+
+}
+
+QFacebookGraph::QFacebookGraph( const QString &accessToken, QObject *parent) :
+    QObject(parent)
+{
     m_accessToken = accessToken;
     m_httpResult = QByteArray();
     m_mapResult = QVariantMap();
@@ -62,7 +73,7 @@ void QFacebookGraph::Call(const QUrl &url, HttpVerb httpVerb) {
 
     Q_UNUSED(httpVerb);
 
-    m_reply = m_qnam.get( QNetworkRequest(url));
+    m_reply = m_qnam.get(QNetworkRequest(url));
     connect(m_reply, SIGNAL(finished()), this, SLOT(httpFinished()));
     connect(m_reply, SIGNAL(readyRead()), this, SLOT(httpReadyRead()));
 }
@@ -81,21 +92,31 @@ void QFacebookGraph::httpReadyRead() {
 }
 
 void QFacebookGraph::httpFinished() {
+    bool res = false;
+
     if( m_reply->error() )
     {
         qDebug() << "HTTP connection failed.";
-        emit requestDone(false);
+        requestDone( res );
+        return;
     }
 
     QJson::Parser parser;
-    bool ok;
+    m_mapResult = parser.parse(m_httpResult, &res).toMap();
 
-    m_mapResult = parser.parse(m_httpResult, &ok).toMap();
+    qDebug() << "HTTP connection succesfull.";
 
-    emit requestDone(true);
+    requestDone( res );
 
     m_reply->deleteLater();
     m_reply = 0;
+}
+
+void QFacebookGraph::requestDone(bool res)
+{
+    // Virtual
+    Q_UNUSED(res);
+    qDebug() << "Base QFacebookGraph requestDone()" ;
 }
 
 QVariantMap QFacebookGraph::result() const {

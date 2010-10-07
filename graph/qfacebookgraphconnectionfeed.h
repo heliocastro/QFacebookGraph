@@ -4,24 +4,16 @@
 #include <QObject>
 #include <QList>
 
-#include "qfacebookgraphconnectionfeedmodel.h"
-
-class QFacebookGraph;
+#include <qfacebookgraph.h>
+#include <graph/qfacebookgraphconnectionfeedmodel.h>
 
 typedef QList<QObject*> FeedModelList;
 
-class QFacebookGraphConnectionFeed : public QObject
+class QFacebookGraphConnectionFeed : public QFacebookGraph
 {
     Q_OBJECT
 public:
     explicit QFacebookGraphConnectionFeed(QString token = QString::null, QObject *parent = 0);
-
-signals:
-
-public slots:
-
-private slots:
-    void requestDone(bool ok = false);
 
 public:
     FeedModelList getFeedModel();
@@ -29,11 +21,9 @@ public:
     void next(int howMany = 25);
     void update(int howMany = 25);
 
-signals:
-    void modelPopulated();
-
 private:
     void populateModel();
+    void requestDone(bool ok = false);
 
 private:
     FeedModelList m_feedModel;

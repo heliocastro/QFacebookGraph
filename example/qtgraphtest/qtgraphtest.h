@@ -2,24 +2,36 @@
 #define QTGRAPHTEST_H
 
 #include <QObject>
+#include <QVariant>
+#include <QDeclarativeView>
+#include <QDeclarativeContext>
 
+#include <graph/qfacebookgraphuser.h>
+#include <graph/qfacebookgraphconnectionhome.h>
+
+class QSettings;
 class QFacebookGraph;
 
 class QtGraphTest : public QObject
 {
     Q_OBJECT
 public:
-    explicit QtGraphTest(QObject *parent = 0);
+    explicit QtGraphTest(QDeclarativeView *view, QObject *parent = 0);
 
 signals:
 
 public slots:
     void testUrl( const QString value );
-    void requestDone( bool ok=false );
+    bool hasValidToken();
+    void updateHomeView();
+    void updateUserView();
 
-protected:
-    QFacebookGraph *graph;
-
+private:
+    QDeclarativeContext *ctxt;
+    QFacebookGraphConnectionHome *home;
+    QFacebookGraphUser *user;
+    QSettings *settings;
+    HomeModelList homeList;
 };
 
 #endif // QTGRAPHTEST_H
