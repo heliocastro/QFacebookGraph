@@ -18,11 +18,6 @@
 
 #include "qfacebookgraphuser.h"
 
-QFacebookGraphUser::QFacebookGraphUser(QObject *parent) :
-    QFacebookGraph(parent)
-{
-}
-
 QFacebookGraphUser::QFacebookGraphUser(QString token, const QString &user, QObject *parent) :
     QFacebookGraph(token, parent)
 {
@@ -40,6 +35,7 @@ QFacebookGraphUser::QFacebookGraphUser(QString token, const QString &user, QObje
     m_website = QUrl();
     m_hometown = QUrl();
     m_location = QString::null;
+    m_locale = QString::null;
     m_bio = QString::null;
     m_quotes = QString::null;
     m_gender = QString::null;
@@ -50,26 +46,58 @@ QFacebookGraphUser::QFacebookGraphUser(QString token, const QString &user, QObje
     m_political = QString::null;
     m_verified = 0;
     m_significantOther = QString::null;
-    m_timezone = QString::null;
+    m_timezone = 0;
     m_updatedTime = QString::null;
+
     update();
 }
 
 void QFacebookGraphUser::update() {
-    QUrl url = baseUrl();
     if(m_user.isNull())
-        url.setEncodedPath("/me");
+        Get( baseUrl("me"));
     else
-    {
-        QString path("/" + m_user);
-        url.setEncodedPath(path.toAscii());
-    }
-    Get( url );
+        Get( baseUrl(m_user));
 }
 
 void QFacebookGraphUser::requestDone(bool ok) {
     if(ok)
     {
+        QVariantMap list = result();
+        QVariantMap::const_iterator i;
+        for (i = list.constBegin(); i != list.constEnd(); ++i)
+        {
+            if(i.key() == "name" )
+                setName(i.value().toString());
+            if(i.key() == "hometown")
+                setHometown(i.value().toString());
+            if(i.key() == "last_name")
+                setLastName(i.value().toString());
+            //if(i.key() == "education")
+            //    setEducation(i.value().toString());
+            if(i.key() == "first_name")
+                setFirstName(i.value().toString());
+            if(i.key() == "gender")
+                setGender(i.value().toString());
+            if(i.key() == "id")
+                setFbid(i.value().toString());
+            if(i.key() == "link")
+                setLink(i.value().toString());
+            if(i.key() == "locale")
+                setLocale(i.value().toString());
+            //if(i.key() == "location")
+            //    setLocation(i.value().toString());
+            if(i.key() == "middle_name")
+                setMiddleName(i.value().toString());
+            if(i.key() == "timezone")
+                setTimezone(i.value().toLongLong());
+            if(i.key() == "updated_time")
+                setUpdatedtime(i.value().toString());
+            if(i.key() == "verified")
+                setVerified(i.value().toBool());
+            //if(i.key() == "work")
+            //    setWork(i.value().toString());
+        }
+
         emit modelPopulated();
     }
 }
@@ -87,7 +115,7 @@ void QFacebookGraphUser::setFbid(const QString &fbid) {
 QString QFacebookGraphUser::firstName() const {
     return m_firstName;
 }
-void QFacebookGraphUser::setFirstname(const QString &firstName) {
+void QFacebookGraphUser::setFirstName(const QString &firstName) {
     if( m_firstName != firstName ) {
         m_firstName = firstName;
         emit firstNameChanged();
@@ -97,10 +125,20 @@ void QFacebookGraphUser::setFirstname(const QString &firstName) {
 QString QFacebookGraphUser::lastName() const {
     return m_lastName;
 }
-void QFacebookGraphUser::setLastname(const QString &lastName) {
+void QFacebookGraphUser::setLastName(const QString &lastName) {
     if( m_lastName != lastName ) {
         m_lastName = lastName;
         emit lastNameChanged();
+    }
+}
+
+QString QFacebookGraphUser::middleName() const {
+    return m_middleName;
+}
+void QFacebookGraphUser::setMiddleName(const QString &middleName) {
+    if( m_middleName != middleName ) {
+        m_middleName = middleName;
+        emit middleNameChanged();
     }
 }
 
@@ -204,6 +242,17 @@ void QFacebookGraphUser::setLocation(const QString &location) {
     }
 }
 
+QString QFacebookGraphUser::locale() const {
+    return m_locale;
+}
+void QFacebookGraphUser::setLocale(const QString &locale) {
+    if( m_locale != locale ) {
+        m_locale = locale;
+        emit localeChanged();
+    }
+}
+
+
 QString QFacebookGraphUser::bio() const {
     return m_bio;
 }
@@ -303,10 +352,10 @@ void QFacebookGraphUser::setSignificantother(const QString &significantOther) {
     }
 }
 
-QString QFacebookGraphUser::timezone() const {
+qlonglong QFacebookGraphUser::timezone() const {
     return m_timezone;
 }
-void QFacebookGraphUser::setTimezone(const QString &timezone) {
+void QFacebookGraphUser::setTimezone(qlonglong timezone) {
     if( m_timezone != timezone ) {
         m_timezone = timezone;
         emit timezoneChanged();

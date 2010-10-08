@@ -42,7 +42,6 @@ class QFACEBOOKGRAPHSHARED_EXPORT QFacebookGraph : public QObject {
     };
 
 public:
-    QFacebookGraph(QObject *parent = 0);
     QFacebookGraph(const QString &accessToken = QString::null, QObject *parent = 0);
     QFacebookGraph(const QString &apiKey, const QString &apiSecret);
 
@@ -51,7 +50,7 @@ public:
     void Post(const QUrl &url);
     QString accessToken() const;
     QVariantMap result() const;
-    QUrl baseUrl() const;
+    QUrl baseUrl(const QString &path = QString::null) const;
     virtual void requestDone(bool res = false);
 
 private:

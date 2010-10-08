@@ -25,15 +25,6 @@
 
 #include "qfacebookgraph.h"
 
-QFacebookGraph::QFacebookGraph(QObject *parent) :
-    QObject(parent)
-{
-    m_accessToken = QString::null;
-    m_httpResult = QByteArray();
-    m_mapResult = QVariantMap();
-
-}
-
 QFacebookGraph::QFacebookGraph( const QString &accessToken, QObject *parent) :
     QObject(parent)
 {
@@ -69,7 +60,7 @@ void QFacebookGraph::Post(const QUrl &url) {
 }
 
 void QFacebookGraph::Call(const QUrl &url, HttpVerb httpVerb) {
-    qDebug() << "Call URL: " << url;
+    //qDebug() << "Call URL: " << url;
 
     Q_UNUSED(httpVerb);
 
@@ -83,8 +74,11 @@ QString QFacebookGraph::accessToken() const {
     return m_accessToken;
 }
 
-QUrl QFacebookGraph::baseUrl() const {
-    return m_url;
+QUrl QFacebookGraph::baseUrl(const QString &path) const {
+    QUrl url( m_url );
+    if(!path.isNull())
+        url.setPath(path);
+    return url;
 }
 
 void QFacebookGraph::httpReadyRead() {
@@ -104,12 +98,10 @@ void QFacebookGraph::httpFinished() {
     QJson::Parser parser;
     m_mapResult = parser.parse(m_httpResult, &res).toMap();
 
-    qDebug() << "HTTP connection succesfull.";
-
-    requestDone( res );
-
     m_reply->deleteLater();
     m_reply = 0;
+
+    requestDone( res );
 }
 
 void QFacebookGraph::requestDone(bool res)

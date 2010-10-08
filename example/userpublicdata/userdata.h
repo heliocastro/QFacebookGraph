@@ -2,21 +2,18 @@
 #define USERDATA_H
 
 #include <QObject>
+#include <qfacebookgraph.h>
 
-class QFacebookGraph;
 
-class Userdata : public QObject {
+class Userdata : public QFacebookGraph {
 	Q_OBJECT
 	
 	public:
-	explicit Userdata(QObject *parent = 0);
+	explicit Userdata();
 
 
-	public slots:
-		void requestDone( bool );
-
-	private:
-		QFacebookGraph *graph;
+	public:
+		void requestDone( bool ok = false );
 };
 
 #endif

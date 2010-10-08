@@ -28,8 +28,9 @@ class QFacebookGraphUser : public QFacebookGraph
     Q_OBJECT
     
     Q_PROPERTY(QString fbid READ fbid WRITE setFbid NOTIFY fbidChanged)
-    Q_PROPERTY(QString firstName READ firstName WRITE setFirstname NOTIFY firstNameChanged)
-    Q_PROPERTY(QString lastName READ lastName WRITE setLastname NOTIFY lastNameChanged)
+    Q_PROPERTY(QString firstName READ firstName WRITE setFirstName NOTIFY firstNameChanged)
+    Q_PROPERTY(QString lastName READ lastName WRITE setLastName NOTIFY lastNameChanged)
+    Q_PROPERTY(QString middleName READ middleName WRITE setMiddleName NOTIFY middleNameChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QString about READ about WRITE setAbout NOTIFY aboutChanged)
@@ -40,6 +41,7 @@ class QFacebookGraphUser : public QFacebookGraph
     Q_PROPERTY(QUrl website READ website WRITE setWebsite NOTIFY websiteChanged)
     Q_PROPERTY(QUrl hometown READ hometown WRITE setHometown NOTIFY hometownChanged)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
+    Q_PROPERTY(QString locale READ locale WRITE setLocale NOTIFY localeChanged)
     Q_PROPERTY(QString bio READ bio WRITE setBio NOTIFY bioChanged)
     Q_PROPERTY(QString quotes READ quotes WRITE setQuotes NOTIFY quotesChanged)
     Q_PROPERTY(QString gender READ gender WRITE setGender NOTIFY genderChanged)
@@ -50,11 +52,10 @@ class QFacebookGraphUser : public QFacebookGraph
     Q_PROPERTY(QString political READ political WRITE setPolitical NOTIFY politicalChanged)
     Q_PROPERTY(bool verified READ verified WRITE setVerified NOTIFY verifiedChanged)
     Q_PROPERTY(QString significantOther READ significantOther WRITE setSignificantother NOTIFY significantOtherChanged)
-    Q_PROPERTY(QString timezone READ timezone WRITE setTimezone NOTIFY timezoneChanged)
+    Q_PROPERTY(qlonglong timezone READ timezone WRITE setTimezone NOTIFY timezoneChanged)
     Q_PROPERTY(QString updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
 
 public:
-    explicit QFacebookGraphUser(QObject *parent);
     explicit QFacebookGraphUser(QString token = QString::null, const QString &user = QString::null, QObject *parent = 0);
 
 public:
@@ -64,10 +65,13 @@ public:
     void setFbid(const QString &fbid);
 
     QString firstName() const;
-    void setFirstname(const QString &firstName);
+    void setFirstName(const QString &firstName);
+
+    QString middleName() const;
+    void setMiddleName(const QString &lastName);
 
     QString lastName() const;
-    void setLastname(const QString &lastName);
+    void setLastName(const QString &lastName);
 
     QString name() const;
     void setName(const QString &name);
@@ -99,6 +103,9 @@ public:
     QString location() const;
     void setLocation(const QString &location);
 
+    QString locale() const;
+    void setLocale(const QString &locale);
+
     QString bio() const;
     void setBio(const QString &bio);
 
@@ -129,8 +136,8 @@ public:
     QString significantOther() const;
     void setSignificantother(const QString &significantOther);
 
-    QString timezone() const;
-    void setTimezone(const QString &timezone);
+    qlonglong timezone() const;
+    void setTimezone(qlonglong timezone);
 
     QString updatedTime() const;
     void setUpdatedtime(const QString &updatedTime);
@@ -142,6 +149,7 @@ signals:
     void fbidChanged();
     void firstNameChanged();
     void lastNameChanged();
+    void middleNameChanged();
     void nameChanged();
     void linkChanged();
     void aboutChanged();
@@ -152,6 +160,7 @@ signals:
     void websiteChanged();
     void hometownChanged();
     void locationChanged();
+    void localeChanged();
     void bioChanged();
     void quotesChanged();
     void genderChanged();
@@ -168,6 +177,7 @@ signals:
 private:
     QString m_fbid;
     QString m_firstName;
+    QString m_middleName;
     QString m_lastName;
     QString m_name;
     QUrl m_link;
@@ -179,6 +189,7 @@ private:
     QUrl m_website;
     QUrl m_hometown;
     QString m_location;
+    QString m_locale;
     QString m_bio;
     QString m_quotes;
     QString m_gender;
@@ -189,7 +200,7 @@ private:
     QString m_political;
     bool m_verified;
     QString m_significantOther;
-    QString m_timezone;
+    qlonglong m_timezone;
     QString m_updatedTime;
     QString m_user;
 };

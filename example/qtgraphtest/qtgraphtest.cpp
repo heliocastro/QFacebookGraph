@@ -16,7 +16,7 @@ QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
     ctxt = view->rootContext();
     ctxt->setContextProperty( "test", this );
     ctxt->setContextProperty( "homeModel", QVariant::fromValue(HomeModelList()));
-    ctxt->setContextProperty( "userObject", new QFacebookGraphUser());
+    ctxt->setContextProperty( "userObject", user);
 }
 
 bool QtGraphTest::hasValidToken() {
@@ -53,13 +53,15 @@ void QtGraphTest::testUrl( const QString value ) {
                 token = data.queryItemValue("access_token");
                 settings->setValue("token/expire",
                                    QDateTime::currentDateTime().addSecs(
-                                       data.queryItemValue("expires_in").toShort() ) );
+                                       data.queryItemValue("expires_in").toInt() ) );
                 settings->setValue("token/token", token);
             }
         }
+        else
+            return;
     }
-    else
-        token = settings->value("token/token").toString();
+
+    token = settings->value("token/token").toString();
 
     home = new QFacebookGraphConnectionHome(token);
     connect(home, SIGNAL(modelPopulated()), this, SLOT(updateHomeView()));

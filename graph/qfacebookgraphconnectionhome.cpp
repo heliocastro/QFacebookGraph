@@ -17,23 +17,20 @@ HomeModelList QFacebookGraphConnectionHome::getHomeModel() {
 }
 
 void QFacebookGraphConnectionHome::update(int howMany) {
-    QUrl url = baseUrl();
-    url.setEncodedPath("/me/home");
+    QUrl url = baseUrl("/me/home");
     url.addQueryItem("limit", QString::number(howMany));
     Get( url );
 }
 
 void QFacebookGraphConnectionHome::next(int howMany) {
-    QUrl url = baseUrl();
-    url.setEncodedPath("/me/home");
+    QUrl url = baseUrl("/me/home");
     url.addQueryItem("limit", QString::number(howMany));
     url.addQueryItem("until", m_next);
     Get( url );
 }
 
 void QFacebookGraphConnectionHome::previous(int howMany) {
-    QUrl url = baseUrl();
-    url.setEncodedPath("/me/home");
+    QUrl url = baseUrl("/me/home");
     url.addQueryItem("limit", QString::number(howMany));
     url.addQueryItem("since", m_next);
     Get( url );

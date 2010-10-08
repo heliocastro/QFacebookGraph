@@ -18,23 +18,20 @@ FeedModelList QFacebookGraphConnectionFeed::getFeedModel() {
 }
 
 void QFacebookGraphConnectionFeed::update(int howMany) {
-    QUrl url = baseUrl();
-    url.setEncodedPath("/me/feed");
+    QUrl url = baseUrl("/me/feed");
     url.addQueryItem("limit", QString::number(howMany));
     Get( url );
 }
 
 void QFacebookGraphConnectionFeed::next(int howMany) {
-    QUrl url = baseUrl();
-    url.setEncodedPath("/me/feed");
+    QUrl url = baseUrl("/me/feed");
     url.addQueryItem("limit", QString::number(howMany));
     url.addQueryItem("until", m_next);
     Get( url );
 }
 
 void QFacebookGraphConnectionFeed::previous(int howMany) {
-    QUrl url = baseUrl();
-    url.setEncodedPath("/me/feed");
+    QUrl url = baseUrl("/me/feed");
     url.addQueryItem("limit", QString::number(howMany));
     url.addQueryItem("since", m_next);
     Get( url );

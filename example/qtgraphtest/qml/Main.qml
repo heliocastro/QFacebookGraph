@@ -56,9 +56,56 @@ Rectangle {
         Rectangle {
             id: userListView
             width: view.width; height: view.height
-            Text {
-                text: userObject.name
-                color: "blue"
+            color:  "white"
+            Column {
+                spacing: 4
+                Rectangle {
+                    width: view.width
+                    height: 30
+                    border.width: 1
+                    border.color: "gray"
+                    Text {
+                        text: "About me"
+                        font.bold: true
+                        anchors { left: parent.left; leftMargin: 4; verticalCenter: parent.verticalCenter }
+                    }
+                }
+
+                Row {
+                    spacing: 10
+
+                    Text {
+                        width: 100
+                        text: "Basic Information"
+                        color: "gray"
+                        font.bold: true
+                    }
+                    Column {
+                        Row {
+                            spacing: 2
+                            Text {
+                                width: 100
+                                text: "Gender:"
+                                font.weight: Font.Light
+                                color: "gray"
+                            }
+                            Text {
+                                text: userObject.gender
+                            }
+                        }
+                        Row {
+                            Text {
+                                width: 100
+                                text: "Birth date:"
+                                font.weight: Font.Light
+                                color: "gray"
+                            }
+                            Text {
+                                text: userObject.birthday
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -66,14 +113,20 @@ Rectangle {
     Component {
         id: homeListViewDelegate
         Row {
-            spacing: 2
+            spacing: 10
             /*Image {
                 id: userImage
                 source: "v"
             }*/
             Text {
                 height: 40
-                text: fbid
+                text: "User id: " +  fromFbid
+                font.bold: true
+            }
+            Text {
+                height: 40
+                text: fromName
+                font.bold: false
             }
 
         }
