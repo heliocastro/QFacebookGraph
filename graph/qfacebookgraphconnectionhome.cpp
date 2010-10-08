@@ -13,7 +13,7 @@ HomeModelList QFacebookGraphConnectionHome::getHomeModel() {
     return m_homeModel;
 }
 
-void QFacebookGraphConnectionHome::init(int howMany) {
+void QFacebookGraphConnectionHome::update(int howMany) {
     addArgument("limit", QString::number(howMany));
     Get( "/me/home" );
 }

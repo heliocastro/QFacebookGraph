@@ -14,7 +14,7 @@ FeedModelList QFacebookGraphConnectionFeed::getFeedModel() {
     return m_feedModel;
 }
 
-void QFacebookGraphConnectionFeed::init(int howMany) {
+void QFacebookGraphConnectionFeed::update(int howMany) {
     addArgument("limit", QString::number(howMany));
     Get( "/me/feed" );
 }

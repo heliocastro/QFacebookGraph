@@ -78,9 +78,9 @@ void QtGraphTest::testUrl( const QString value ) {
 
     home->setToken( settings->value("token/token").toString() );
     connect(home, SIGNAL(modelPopulated()), this, SLOT(updateHomeView()));
-    home->init();
+    home->update();
 
     user->setToken( settings->value("token/token").toString() );
-    //connect(user, SIGNAL(modelPopulated()), this, SLOT(updateUserView()));
-    user->init();
+    connect(user, SIGNAL(modelPopulated()), this, SLOT(updateUserView()));
+    user->update();
 }

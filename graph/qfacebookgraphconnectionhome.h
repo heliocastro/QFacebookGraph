@@ -19,7 +19,7 @@ public:
     HomeModelList getHomeModel();
     void previous(int howMany = 25 );
     void next(int howMany = 25);
-    void init(int howMany = 25);
+    void update(int howMany = 25);
 
 private:
     void populateModel();

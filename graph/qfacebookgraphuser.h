@@ -59,7 +59,7 @@ public:
     explicit QFacebookGraphUser(const QString &user = QString::null, QObject *parent = 0);
 
 public:
-    void init();
+    void update();
 
     QString fbid() const;
     void setFbid(const QString &fbid);

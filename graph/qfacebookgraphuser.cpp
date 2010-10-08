@@ -50,7 +50,7 @@ QFacebookGraphUser::QFacebookGraphUser(const QString &user, QObject *parent) :
     m_updatedTime = QString::null;
 }
 
-void QFacebookGraphUser::init() {
+void QFacebookGraphUser::update() {
     if(m_user.isNull())
         Get( "me" );
     else
