@@ -20,7 +20,8 @@
 
 #include <QString>
 #include <QVariant>
-#include <QMap>
+#include <QList>
+#include <QPair>
 #include <QUrl>
 #include <QObject>
 #include <QNetworkAccessManager>
@@ -42,19 +43,21 @@ class QFACEBOOKGRAPHSHARED_EXPORT QFacebookGraph : public QObject {
     };
 
 public:
-    QFacebookGraph(const QString &accessToken = QString::null, QObject *parent = 0);
+    QFacebookGraph(QObject *parent = 0);
     QFacebookGraph(const QString &apiKey, const QString &apiSecret);
 
-    void Get(const QUrl &url);
-    void Delete(const QUrl &url);
-    void Post(const QUrl &url);
+    void Get(const QString &path);
+    void Delete(const QString &path);
+    void Post(const QString &path);
     QString accessToken() const;
+    void setToken(const QString& token);
     QVariantMap result() const;
-    QUrl baseUrl(const QString &path = QString::null) const;
+    void addArgument(const QString &key, const QString &value);
     virtual void requestDone(bool res = false);
 
 private:
     void Call(const QUrl &url, HttpVerb httpVerb);
+    QUrl baseUrl(const QString &path = QString::null);
 
 private slots:
     void httpFinished();
@@ -71,6 +74,7 @@ protected:
     bool m_httpRequestSucessfull;
     QVariantMap m_mapResult;
     QUrl m_url;
+    QList<QPair<QString,QString> > m_args;
 };
 
 #endif // QFACEBOOKGRAPH_H

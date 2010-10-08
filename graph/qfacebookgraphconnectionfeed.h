@@ -13,13 +13,14 @@ class QFacebookGraphConnectionFeed : public QFacebookGraph
 {
     Q_OBJECT
 public:
-    explicit QFacebookGraphConnectionFeed(QString token = QString::null, QObject *parent = 0);
+    explicit QFacebookGraphConnectionFeed(QObject *parent = 0);
 
 public:
     FeedModelList getFeedModel();
+    void init(int howMany = 25);
     void previous(int howMany = 25 );
     void next(int howMany = 25);
-    void update(int howMany = 25);
+
 
 private:
     void populateModel();

@@ -26,9 +26,7 @@ Userdata::Userdata()
 	// Use my own id of Facebook to test :-)
 	// This is direct connection. Remember that result is caught by requestDone
 	// signal from QFacebookGraph main class
-	QUrl url = baseUrl();
-	url.setEncodedPath( "613384675" );
-    Get( url );
+    Get( "613384675" );
 }
 
 

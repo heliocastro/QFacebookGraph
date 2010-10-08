@@ -1,39 +1,33 @@
 #include <QDebug>
 #include <graph/qfacebookgraphconnectionhome.h>
 
-QFacebookGraphConnectionHome::QFacebookGraphConnectionHome(QString token, QObject *parent) :
-    QFacebookGraph( token, parent )
+QFacebookGraphConnectionHome::QFacebookGraphConnectionHome(QObject *parent) :
+    QFacebookGraph( parent )
 {
     m_previous = QString::null;
     m_next = QString::null;
     m_homeModel = HomeModelList();
-
-    // Inital connection
-    update();
 }
 
 HomeModelList QFacebookGraphConnectionHome::getHomeModel() {
     return m_homeModel;
 }
 
-void QFacebookGraphConnectionHome::update(int howMany) {
-    QUrl url = baseUrl("/me/home");
-    url.addQueryItem("limit", QString::number(howMany));
-    Get( url );
+void QFacebookGraphConnectionHome::init(int howMany) {
+    addArgument("limit", QString::number(howMany));
+    Get( "/me/home" );
 }
 
 void QFacebookGraphConnectionHome::next(int howMany) {
-    QUrl url = baseUrl("/me/home");
-    url.addQueryItem("limit", QString::number(howMany));
-    url.addQueryItem("until", m_next);
-    Get( url );
+    addArgument("limit", QString::number(howMany));
+    addArgument("until", m_next);
+    Get( "/me/home" );
 }
 
 void QFacebookGraphConnectionHome::previous(int howMany) {
-    QUrl url = baseUrl("/me/home");
-    url.addQueryItem("limit", QString::number(howMany));
-    url.addQueryItem("since", m_next);
-    Get( url );
+    addArgument("limit", QString::number(howMany));
+    addArgument("since", m_next);
+    Get( "/me/home" );
 }
 
 void QFacebookGraphConnectionHome::requestDone(bool ok) {

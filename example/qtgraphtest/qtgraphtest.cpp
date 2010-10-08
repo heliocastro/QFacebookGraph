@@ -9,14 +9,32 @@
 
 #include "qtgraphtest.h"
 
+// Use your own client id
+#ifndef CLIENT_ID
+#define CLIENT_ID "113759468684478"
+#endif
+
 QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
     QObject(parent)
 {
     settings = new QSettings("Collabora", "QtGraphTest");
+
+    home = new QFacebookGraphConnectionHome();
+    user = new QFacebookGraphUser();
+
     ctxt = view->rootContext();
     ctxt->setContextProperty( "test", this );
-    ctxt->setContextProperty( "homeModel", QVariant::fromValue(HomeModelList()));
+    ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->getHomeModel()));
     ctxt->setContextProperty( "userObject", user);
+
+    // Implement the oauth URL access just for demo
+    QUrl loginUrlAccess( "https://graph.facebook.com/oauth/authorize" );
+    loginUrlAccess.addQueryItem("client_id", CLIENT_ID);
+    loginUrlAccess.addQueryItem("redirect_uri", "http://www.facebook.com/connect/login_success.html");
+    loginUrlAccess.addQueryItem("type","type=user_agent&display=touch");
+
+    ctxt->setContextProperty( "loginUrlAccess", loginUrlAccess);
+
 }
 
 bool QtGraphTest::hasValidToken() {
@@ -38,8 +56,6 @@ void QtGraphTest::updateUserView()
 }
 
 void QtGraphTest::testUrl( const QString value ) {
-    QString token;
-
     if( !hasValidToken() )
     {
         QString l( value );
@@ -50,22 +66,21 @@ void QtGraphTest::testUrl( const QString value ) {
             data = QUrl( l.replace("#", "?"));
             if( data.hasQueryItem("access_token") )
             {
-                token = data.queryItemValue("access_token");
                 settings->setValue("token/expire",
                                    QDateTime::currentDateTime().addSecs(
                                        data.queryItemValue("expires_in").toInt() ) );
-                settings->setValue("token/token", token);
+                settings->setValue("token/token", data.queryItemValue("access_token"));
             }
         }
         else
             return;
     }
 
-    token = settings->value("token/token").toString();
-
-    home = new QFacebookGraphConnectionHome(token);
+    home->setToken( settings->value("token/token").toString() );
     connect(home, SIGNAL(modelPopulated()), this, SLOT(updateHomeView()));
+    home->init();
 
-    user = new QFacebookGraphUser(token);
-    connect(user, SIGNAL(modelPopulated()), this, SLOT(updateUserView()));
+    user->setToken( settings->value("token/token").toString() );
+    //connect(user, SIGNAL(modelPopulated()), this, SLOT(updateUserView()));
+    user->init();
 }

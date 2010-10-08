@@ -13,13 +13,13 @@ class QFacebookGraphConnectionHome : public QFacebookGraph
 {
     Q_OBJECT
 public:
-    explicit QFacebookGraphConnectionHome(QString token = QString::null, QObject *parent = 0);
+    explicit QFacebookGraphConnectionHome(QObject *parent = 0);
 
 public:
     HomeModelList getHomeModel();
     void previous(int howMany = 25 );
     void next(int howMany = 25);
-    void update(int howMany = 25);
+    void init(int howMany = 25);
 
 private:
     void populateModel();

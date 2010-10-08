@@ -56,10 +56,10 @@ class QFacebookGraphUser : public QFacebookGraph
     Q_PROPERTY(QString updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
 
 public:
-    explicit QFacebookGraphUser(QString token = QString::null, const QString &user = QString::null, QObject *parent = 0);
+    explicit QFacebookGraphUser(const QString &user = QString::null, QObject *parent = 0);
 
 public:
-    void update();
+    void init();
 
     QString fbid() const;
     void setFbid(const QString &fbid);

@@ -22,20 +22,20 @@
 
 #include <qjson/parser.h>
 
-
 #include "qfacebookgraph.h"
 
-QFacebookGraph::QFacebookGraph( const QString &accessToken, QObject *parent) :
+#ifndef GRAPH_URL_HOST
+#define GRAPH_URL_HOST "https://graph.facebook.com"
+#endif
+
+QFacebookGraph::QFacebookGraph( QObject *parent) :
     QObject(parent)
 {
-    m_accessToken = accessToken;
+    m_accessToken = QString::null;
     m_httpResult = QByteArray();
     m_mapResult = QVariantMap();
 
-    m_url = QUrl("https://graph.facebook.com");
-    if( !m_accessToken.isNull() || !m_accessToken.isEmpty())
-        m_url.addQueryItem( "access_token", m_accessToken);
-
+    m_url = QUrl(GRAPH_URL_HOST);
 }
 
 QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret ) {
@@ -47,20 +47,20 @@ QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret 
     Q_UNUSED(apiSecret);
 }
 
-void QFacebookGraph::Get(const QUrl &url) {
-    Call(url, GET);
+void QFacebookGraph::Get(const QString &path) {
+    Call( baseUrl(path), GET);
 }
 
-void QFacebookGraph::Delete(const QUrl &url) {
-    Call(url, DELETE);
+void QFacebookGraph::Delete(const QString &path) {
+    Call(baseUrl(path), DELETE);
 }
 
-void QFacebookGraph::Post(const QUrl &url) {
-    Call(url, POST);
+void QFacebookGraph::Post(const QString &path) {
+    Call(baseUrl(path), POST);
 }
 
 void QFacebookGraph::Call(const QUrl &url, HttpVerb httpVerb) {
-    //qDebug() << "Call URL: " << url;
+    qDebug() << "Call URL: " << url << endl;
 
     Q_UNUSED(httpVerb);
 
@@ -70,14 +70,38 @@ void QFacebookGraph::Call(const QUrl &url, HttpVerb httpVerb) {
 }
 
 
+void QFacebookGraph::setToken(const QString &token) {
+    if(m_accessToken != token)
+        m_accessToken = token;
+}
+
 QString QFacebookGraph::accessToken() const {
     return m_accessToken;
 }
 
-QUrl QFacebookGraph::baseUrl(const QString &path) const {
+void QFacebookGraph::addArgument(const QString &key, const QString &value)
+{
+    m_args.append(QPair<QString,QString>(key, value));
+}
+
+QUrl QFacebookGraph::baseUrl(const QString &path) {
     QUrl url( m_url );
+
+    // Set Path
     if(!path.isNull())
         url.setPath(path);
+
+    // Set access token if exists
+    if( !m_accessToken.isNull() || !m_accessToken.isEmpty()) {
+        addArgument( "access_token", m_accessToken );
+    }
+
+    // Set arguments if exists and clean
+    if(!m_args.empty()) {
+        url.setQueryItems( m_args );
+        m_args.clear();
+    }
+
     return url;
 }
 

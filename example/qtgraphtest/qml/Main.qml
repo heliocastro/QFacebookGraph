@@ -25,9 +25,7 @@ Rectangle {
             url: {
                 if( !test.hasValidToken() )
                 {
-                    "https://graph.facebook.com/oauth/authorize?client_id=113759468684478&" +
-                                                                                            "redirect_uri=http://www.facebook.com/connect/login_success.html&" +
-                                                                                            "type=user_agent&display=touch"
+                    loginUrlAccess
                 }
                 else
                 {
@@ -112,23 +110,47 @@ Rectangle {
 
     Component {
         id: homeListViewDelegate
-        Row {
-            spacing: 10
-            /*Image {
-                id: userImage
-                source: "v"
-            }*/
-            Text {
-                height: 40
-                text: "User id: " +  fromFbid
-                font.bold: true
-            }
-            Text {
-                height: 40
-                text: fromName
-                font.bold: false
-            }
+        Rectangle {
+            id: listItem
+            border.color: "black"
+            border.width: 2
+            radius: 10
+            color: "white"
+            height: 80; width: view.width
 
+            Row {
+                spacing: 10
+                Rectangle {
+                    width: 75; height: 75
+                    color: "transparent"
+                Image {
+                    id: userImage
+                    anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
+                    source: "http://graph.facebook.com/" + fromFbid + "/picture"
+                }
+                }
+                Column {
+                    Row {
+                        spacing: 10
+                        Text {
+                            height: 30
+                            text: "User id: " +  fromFbid
+                            font.bold: true
+                        }
+                        Text {
+                            height: 30
+                            text: fromName
+                            font.bold: false
+                        }
+                    }
+                    Text {
+                        height: 50
+                        width: view.width - 100
+                        wrapMode: Text.WordWrap
+                        text: message
+                    }
+                }
+            }
         }
     }
 

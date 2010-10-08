@@ -2,39 +2,33 @@
 
 #include <graph/qfacebookgraphconnectionfeed.h>
 
-QFacebookGraphConnectionFeed::QFacebookGraphConnectionFeed(QString token, QObject *parent) :
-    QFacebookGraph(token, parent)
+QFacebookGraphConnectionFeed::QFacebookGraphConnectionFeed(QObject *parent) :
+    QFacebookGraph(parent)
 {
     m_previous = QString::null;
     m_next = QString::null;
     m_feedModel = FeedModelList();
-
-    // Inital connection
-    update();
 }
 
 FeedModelList QFacebookGraphConnectionFeed::getFeedModel() {
     return m_feedModel;
 }
 
-void QFacebookGraphConnectionFeed::update(int howMany) {
-    QUrl url = baseUrl("/me/feed");
-    url.addQueryItem("limit", QString::number(howMany));
-    Get( url );
+void QFacebookGraphConnectionFeed::init(int howMany) {
+    addArgument("limit", QString::number(howMany));
+    Get( "/me/feed" );
 }
 
 void QFacebookGraphConnectionFeed::next(int howMany) {
-    QUrl url = baseUrl("/me/feed");
-    url.addQueryItem("limit", QString::number(howMany));
-    url.addQueryItem("until", m_next);
-    Get( url );
+    addArgument("limit", QString::number(howMany));
+    addArgument("until", m_next);
+    Get( "/me/feed" );
 }
 
 void QFacebookGraphConnectionFeed::previous(int howMany) {
-    QUrl url = baseUrl("/me/feed");
-    url.addQueryItem("limit", QString::number(howMany));
-    url.addQueryItem("since", m_next);
-    Get( url );
+    addArgument("limit", QString::number(howMany));
+    addArgument("since", m_next);
+    Get( "/me/feed" );
 }
 
 void QFacebookGraphConnectionFeed::requestDone(bool ok) {

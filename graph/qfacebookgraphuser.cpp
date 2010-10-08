@@ -18,8 +18,8 @@
 
 #include "qfacebookgraphuser.h"
 
-QFacebookGraphUser::QFacebookGraphUser(QString token, const QString &user, QObject *parent) :
-    QFacebookGraph(token, parent)
+QFacebookGraphUser::QFacebookGraphUser(const QString &user, QObject *parent) :
+    QFacebookGraph(parent)
 {
     m_user = user;
     m_fbid = QString::null;
@@ -48,15 +48,13 @@ QFacebookGraphUser::QFacebookGraphUser(QString token, const QString &user, QObje
     m_significantOther = QString::null;
     m_timezone = 0;
     m_updatedTime = QString::null;
-
-    update();
 }
 
-void QFacebookGraphUser::update() {
+void QFacebookGraphUser::init() {
     if(m_user.isNull())
-        Get( baseUrl("me"));
+        Get( "me" );
     else
-        Get( baseUrl(m_user));
+        Get( m_user );
 }
 
 void QFacebookGraphUser::requestDone(bool ok) {
