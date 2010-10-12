@@ -71,6 +71,10 @@ void QFacebookGraphConnectionHome::populateModel() {
                 homeObj->setFromFbid(j.value().toMap().value("id").toString());
                 homeObj->setFromName(j.value().toMap().value("name").toString());
             }
+            if(j.key() == "actions" ) {
+                homeObj->setActionsComment(j.value().toMap().value("comment").toUrl());
+                homeObj->setActionsComment(j.value().toMap().value("like").toUrl());
+            }
             if(j.key() == "type")
                 homeObj->setType(j.value().toString());
             if(j.key() == "message")

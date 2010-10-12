@@ -26,7 +26,8 @@ QFacebookGraphConnectionHomeModel::QFacebookGraphConnectionHomeModel(QObject *pa
     m_link = QUrl();
     m_icon = QUrl();
     m_picture = QUrl();
-    m_actions = QHashActions();
+    m_actionsComment = QUrl();
+    m_actionsLike = QUrl();
     m_type = QString::null;
     m_createdTime = QString::null;
     m_updatedTime = QString::null;
@@ -108,13 +109,23 @@ void QFacebookGraphConnectionHomeModel::setPicture(const QUrl &picture) {
     }
 }
 
-QHashActions QFacebookGraphConnectionHomeModel::actions() const {
-    return m_actions;
+QUrl QFacebookGraphConnectionHomeModel::actionsComment() const {
+    return m_actionsComment;
 }
-void QFacebookGraphConnectionHomeModel::setActions(const QHashActions &actions) {
-    if( m_actions != actions ) {
-        m_actions = actions;
-        emit actionsChanged();
+void QFacebookGraphConnectionHomeModel::setActionsComment(const QUrl &actionsComment) {
+    if( m_actionsComment != actionsComment ) {
+        m_actionsComment = actionsComment;
+        emit actionsCommentChanged();
+    }
+}
+
+QUrl QFacebookGraphConnectionHomeModel::actionsLike() const {
+    return m_actionsLike;
+}
+void QFacebookGraphConnectionHomeModel::setActionsLike(const QUrl &actionsLike) {
+    if( m_actionsLike != actionsLike ) {
+        m_actionsLike = actionsLike;
+        emit actionsLikeChanged();
     }
 }
 

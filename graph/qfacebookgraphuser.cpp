@@ -16,7 +16,8 @@
 
 #include <QDebug>
 
-#include "qfacebookgraphuser.h"
+#include <graph/qfacebookgraphuser.h>
+#include <graph/qfacebookgraphcommoneducationmodel.h>
 
 QFacebookGraphUser::QFacebookGraphUser(const QString &user, QObject *parent) :
     QFacebookGraph(parent)
@@ -29,8 +30,8 @@ QFacebookGraphUser::QFacebookGraphUser(const QString &user, QObject *parent) :
     m_link = QUrl();
     m_about = QString::null;
     m_birthday = QString::null;
-    m_work = QStringList();
-    m_education = QStringList();
+    m_education = EducationModelList();
+    m_work = WorkModelList();
     m_email = QString::null;
     m_website = QUrl();
     m_hometown = QUrl();
@@ -60,9 +61,9 @@ void QFacebookGraphUser::update() {
 void QFacebookGraphUser::requestDone(bool ok) {
     if(ok)
     {
-        QVariantMap list = result();
+        QVariantMap map = result();
         QVariantMap::const_iterator i;
-        for (i = list.constBegin(); i != list.constEnd(); ++i)
+        for (i = map.constBegin(); i != map.constEnd(); ++i)
         {
             if(i.key() == "name" )
                 setName(i.value().toString());
@@ -70,8 +71,14 @@ void QFacebookGraphUser::requestDone(bool ok) {
                 setHometown(i.value().toString());
             if(i.key() == "last_name")
                 setLastName(i.value().toString());
-            //if(i.key() == "education")
-            //    setEducation(i.value().toString());
+            if(i.key() == "education") {
+                QFacebookGraphCommonEducationModel *edu = new QFacebookGraphCommonEducationModel();
+                for (int j = 0; j < i.value().toList().size(); ++j) {
+                    edu->populate(i.value().toList().at(j).toMap());
+                    m_education.append(edu);
+                    edu = new QFacebookGraphCommonEducationModel();
+                }
+            }
             if(i.key() == "first_name")
                 setFirstName(i.value().toString());
             if(i.key() == "gender")
@@ -180,24 +187,12 @@ void QFacebookGraphUser::setBirthday(const QString &birthday) {
     }
 }
 
-QStringList QFacebookGraphUser::work() const {
+WorkModelList QFacebookGraphUser::getWorkModel() const {
     return m_work;
 }
-void QFacebookGraphUser::setWork(const QStringList &work) {
-    if( m_work != work ) {
-        m_work = work;
-        emit workChanged();
-    }
-}
 
-QStringList QFacebookGraphUser::education() const {
+EducationModelList QFacebookGraphUser::getEducationModel() const {
     return m_education;
-}
-void QFacebookGraphUser::setEducation(const QStringList &education) {
-    if( m_education != education ) {
-        m_education = education;
-        emit educationChanged();
-    }
 }
 
 QString QFacebookGraphUser::email() const {

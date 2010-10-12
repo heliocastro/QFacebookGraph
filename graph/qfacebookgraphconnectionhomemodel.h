@@ -24,8 +24,6 @@
 #include <QStringList>
 #include <QUrl>
 
-typedef QHash<QString,QUrl> QHashActions;
-
 class QFacebookGraphConnectionHomeModel : public QObject
 {
     Q_OBJECT
@@ -37,7 +35,8 @@ class QFacebookGraphConnectionHomeModel : public QObject
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
     Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
-    Q_PROPERTY(QHashActions actions READ actions WRITE setActions NOTIFY actionsChanged)
+    Q_PROPERTY(QUrl actionsLike READ actionsLike WRITE setActionsLike NOTIFY actionsLikeChanged)
+    Q_PROPERTY(QUrl actionsComment READ actionsComment WRITE setActionsComment NOTIFY actionsCommentChanged)
     Q_PROPERTY(QString type READ type WRITE setType NOTIFY typeChanged)
     Q_PROPERTY(QString createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
     Q_PROPERTY(QString updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
@@ -70,8 +69,11 @@ public:
     QUrl picture() const;
     void setPicture(const QUrl &icon);
 
-    QHashActions actions() const;
-    void setActions(const QHashActions &actions);
+    QUrl actionsComment() const;
+    void setActionsComment(const QUrl &actionsComment);
+
+    QUrl actionsLike() const;
+    void setActionsLike(const QUrl &actionsLike);
 
     QString type() const;
     void setType(const QString &type);
@@ -102,7 +104,8 @@ signals:
     void linkChanged();
     void iconChanged();
     void pictureChanged();
-    void actionsChanged();
+    void actionsCommentChanged();
+    void actionsLikeChanged();
     void typeChanged();
     void createdTimeChanged();
     void updatedTimeChanged();
@@ -119,7 +122,8 @@ private:
     QUrl m_link;
     QUrl m_icon;
     QUrl m_picture;
-    QHashActions m_actions;
+    QUrl m_actionsComment;
+    QUrl m_actionsLike;
     QString m_type;
     QString m_createdTime;
     QString m_updatedTime;

@@ -23,6 +23,9 @@
 
 #include <qfacebookgraph.h>
 
+typedef QList<QObject*> EducationModelList;
+typedef QList<QObject*> WorkModelList;
+
 class QFacebookGraphUser : public QFacebookGraph
 {
     Q_OBJECT
@@ -35,8 +38,6 @@ class QFacebookGraphUser : public QFacebookGraph
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QString about READ about WRITE setAbout NOTIFY aboutChanged)
     Q_PROPERTY(QString birthday READ birthday WRITE setBirthday NOTIFY birthdayChanged)
-    Q_PROPERTY(QStringList work READ work WRITE setWork NOTIFY workChanged)
-    Q_PROPERTY(QStringList education READ education WRITE setEducation NOTIFY educationChanged)
     Q_PROPERTY(QString email READ email WRITE setEmail NOTIFY emailChanged)
     Q_PROPERTY(QUrl website READ website WRITE setWebsite NOTIFY websiteChanged)
     Q_PROPERTY(QUrl hometown READ hometown WRITE setHometown NOTIFY hometownChanged)
@@ -84,12 +85,6 @@ public:
 
     QString birthday() const;
     void setBirthday(const QString &birthday);
-
-    QStringList work() const;
-    void setWork(const QStringList &work);
-
-    QStringList education() const;
-    void setEducation(const QStringList &education);
 
     QString email() const;
     void setEmail(const QString &email);
@@ -142,6 +137,9 @@ public:
     QString updatedTime() const;
     void setUpdatedtime(const QString &updatedTime);
 
+    EducationModelList getEducationModel() const;
+    WorkModelList getWorkModel() const;
+
 private:
     void requestDone(bool ok = false);
 
@@ -155,7 +153,6 @@ signals:
     void aboutChanged();
     void birthdayChanged();
     void workChanged();
-    void educationChanged();
     void emailChanged();
     void websiteChanged();
     void hometownChanged();
@@ -183,8 +180,6 @@ private:
     QUrl m_link;
     QString m_about;
     QString m_birthday;
-    QStringList m_work;
-    QStringList m_education;
     QString m_email;
     QUrl m_website;
     QUrl m_hometown;
@@ -203,7 +198,8 @@ private:
     qlonglong m_timezone;
     QString m_updatedTime;
     QString m_user;
+    EducationModelList m_education;
+    WorkModelList m_work;
 };
 
 #endif //QFACEBOOKGRAPHUSER_H
-
