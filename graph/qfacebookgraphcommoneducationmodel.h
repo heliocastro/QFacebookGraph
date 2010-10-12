@@ -44,7 +44,7 @@ public:
     QVariantList concentration() const;
     void setConcentration(const QVariantList concentration);
 
-    void populate(const QVariantMap map);
+    void populate(const QVariantMap &map);
 
 signals:
     void schoolChanged();

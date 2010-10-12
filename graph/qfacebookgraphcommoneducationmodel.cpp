@@ -69,8 +69,7 @@ void QFacebookGraphCommonEducationModel::setType(const QString &type) {
 }
 
 
-void QFacebookGraphCommonEducationModel::populate(const QVariantMap map) {
-
+void QFacebookGraphCommonEducationModel::populate(const QVariantMap &map) {
     setSchool(map["school"].toMap());
     setYear(map["year"].toMap());
     setConcentration(map["concentration"].toList());

@@ -42,7 +42,7 @@ QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
     ctxt->setContextProperty( "test", this );
     ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->getHomeModel()));
     ctxt->setContextProperty( "userObject", user);
-    ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->getEducationModel()) );
+    ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->educationModel()) );
 
     // Implement the oauth URL access just for demo
     QUrl loginUrlAccess( "https://graph.facebook.com/oauth/authorize" );
@@ -72,7 +72,8 @@ void QtGraphTest::updateHomeView() {
 void QtGraphTest::updateUserView()
 {
     ctxt->setContextProperty( "userObject", user );
-    ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->getEducationModel()) );
+    ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->educationModel()) );
+    ctxt->setContextProperty( "userWorkModel", QVariant::fromValue( user->workModel()) );
 }
 
 void QtGraphTest::testUrl( const QString value ) {

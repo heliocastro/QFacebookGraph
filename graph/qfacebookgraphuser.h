@@ -40,8 +40,8 @@ class QFacebookGraphUser : public QFacebookGraph
     Q_PROPERTY(QString birthday READ birthday WRITE setBirthday NOTIFY birthdayChanged)
     Q_PROPERTY(QString email READ email WRITE setEmail NOTIFY emailChanged)
     Q_PROPERTY(QUrl website READ website WRITE setWebsite NOTIFY websiteChanged)
-    Q_PROPERTY(QUrl hometown READ hometown WRITE setHometown NOTIFY hometownChanged)
-    Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
+    Q_PROPERTY(QVariantMap hometown READ hometown WRITE setHometown NOTIFY hometownChanged)
+    Q_PROPERTY(QVariantMap location READ location WRITE setLocation NOTIFY locationChanged)
     Q_PROPERTY(QString locale READ locale WRITE setLocale NOTIFY localeChanged)
     Q_PROPERTY(QString bio READ bio WRITE setBio NOTIFY bioChanged)
     Q_PROPERTY(QString quotes READ quotes WRITE setQuotes NOTIFY quotesChanged)
@@ -92,11 +92,11 @@ public:
     QUrl website() const;
     void setWebsite(const QUrl &website);
 
-    QUrl hometown() const;
-    void setHometown(const QUrl &hometown);
+    QVariantMap hometown() const;
+    void setHometown(const QVariantMap &hometown);
 
-    QString location() const;
-    void setLocation(const QString &location);
+    QVariantMap location() const;
+    void setLocation(const QVariantMap &location);
 
     QString locale() const;
     void setLocale(const QString &locale);
@@ -137,8 +137,8 @@ public:
     QString updatedTime() const;
     void setUpdatedtime(const QString &updatedTime);
 
-    EducationModelList getEducationModel() const;
-    WorkModelList getWorkModel() const;
+    EducationModelList educationModel() const;
+    WorkModelList workModel() const;
 
 private:
     void requestDone(bool ok = false);
@@ -182,8 +182,8 @@ private:
     QString m_birthday;
     QString m_email;
     QUrl m_website;
-    QUrl m_hometown;
-    QString m_location;
+    QVariantMap m_hometown;
+    QVariantMap m_location;
     QString m_locale;
     QString m_bio;
     QString m_quotes;

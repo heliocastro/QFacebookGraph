@@ -18,6 +18,7 @@
 
 #include <graph/qfacebookgraphuser.h>
 #include <graph/qfacebookgraphcommoneducationmodel.h>
+#include <graph/qfacebookgraphcommonworkmodel.h>
 
 QFacebookGraphUser::QFacebookGraphUser(const QString &user, QObject *parent) :
     QFacebookGraph(parent)
@@ -34,8 +35,8 @@ QFacebookGraphUser::QFacebookGraphUser(const QString &user, QObject *parent) :
     m_work = WorkModelList();
     m_email = QString::null;
     m_website = QUrl();
-    m_hometown = QUrl();
-    m_location = QString::null;
+    m_hometown = QVariantMap();
+    m_location = QVariantMap();
     m_locale = QString::null;
     m_bio = QString::null;
     m_quotes = QString::null;
@@ -68,7 +69,7 @@ void QFacebookGraphUser::requestDone(bool ok) {
             if(i.key() == "name" )
                 setName(i.value().toString());
             if(i.key() == "hometown")
-                setHometown(i.value().toString());
+                setHometown(i.value().toMap());
             if(i.key() == "last_name")
                 setLastName(i.value().toString());
             if(i.key() == "education") {
@@ -77,6 +78,14 @@ void QFacebookGraphUser::requestDone(bool ok) {
                     edu->populate(i.value().toList().at(j).toMap());
                     m_education.append(edu);
                     edu = new QFacebookGraphCommonEducationModel();
+                }
+            }
+            if(i.key() == "work") {
+                QFacebookGraphCommonWorkModel *work = new QFacebookGraphCommonWorkModel();
+                for (int j = 0; j < i.value().toList().size(); ++j) {
+                    work->populate(i.value().toList().at(j).toMap());
+                    m_work.append(work);
+                    work = new QFacebookGraphCommonWorkModel();
                 }
             }
             if(i.key() == "first_name")
@@ -89,8 +98,8 @@ void QFacebookGraphUser::requestDone(bool ok) {
                 setLink(i.value().toString());
             if(i.key() == "locale")
                 setLocale(i.value().toString());
-            //if(i.key() == "location")
-            //    setLocation(i.value().toString());
+            if(i.key() == "location")
+                setLocation(i.value().toMap());
             if(i.key() == "middle_name")
                 setMiddleName(i.value().toString());
             if(i.key() == "timezone")
@@ -99,8 +108,6 @@ void QFacebookGraphUser::requestDone(bool ok) {
                 setUpdatedtime(i.value().toString());
             if(i.key() == "verified")
                 setVerified(i.value().toBool());
-            //if(i.key() == "work")
-            //    setWork(i.value().toString());
         }
 
         emit modelPopulated();
@@ -187,11 +194,11 @@ void QFacebookGraphUser::setBirthday(const QString &birthday) {
     }
 }
 
-WorkModelList QFacebookGraphUser::getWorkModel() const {
+WorkModelList QFacebookGraphUser::workModel() const {
     return m_work;
 }
 
-EducationModelList QFacebookGraphUser::getEducationModel() const {
+EducationModelList QFacebookGraphUser::educationModel() const {
     return m_education;
 }
 
@@ -215,20 +222,20 @@ void QFacebookGraphUser::setWebsite(const QUrl &website) {
     }
 }
 
-QUrl QFacebookGraphUser::hometown() const {
+QVariantMap QFacebookGraphUser::hometown() const {
     return m_hometown;
 }
-void QFacebookGraphUser::setHometown(const QUrl &hometown) {
+void QFacebookGraphUser::setHometown(const QVariantMap &hometown) {
     if( m_hometown != hometown ) {
         m_hometown = hometown;
         emit hometownChanged();
     }
 }
 
-QString QFacebookGraphUser::location() const {
+QVariantMap QFacebookGraphUser::location() const {
     return m_location;
 }
-void QFacebookGraphUser::setLocation(const QString &location) {
+void QFacebookGraphUser::setLocation(const QVariantMap &location) {
     if( m_location != location ) {
         m_location = location;
         emit locationChanged();

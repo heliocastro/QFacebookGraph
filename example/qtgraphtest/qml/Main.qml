@@ -79,6 +79,7 @@ Rectangle {
                         font.bold: true
                     }
                     Column {
+                        spacing: 20
                         Row {
                             spacing: 2
                             Text {
@@ -106,15 +107,26 @@ Rectangle {
                         }
                         ListView {
                             width: 200
-                            height: 200
+                            height: 100
                             model: userEducationModel
                             delegate:
                                 Column {
-                                spacing: 10
+                                spacing: 2
                                 Text { font.bold: true; text: school.name  }
                                 Text { text: year.name }
                                 Text { text: type }
-                                ListView { model: school.concentration; }
+                            }
+                        }
+                        ListView {
+                            width: 200
+                            height: 100
+                            model: userWorkModel
+                            delegate:
+                                Column {
+                                spacing: 2
+                                Text { font.bold: true; text: employer.name  }
+                                Text { text: position.name }
+                                Text { text: description }
                             }
                         }
                     }

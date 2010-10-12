@@ -28,7 +28,8 @@ SOURCES += qfacebookgraph.cpp \
     graph/qfacebookgraphalbum.cpp \
     graph/qfacebookgraphconnectionhome.cpp \
     graph/qfacebookgraphconnectionfeed.cpp \
-    graph/qfacebookgraphcommoneducationmodel.cpp
+    graph/qfacebookgraphcommoneducationmodel.cpp \
+    graph/qfacebookgraphcommonworkmodel.cpp
 
 HEADERS += qfacebookgraph.h\
         qfacebookgraph_global.h \
@@ -50,6 +51,7 @@ HEADERS += qfacebookgraph.h\
     graph/qfacebookgraphalbum.h \
     graph/qfacebookgraphconnectionhome.h \
     graph/qfacebookgraphconnectionfeed.h \
-    graph/qfacebookgraphcommoneducationmodel.h
+    graph/qfacebookgraphcommoneducationmodel.h \
+    graph/qfacebookgraphcommonworkmodel.h
 
 PKGCONFIG += QJson
