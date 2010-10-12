@@ -99,7 +99,22 @@ Rectangle {
                                 color: "gray"
                             }
                             Text {
-                                text: userObject.birthday
+                                text: { userObject.birthday
+
+                                }
+                            }
+                        }
+                        ListView {
+                            width: 200
+                            height: 200
+                            model: userEducationModel
+                            delegate:
+                                Column {
+                                spacing: 10
+                                Text { font.bold: true; text: school.name  }
+                                Text { text: year.name }
+                                Text { text: type }
+                                ListView { model: school.concentration; }
                             }
                         }
                     }
@@ -123,11 +138,11 @@ Rectangle {
                 Rectangle {
                     width: 75; height: 75
                     color: "transparent"
-                Image {
-                    id: userImage
-                    anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
-                    source: "http://graph.facebook.com/" + fromFbid + "/picture"
-                }
+                    Image {
+                        id: userImage
+                        anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
+                        source: "http://graph.facebook.com/" + fromFbid + "/picture"
+                    }
                 }
                 Column {
                     Row {
