@@ -1,0 +1,10 @@
+QT += core network
+QT -= gui
+TARGET = userpublicdata
+TEMPLATE = app
+SOURCES += main.cpp 
+CONFIG += link_pkgconfig debug
+PKGCONFIG += QJson
+LIBS += -L../../src -lqfacebookgraph
+INCLUDEPATH += ../../src
+HEADERS += userdata.h

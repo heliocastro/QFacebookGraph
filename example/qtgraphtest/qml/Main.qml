@@ -174,14 +174,6 @@ Rectangle {
                         wrapMode: Text.WordWrap
                         text: message
                     }
-                    ListView {
-                        model: actions
-                        delegate:
-                            Text {
-                            id: eca
-                            text: { "opa"; console.log( actions.count)  }
-                        }
-                    }
                 }
             }
         }

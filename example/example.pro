@@ -1,2 +1,3 @@
 TEMPLATE =  subdirs
-SUBDIRS = userpublicdata
+CONFIG += ordered
+SUBDIRS = userpublicdata qtgraphtest

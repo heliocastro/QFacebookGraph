@@ -10,9 +10,9 @@ OTHER_FILES += \
     qml/Main.qml
 CONFIG += link_pkgconfig debug
 PKGCONFIG += QJson
-LIBS += -L/lixo/QFacebookGraph -lqfacebookgraph
+LIBS += -L../../src -lqfacebookgraph
 
-INCLUDEPATH += ../..
+INCLUDEPATH += ../../src
 
 HEADERS += \
     qtgraphtest.h
