@@ -1,0 +1,52 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+DEBDIR = ..
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+	qmake
+	make
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	make install INSTALL_ROOT=$(CURDIR)/debian/installdir
+
+binary-indep: build install
+#nothing to do
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_install --sourcedir=debian/installdir -v --list-missing
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps -V
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb --destdir=$(DEBDIR)
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

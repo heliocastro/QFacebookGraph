@@ -1,0 +1,18 @@
+Source: qfacebookgraph
+Section: libs
+Priority: optional
+Maintainer: Helio Castro <helio@collabora.co.uk>
+Build-Depends: debhelper (>= 5), cdbs, libqt4-dev (>= 4.7), libqjson-dev (>= 0.6.3)
+Standards-Version: 3.8.0
+
+Package: libqfacebookgraph
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Qt API like to access Facebook Graph API
+
+Package: libqfacebookgraph-dev
+Architecture: any
+Section: devel
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Qt API like to access Facebook Graph API - Development files
+
