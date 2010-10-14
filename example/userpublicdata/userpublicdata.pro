@@ -5,6 +5,6 @@ TEMPLATE = app
 SOURCES += main.cpp 
 CONFIG += link_pkgconfig debug
 PKGCONFIG += QJson
-LIBS += -L../../src -lqfacebookgraph
+LIBS += -L../../lib -lqfacebookgraph
 INCLUDEPATH += ../../src
 HEADERS += userdata.h
