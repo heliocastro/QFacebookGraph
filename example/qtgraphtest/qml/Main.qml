@@ -137,11 +137,8 @@ Rectangle {
         id: homeListViewDelegate
         Rectangle {
             id: listItem
-            border.color: "black"
-            border.width: 2
-            radius: 10
             color: "white"
-            height: 110; width: view.width
+            height: 200; width: view.width
 
             Row {
                 spacing: 10
@@ -173,6 +170,28 @@ Rectangle {
                         width: view.width - 100
                         wrapMode: Text.WordWrap
                         text: message
+                    }
+                    ListView {
+                        width: view.width - 100; height: 100
+
+                        model: comments
+                        delegate:
+                        Rectangle {
+                            color:  "#8888FF"
+                            Text { id: cheader; text: "Comments:"; font.bold: true }
+                            Text { id: cname; text: modelData.from.name; anchors { top: cheader.bottom; leftMargin: 30; left: parent.left } }
+                            Text { id: cmessage; text: modelData.message; anchors { top: cname.bottom; leftMargin: 30; left: parent.left } }
+                        }
+                    }
+                    GridView {
+                        id: oca
+                        width: view.width - 100; height: 50
+                        model: actions
+                        interactive: false
+                        delegate: Text {
+                            text: "<a href=\"" + modelData.link + "\">" + modelData.name + "</a>"
+                            font.bold: true
+                        }
                     }
                 }
             }

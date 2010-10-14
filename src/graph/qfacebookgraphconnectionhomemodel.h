@@ -30,6 +30,7 @@ class QFacebookGraphConnectionHomeModel : public QObject
 
     Q_PROPERTY(QString fbid READ fbid WRITE setFbid NOTIFY fbidChanged)
     Q_PROPERTY(QVariantMap from READ from WRITE setFrom NOTIFY fromChanged)
+    Q_PROPERTY(QVariantMap to READ to WRITE setTo NOTIFY toChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
@@ -42,6 +43,7 @@ class QFacebookGraphConnectionHomeModel : public QObject
     Q_PROPERTY(qulonglong likes READ likes WRITE setLikes NOTIFY likesChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QString caption READ caption WRITE setCaption NOTIFY captionChanged)
+    Q_PROPERTY(QVariantList comments READ comments WRITE setComments NOTIFY commentsChanged)
     
 public:
     explicit QFacebookGraphConnectionHomeModel(QObject *parent = 0);
@@ -51,6 +53,9 @@ public:
 
     QVariantMap from() const;
     void setFrom(const QVariantMap &from);
+
+    QVariantMap to() const;
+    void setTo(const QVariantMap &to);
 
     QString message() const;
     void setMessage(const QString &message);
@@ -66,6 +71,9 @@ public:
 
     QVariantList actions() const;
     void setActions(const QVariantList &actions);
+
+    QVariantList comments() const;
+    void setComments(const QVariantList &comments);
 
     QString type() const;
     void setType(const QString &type);
@@ -91,6 +99,7 @@ public:
 signals:
     void fbidChanged();
     void fromChanged();
+    void toChanged();
     void messageChanged();
     void linkChanged();
     void iconChanged();
@@ -103,10 +112,12 @@ signals:
     void likesChanged();
     void captionChanged();
     void descriptionChanged();
+    void commentsChanged();
 
 private:
     QString m_fbid;
     QVariantMap m_from;
+    QVariantMap m_to;
     QString m_message;
     QUrl m_link;
     QUrl m_icon;
@@ -119,6 +130,7 @@ private:
     qulonglong m_likes;
     QString m_caption;
     QString m_description;
+    QVariantList m_comments;
 };
 
 #endif //QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H

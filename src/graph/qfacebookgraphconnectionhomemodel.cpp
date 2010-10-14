@@ -48,11 +48,20 @@ void QFacebookGraphConnectionHomeModel::setFbid(const QString &fbid) {
 QVariantMap QFacebookGraphConnectionHomeModel::from() const {
     return m_from;
 }
-
 void QFacebookGraphConnectionHomeModel::setFrom(const QVariantMap &from) {
     if( m_from != from ) {
         m_from = from;
         emit fromChanged();
+    }
+}
+
+QVariantMap QFacebookGraphConnectionHomeModel::to() const {
+    return m_to;
+}
+void QFacebookGraphConnectionHomeModel::setTo(const QVariantMap &to) {
+    if( m_to != to ) {
+        m_to = to;
+        emit toChanged();
     }
 }
 
@@ -104,6 +113,17 @@ void QFacebookGraphConnectionHomeModel::setActions(const QVariantList &actions) 
     {
         m_actions = actions;
         emit actionsChanged();
+    }
+}
+
+QVariantList QFacebookGraphConnectionHomeModel::comments() const {
+    return m_comments;
+}
+void QFacebookGraphConnectionHomeModel::setComments(const QVariantList &comments) {
+    if(m_comments != comments)
+    {
+        m_comments = comments;
+        emit commentsChanged();
     }
 }
 

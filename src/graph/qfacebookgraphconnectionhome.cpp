@@ -79,11 +79,10 @@ void QFacebookGraphConnectionHome::populateModel() {
                 homeObj->setFbid(j.value().toString());
             if(j.key() == "from")
                 homeObj->setFrom(j.value().toMap());
-            if(j.key() == "actions" )
-            {
+            if(j.key() == "actions")
                 homeObj->setActions(j.value().toList());
-                qDebug()  << j.value().toList() << endl << endl;
-            }
+            if(j.key() == "comments")
+                homeObj->setComments(j.value().toMap()["data"].toList());
             if(j.key() == "type")
                 homeObj->setType(j.value().toString());
             if(j.key() == "message")
