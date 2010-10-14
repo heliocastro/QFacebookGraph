@@ -72,6 +72,8 @@ void QFacebookGraphUser::requestDone(bool ok) {
                 setHometown(i.value().toMap());
             if(i.key() == "last_name")
                 setLastName(i.value().toString());
+            if(i.key() == "birthday")
+                setBirthday(i.value().toString());
             if(i.key() == "education") {
                 QFacebookGraphCommonEducationModel *edu = new QFacebookGraphCommonEducationModel();
                 for (int j = 0; j < i.value().toList().size(); ++j) {

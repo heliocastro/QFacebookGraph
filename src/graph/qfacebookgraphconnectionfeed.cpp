@@ -19,9 +19,10 @@
 
 #include <graph/qfacebookgraphconnectionfeed.h>
 
-QFacebookGraphConnectionFeed::QFacebookGraphConnectionFeed(QObject *parent) :
+QFacebookGraphConnectionFeed::QFacebookGraphConnectionFeed(QString fbid, QObject *parent) :
     QFacebookGraph(parent)
 {
+    m_fbid = fbid;
     m_previous = QString::null;
     m_next = QString::null;
     m_feedModel = FeedModelList();
@@ -33,19 +34,28 @@ FeedModelList QFacebookGraphConnectionFeed::getFeedModel() {
 
 void QFacebookGraphConnectionFeed::update(int howMany) {
     addArgument("limit", QString::number(howMany));
-    Get( "/me/feed" );
+    if (m_fbid.isNull())
+        Get( "/me/feed" );
+    else
+        Get(m_fbid + "/feed");
 }
 
 void QFacebookGraphConnectionFeed::next(int howMany) {
     addArgument("limit", QString::number(howMany));
     addArgument("until", m_next);
-    Get( "/me/feed" );
+    if (m_fbid.isNull())
+        Get( "/me/feed" );
+    else
+        Get(m_fbid + "/feed");
 }
 
 void QFacebookGraphConnectionFeed::previous(int howMany) {
     addArgument("limit", QString::number(howMany));
     addArgument("since", m_next);
-    Get( "/me/feed" );
+    if (m_fbid.isNull())
+        Get( "/me/feed" );
+    else
+        Get(m_fbid + "/feed");
 }
 
 void QFacebookGraphConnectionFeed::requestDone(bool ok) {
@@ -87,10 +97,8 @@ void QFacebookGraphConnectionFeed::populateModel() {
                 feedObj->setCreatedtime(j.value().toString());
             if(j.key() == "id")
                 feedObj->setFbid(j.value().toString());
-            if(j.key() == "from") {
-                feedObj->setFromFbid(j.value().toMap().value("id").toString());
-                feedObj->setFromName(j.value().toMap().value("name").toString());
-            }
+            if(j.key() == "from")
+                feedObj->setFrom(j.value().toMap());
             if(j.key() == "type")
                 feedObj->setType(j.value().toString());
             if(j.key() == "message")

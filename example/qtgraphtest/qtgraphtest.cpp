@@ -43,6 +43,7 @@ QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
     ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->getHomeModel()));
     ctxt->setContextProperty( "userObject", user);
     ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->educationModel()) );
+    ctxt->setContextProperty( "userWorkModel", QVariant::fromValue( user->workModel()) );
 
     // Implement the oauth URL access just for demo
     QUrl loginUrlAccess( "https://graph.facebook.com/oauth/authorize" );
@@ -50,7 +51,7 @@ QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
     loginUrlAccess.addQueryItem("redirect_uri", "http://www.facebook.com/connect/login_success.html");
     loginUrlAccess.addQueryItem("type","user_agent" );
     loginUrlAccess.addQueryItem("display","touch");
-    loginUrlAccess.addQueryItem("scope","user_birthday,publish_stream");
+    loginUrlAccess.addQueryItem("scope","read_stream,user_birthday,publish_stream");
 
     ctxt->setContextProperty( "loginUrlAccess", loginUrlAccess);
 

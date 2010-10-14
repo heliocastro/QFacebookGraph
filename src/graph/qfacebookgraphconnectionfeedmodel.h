@@ -14,29 +14,28 @@
  * limitations under the License.
 */
 
-#ifndef QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H
-#define QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H
+#ifndef QFACEBOOKGRAPHCONNECTIONFEEDMODEL_H
+#define QFACEBOOKGRAPHCONNECTIONFEEDMODEL_H
 
 #include <QObject>
 #include <QDateTime>
-#include <QHash>
 #include <QString>
 #include <QStringList>
 #include <QUrl>
+#include <QVariantMap>
+#include <QVariantList>
 
-class QFacebookGraphConnectionHomeModel : public QObject
+class QFacebookGraphConnectionFeedModel : public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(QString fbid READ fbid WRITE setFbid NOTIFY fbidChanged)
-    Q_PROPERTY(QString fromName READ fromName WRITE setFromName NOTIFY fromNameChanged)
-    Q_PROPERTY(QString fromFbid READ fromFbid WRITE setFromFbid NOTIFY fromFbidChanged)
+    Q_PROPERTY(QVariantMap from READ from WRITE setFrom NOTIFY fromChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
     Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
-    Q_PROPERTY(QUrl actionsLike READ actionsLike WRITE setActionsLike NOTIFY actionsLikeChanged)
-    Q_PROPERTY(QUrl actionsComment READ actionsComment WRITE setActionsComment NOTIFY actionsCommentChanged)
+    Q_PROPERTY(QVariantList actions READ actions WRITE setActions NOTIFY actionsChanged)
     Q_PROPERTY(QString type READ type WRITE setType NOTIFY typeChanged)
     Q_PROPERTY(QString createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
     Q_PROPERTY(QString updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
@@ -46,16 +45,13 @@ class QFacebookGraphConnectionHomeModel : public QObject
     Q_PROPERTY(QString caption READ caption WRITE setCaption NOTIFY captionChanged)
     
 public:
-    explicit QFacebookGraphConnectionHomeModel(QObject *parent = 0);
+    explicit QFacebookGraphConnectionFeedModel(QObject *parent = 0);
 	
     QString fbid() const;
     void setFbid(const QString &fbid);
 
-    QString fromName() const;
-    void setFromName(const QString &fromName);
-
-    QString fromFbid() const;
-    void setFromFbid(const QString &fromFbid);
+    QVariantMap from() const;
+    void setFrom(const QVariantMap &from);
 
     QString message() const;
     void setMessage(const QString &message);
@@ -69,11 +65,8 @@ public:
     QUrl picture() const;
     void setPicture(const QUrl &icon);
 
-    QUrl actionsComment() const;
-    void setActionsComment(const QUrl &actionsComment);
-
-    QUrl actionsLike() const;
-    void setActionsLike(const QUrl &actionsLike);
+    QVariantList actions() const;
+    void setActions(const QVariantList &actions);
 
     QString type() const;
     void setType(const QString &type);
@@ -98,14 +91,12 @@ public:
 
 signals:
     void fbidChanged();
-    void fromNameChanged();
-    void fromFbidChanged();
+    void fromChanged();
     void messageChanged();
     void linkChanged();
     void iconChanged();
     void pictureChanged();
-    void actionsCommentChanged();
-    void actionsLikeChanged();
+    void actionsChanged();
     void typeChanged();
     void createdTimeChanged();
     void updatedTimeChanged();
@@ -116,14 +107,12 @@ signals:
 
 private:
     QString m_fbid;
-    QString m_fromFbid;
-    QString m_fromName;
+    QVariantMap m_from;
     QString m_message;
     QUrl m_link;
     QUrl m_icon;
     QUrl m_picture;
-    QUrl m_actionsComment;
-    QUrl m_actionsLike;
+    QVariantList m_actions;
     QString m_type;
     QString m_createdTime;
     QString m_updatedTime;
@@ -133,5 +122,5 @@ private:
     QString m_description;
 };
 
-#endif //QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H
+#endif //QFACEBOOKGRAPHCONNECTIONFEEDMODEL_H
 

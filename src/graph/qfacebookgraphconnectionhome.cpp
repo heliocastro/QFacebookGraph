@@ -1,9 +1,10 @@
 #include <QDebug>
 #include <graph/qfacebookgraphconnectionhome.h>
 
-QFacebookGraphConnectionHome::QFacebookGraphConnectionHome(QObject *parent) :
+QFacebookGraphConnectionHome::QFacebookGraphConnectionHome(QString fbid, QObject *parent) :
     QFacebookGraph( parent )
 {
+    m_fbid = fbid;
     m_previous = QString::null;
     m_next = QString::null;
     m_homeModel = HomeModelList();
@@ -15,19 +16,28 @@ HomeModelList QFacebookGraphConnectionHome::getHomeModel() {
 
 void QFacebookGraphConnectionHome::update(int howMany) {
     addArgument("limit", QString::number(howMany));
-    Get( "/me/home" );
+    if (m_fbid.isNull())
+        Get( "/me/home" );
+    else
+        Get(m_fbid + "/home");
 }
 
 void QFacebookGraphConnectionHome::next(int howMany) {
     addArgument("limit", QString::number(howMany));
     addArgument("until", m_next);
-    Get( "/me/home" );
+    if (m_fbid.isNull())
+        Get( "/me/home" );
+    else
+        Get(m_fbid + "/home");
 }
 
 void QFacebookGraphConnectionHome::previous(int howMany) {
     addArgument("limit", QString::number(howMany));
     addArgument("since", m_next);
-    Get( "/me/home" );
+    if (m_fbid.isNull())
+        Get( "/me/home" );
+    else
+        Get(m_fbid + "/home");
 }
 
 void QFacebookGraphConnectionHome::requestDone(bool ok) {
@@ -67,13 +77,12 @@ void QFacebookGraphConnectionHome::populateModel() {
                 homeObj->setCreatedtime(j.value().toString());
             if(j.key() == "id")
                 homeObj->setFbid(j.value().toString());
-            if(j.key() == "from") {
-                homeObj->setFromFbid(j.value().toMap().value("id").toString());
-                homeObj->setFromName(j.value().toMap().value("name").toString());
-            }
-            if(j.key() == "actions" ) {
-                homeObj->setActionsComment(j.value().toMap().value("comment").toUrl());
-                homeObj->setActionsComment(j.value().toMap().value("like").toUrl());
+            if(j.key() == "from")
+                homeObj->setFrom(j.value().toMap());
+            if(j.key() == "actions" )
+            {
+                homeObj->setActions(j.value().toList());
+                qDebug()  << j.value().toList() << endl << endl;
             }
             if(j.key() == "type")
                 homeObj->setType(j.value().toString());

@@ -46,7 +46,7 @@ Rectangle {
 
         ListView {
             id: homeListView
-            width: view.width; height: view.height
+            width: view.width; height: view.height - 30
             model: homeModel
             delegate: homeListViewDelegate
         }
@@ -100,9 +100,7 @@ Rectangle {
                                 color: "gray"
                             }
                             Text {
-                                text: { userObject.birthday
-
-                                }
+                                text: userObject.birthday
                             }
                         }
                         ListView {
@@ -143,7 +141,7 @@ Rectangle {
             border.width: 2
             radius: 10
             color: "white"
-            height: 80; width: view.width
+            height: 110; width: view.width
 
             Row {
                 spacing: 10
@@ -153,7 +151,7 @@ Rectangle {
                     Image {
                         id: userImage
                         anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
-                        source: "http://graph.facebook.com/" + fromFbid + "/picture"
+                        source: "http://graph.facebook.com/" + from.id + "/picture"
                     }
                 }
                 Column {
@@ -161,12 +159,12 @@ Rectangle {
                         spacing: 10
                         Text {
                             height: 30
-                            text: "User id: " +  fromFbid
+                            text: "User id: "
                             font.bold: true
                         }
                         Text {
                             height: 30
-                            text: fromName
+                            text: from.name
                             font.bold: false
                         }
                     }
@@ -175,6 +173,14 @@ Rectangle {
                         width: view.width - 100
                         wrapMode: Text.WordWrap
                         text: message
+                    }
+                    ListView {
+                        model: actions
+                        delegate:
+                            Text {
+                            id: eca
+                            text: { "opa"; console.log( actions.count)  }
+                        }
                     }
                 }
             }

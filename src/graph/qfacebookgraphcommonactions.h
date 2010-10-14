@@ -14,37 +14,32 @@
  * limitations under the License.
 */
 
-#ifndef QFACEBOOKGRAPHCONNECTIONHOME_H
-#define QFACEBOOKGRAPHCONNECTIONHOME_H
+#ifndef QFACEBOOKGRAPHCOMMONACTIONS_H
+#define QFACEBOOKGRAPHCOMMONACTIONS_H
 
 #include <QObject>
+#include <QVariantMap>
 #include <QList>
 
-#include <qfacebookgraph.h>
-#include <graph/qfacebookgraphconnectionhomemodel.h>
+typedef QList<QObject*> ActionModelList;
 
-typedef QList<QObject*> HomeModelList;
-
-class QFacebookGraphConnectionHome : public QFacebookGraph
+class QFacebookGraphCommonActions : public QObject
 {
     Q_OBJECT
-public:
-    explicit QFacebookGraphConnectionHome(QObject *parent = 0);
+
+    Q_PROPERTY(QVariantMap action READ action WRITE setAction NOTIFY actionChanged )
 
 public:
-    HomeModelList getHomeModel();
-    void previous(int howMany = 25 );
-    void next(int howMany = 25);
-    void update(int howMany = 25);
+    explicit QFacebookGraphCommonActions(QObject *parent = 0);
+
+    QVariantMap action() const;
+    void setAction(const QVariantMap &action);
+
+signals:
+    void actionChanged();
 
 private:
-    void populateModel();
-    void requestDone(bool ok = false);
-
-private:
-    HomeModelList m_homeModel;
-    QString m_previous;
-    QString m_next;
+    QVariantMap m_action;
 };
 
-#endif // QFACEBOOKGRAPHCONNECTIONHOME_H
+#endif // QFACEBOOKGRAPHCOMMONACTIONS_H

@@ -20,13 +20,12 @@ QFacebookGraphConnectionFeedModel::QFacebookGraphConnectionFeedModel(QObject *pa
     QObject(parent)
 {
     m_fbid = QString::null;
-    m_fromName = QString::null;
-    m_fromFbid = QString::null;
+    m_from = QVariantMap();
     m_message = QString::null;
     m_link = QUrl();
     m_icon = QUrl();
     m_picture = QUrl();
-    m_actions = QHashActions();
+    m_actions = QVariantList();
     m_type = QString::null;
     m_createdTime = QString::null;
     m_updatedTime = QString::null;
@@ -46,25 +45,13 @@ void QFacebookGraphConnectionFeedModel::setFbid(const QString &fbid) {
     }
 }
 
-QString QFacebookGraphConnectionFeedModel::fromName() const {
-    return m_fromName;
+QVariantMap QFacebookGraphConnectionFeedModel::from() const {
+    return m_from;
 }
-
-void QFacebookGraphConnectionFeedModel::setFromName(const QString &fromName) {
-    if( m_fromName != fromName ) {
-        m_fromName = fromName;
-        emit fromNameChanged();
-    }
-}
-
-QString QFacebookGraphConnectionFeedModel::fromFbid() const {
-    return m_fromFbid;
-}
-
-void QFacebookGraphConnectionFeedModel::setFromFbid(const QString &fromFbid) {
-    if( m_fromFbid != fromFbid ) {
-        m_fromFbid = fromFbid;
-        emit fromFbidChanged();
+void QFacebookGraphConnectionFeedModel::setFrom(const QVariantMap &from) {
+    if(m_from != from) {
+        m_from = from;
+        emit fromChanged();
     }
 }
 
@@ -108,10 +95,10 @@ void QFacebookGraphConnectionFeedModel::setPicture(const QUrl &picture) {
     }
 }
 
-QHashActions QFacebookGraphConnectionFeedModel::actions() const {
+QVariantList QFacebookGraphConnectionFeedModel::actions() const {
     return m_actions;
 }
-void QFacebookGraphConnectionFeedModel::setActions(const QHashActions &actions) {
+void QFacebookGraphConnectionFeedModel::setActions(const QVariantList &actions) {
     if( m_actions != actions ) {
         m_actions = actions;
         emit actionsChanged();

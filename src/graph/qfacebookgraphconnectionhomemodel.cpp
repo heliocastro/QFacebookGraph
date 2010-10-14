@@ -20,14 +20,12 @@ QFacebookGraphConnectionHomeModel::QFacebookGraphConnectionHomeModel(QObject *pa
     QObject(parent)
 {
     m_fbid = QString::null;
-    m_fromName = QString::null;
-    m_fromFbid = QString::null;
+    m_from = QVariantMap();
     m_message = QString::null;
     m_link = QUrl();
     m_icon = QUrl();
     m_picture = QUrl();
-    m_actionsComment = QUrl();
-    m_actionsLike = QUrl();
+    m_actions = QVariantList();
     m_type = QString::null;
     m_createdTime = QString::null;
     m_updatedTime = QString::null;
@@ -47,25 +45,14 @@ void QFacebookGraphConnectionHomeModel::setFbid(const QString &fbid) {
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::fromName() const {
-    return m_fromName;
+QVariantMap QFacebookGraphConnectionHomeModel::from() const {
+    return m_from;
 }
 
-void QFacebookGraphConnectionHomeModel::setFromName(const QString &fromName) {
-    if( m_fromName != fromName ) {
-        m_fromName = fromName;
-        emit fromNameChanged();
-    }
-}
-
-QString QFacebookGraphConnectionHomeModel::fromFbid() const {
-    return m_fromFbid;
-}
-
-void QFacebookGraphConnectionHomeModel::setFromFbid(const QString &fromFbid) {
-    if( m_fromFbid != fromFbid ) {
-        m_fromFbid = fromFbid;
-        emit fromFbidChanged();
+void QFacebookGraphConnectionHomeModel::setFrom(const QVariantMap &from) {
+    if( m_from != from ) {
+        m_from = from;
+        emit fromChanged();
     }
 }
 
@@ -109,23 +96,14 @@ void QFacebookGraphConnectionHomeModel::setPicture(const QUrl &picture) {
     }
 }
 
-QUrl QFacebookGraphConnectionHomeModel::actionsComment() const {
-    return m_actionsComment;
+QVariantList QFacebookGraphConnectionHomeModel::actions() const {
+    return m_actions;
 }
-void QFacebookGraphConnectionHomeModel::setActionsComment(const QUrl &actionsComment) {
-    if( m_actionsComment != actionsComment ) {
-        m_actionsComment = actionsComment;
-        emit actionsCommentChanged();
-    }
-}
-
-QUrl QFacebookGraphConnectionHomeModel::actionsLike() const {
-    return m_actionsLike;
-}
-void QFacebookGraphConnectionHomeModel::setActionsLike(const QUrl &actionsLike) {
-    if( m_actionsLike != actionsLike ) {
-        m_actionsLike = actionsLike;
-        emit actionsLikeChanged();
+void QFacebookGraphConnectionHomeModel::setActions(const QVariantList &actions) {
+    if(m_actions != actions)
+    {
+        m_actions = actions;
+        emit actionsChanged();
     }
 }
 
