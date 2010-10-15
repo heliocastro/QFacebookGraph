@@ -138,51 +138,46 @@ Rectangle {
         Rectangle {
             id: listItem
             color: "white"
-            height: 200; width: view.width
+            height: maintext.height; width: view.width
 
-            Row {
+            Column {
                 spacing: 10
                 Rectangle {
-                    width: 75; height: 75
                     color: "transparent"
                     Image {
                         id: userImage
+                        width: 48
                         anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
                         source: "http://graph.facebook.com/" + from.id + "/picture"
                     }
                 }
                 Column {
-                    Row {
-                        spacing: 10
-                        Text {
-                            height: 30
-                            text: "User id: "
-                            font.bold: true
-                        }
-                        Text {
-                            height: 30
-                            text: from.name
-                            font.bold: false
-                        }
+                    id: maintext
+                    spacing: 10
+                    width: view.width - 50
+                    Text {
+                        height: font.pixelSize +2
+                        text: from.name
+                        font.bold: true
                     }
                     Text {
-                        height: 50
-                        width: view.width - 100
+                        id: msgtext
+                        width: view.width - userImage.width
                         wrapMode: Text.WordWrap
                         text: message
                     }
-                    ListView {
-                        width: view.width - 100; height: 100
-
+                    /*ListView {
                         model: comments
                         delegate:
                         Rectangle {
                             color:  "#8888FF"
+                            Column {
                             Text { id: cheader; text: "Comments:"; font.bold: true }
-                            Text { id: cname; text: modelData.from.name; anchors { top: cheader.bottom; leftMargin: 30; left: parent.left } }
-                            Text { id: cmessage; text: modelData.message; anchors { top: cname.bottom; leftMargin: 30; left: parent.left } }
+                            Text { id: cname; text: modelData.from.name; }
+                            Text { id: cmessage; text: modelData.message;  }
+                            }
                         }
-                    }
+                    }*/
                     GridView {
                         id: oca
                         width: view.width - 100; height: 50

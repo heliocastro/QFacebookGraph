@@ -14,30 +14,34 @@
  * limitations under the License.
 */
 
-#include "qfacebookgraphconnectionhomemodel.h"
+#include <graph/qfacebookgraphcommonfeedmodel.h>
 
-QFacebookGraphConnectionHomeModel::QFacebookGraphConnectionHomeModel(QObject *parent) :
+QFacebookGraphCommonFeedModel::QFacebookGraphCommonFeedModel(QObject *parent) :
     QObject(parent)
 {
     m_fbid = QString::null;
     m_from = QVariantMap();
+    m_to = QVariantList();
     m_message = QString::null;
     m_link = QUrl();
     m_icon = QUrl();
     m_picture = QUrl();
     m_actions = QVariantList();
+    m_comments = QVariantList();
     m_type = QString::null;
     m_createdTime = QString::null;
     m_updatedTime = QString::null;
     m_attribution = QString::null;
     m_caption = QString::null;
     m_description = QString::null;
+    m_likes = 0;
+    m_count = 0;
 }
 
-QString QFacebookGraphConnectionHomeModel::fbid() const {
+QString QFacebookGraphCommonFeedModel::fbid() const {
     return m_fbid;
 }
-void QFacebookGraphConnectionHomeModel::setFbid(const QString &fbid) {
+void QFacebookGraphCommonFeedModel::setFbid(const QString &fbid) {
     if( m_fbid != fbid )
     {
         m_fbid = fbid;
@@ -45,70 +49,70 @@ void QFacebookGraphConnectionHomeModel::setFbid(const QString &fbid) {
     }
 }
 
-QVariantMap QFacebookGraphConnectionHomeModel::from() const {
+QVariantMap QFacebookGraphCommonFeedModel::from() const {
     return m_from;
 }
-void QFacebookGraphConnectionHomeModel::setFrom(const QVariantMap &from) {
+void QFacebookGraphCommonFeedModel::setFrom(const QVariantMap &from) {
     if( m_from != from ) {
         m_from = from;
         emit fromChanged();
     }
 }
 
-QVariantMap QFacebookGraphConnectionHomeModel::to() const {
+QVariantList QFacebookGraphCommonFeedModel::to() const {
     return m_to;
 }
-void QFacebookGraphConnectionHomeModel::setTo(const QVariantMap &to) {
+void QFacebookGraphCommonFeedModel::setTo(const QVariantList &to) {
     if( m_to != to ) {
         m_to = to;
         emit toChanged();
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::message() const {
+QString QFacebookGraphCommonFeedModel::message() const {
     return m_message;
 }
-void QFacebookGraphConnectionHomeModel::setMessage(const QString &message) {
+void QFacebookGraphCommonFeedModel::setMessage(const QString &message) {
     if( m_message != message ) {
         m_message = message;
         emit messageChanged();
     }
 }
 
-QUrl QFacebookGraphConnectionHomeModel::link() const {
+QUrl QFacebookGraphCommonFeedModel::link() const {
     return m_link;
 }
-void QFacebookGraphConnectionHomeModel::setLink(const QUrl &link) {
+void QFacebookGraphCommonFeedModel::setLink(const QUrl &link) {
     if( m_link != link ) {
         m_link = link;
         emit linkChanged();
     }
 }
 
-QUrl QFacebookGraphConnectionHomeModel::icon() const {
+QUrl QFacebookGraphCommonFeedModel::icon() const {
     return m_icon;
 }
-void QFacebookGraphConnectionHomeModel::setIcon(const QUrl &icon) {
+void QFacebookGraphCommonFeedModel::setIcon(const QUrl &icon) {
     if( m_icon != icon ) {
         m_icon = icon;
         emit iconChanged();
     }
 }
 
-QUrl QFacebookGraphConnectionHomeModel::picture() const {
+QUrl QFacebookGraphCommonFeedModel::picture() const {
     return m_picture;
 }
-void QFacebookGraphConnectionHomeModel::setPicture(const QUrl &picture) {
+void QFacebookGraphCommonFeedModel::setPicture(const QUrl &picture) {
     if( m_picture != picture ) {
         m_picture = picture;
         emit pictureChanged();
     }
 }
 
-QVariantList QFacebookGraphConnectionHomeModel::actions() const {
+QVariantList QFacebookGraphCommonFeedModel::actions() const {
     return m_actions;
 }
-void QFacebookGraphConnectionHomeModel::setActions(const QVariantList &actions) {
+void QFacebookGraphCommonFeedModel::setActions(const QVariantList &actions) {
     if(m_actions != actions)
     {
         m_actions = actions;
@@ -116,10 +120,10 @@ void QFacebookGraphConnectionHomeModel::setActions(const QVariantList &actions) 
     }
 }
 
-QVariantList QFacebookGraphConnectionHomeModel::comments() const {
+QVariantList QFacebookGraphCommonFeedModel::comments() const {
     return m_comments;
 }
-void QFacebookGraphConnectionHomeModel::setComments(const QVariantList &comments) {
+void QFacebookGraphCommonFeedModel::setComments(const QVariantList &comments) {
     if(m_comments != comments)
     {
         m_comments = comments;
@@ -127,60 +131,70 @@ void QFacebookGraphConnectionHomeModel::setComments(const QVariantList &comments
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::type() const {
+QString QFacebookGraphCommonFeedModel::type() const {
     return m_type;
 }
-void QFacebookGraphConnectionHomeModel::setType(const QString &type) {
+void QFacebookGraphCommonFeedModel::setType(const QString &type) {
     if( m_type != type ) {
         m_type = type;
         emit typeChanged();
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::createdTime() const {
+QString QFacebookGraphCommonFeedModel::createdTime() const {
     return m_createdTime;
 }
-void QFacebookGraphConnectionHomeModel::setCreatedtime(const QString &createdTime) {
+void QFacebookGraphCommonFeedModel::setCreatedtime(const QString &createdTime) {
     if( m_createdTime != createdTime ) {
         m_createdTime = createdTime;
         emit createdTimeChanged();
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::updatedTime() const {
+QString QFacebookGraphCommonFeedModel::updatedTime() const {
     return m_updatedTime;
 }
-void QFacebookGraphConnectionHomeModel::setUpdatedtime(const QString &updatedTime) {
+void QFacebookGraphCommonFeedModel::setUpdatedtime(const QString &updatedTime) {
     if( m_updatedTime != updatedTime ) {
         m_updatedTime = updatedTime;
         emit updatedTimeChanged();
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::attribution() const {
+QString QFacebookGraphCommonFeedModel::attribution() const {
     return m_attribution;
 }
-void QFacebookGraphConnectionHomeModel::setAttribution(const QString &attribution) {
+void QFacebookGraphCommonFeedModel::setAttribution(const QString &attribution) {
     if( m_attribution != attribution ) {
         m_attribution = attribution;
         emit attributionChanged();
     }
 }
 
-qulonglong QFacebookGraphConnectionHomeModel::likes() const {
+qulonglong QFacebookGraphCommonFeedModel::likes() const {
     return m_likes;
 }
-void QFacebookGraphConnectionHomeModel::setLikes(qulonglong likes) {
+void QFacebookGraphCommonFeedModel::setLikes(qulonglong likes) {
     if( m_likes != likes ) {
         m_likes = likes;
         emit likesChanged();
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::description() const {
+qulonglong QFacebookGraphCommonFeedModel::count() const {
+    return m_count;
+}
+void QFacebookGraphCommonFeedModel::setCount(qulonglong count) {
+    if( m_count != count ) {
+        m_count = count;
+        emit countChanged();
+    }
+}
+
+QString QFacebookGraphCommonFeedModel::description() const {
     return m_description;
 }
-void QFacebookGraphConnectionHomeModel::setDescription(const QString &description) {
+void QFacebookGraphCommonFeedModel::setDescription(const QString &description) {
     if( m_description != description )
     {
         m_description = description;
@@ -188,10 +202,10 @@ void QFacebookGraphConnectionHomeModel::setDescription(const QString &descriptio
     }
 }
 
-QString QFacebookGraphConnectionHomeModel::caption() const {
+QString QFacebookGraphCommonFeedModel::caption() const {
     return m_caption;
 }
-void QFacebookGraphConnectionHomeModel::setCaption(const QString &caption) {
+void QFacebookGraphCommonFeedModel::setCaption(const QString &caption) {
     if( m_caption != caption )
     {
         m_caption = caption;

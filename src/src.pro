@@ -24,15 +24,15 @@ SOURCES += qfacebookgraph.cpp \
     graph/qfacebookgraphlink.cpp \
     graph/qfacebookgraphgroup.cpp \
     graph/qfacebookgraphevent.cpp \
-    graph/qfacebookgraphconnectionhomemodel.cpp \
-    graph/qfacebookgraphconnectionfeedmodel.cpp \
     graph/qfacebookgraphcheckin.cpp \
     graph/qfacebookgraphapplication.cpp \
     graph/qfacebookgraphalbum.cpp \
     graph/qfacebookgraphconnectionhome.cpp \
     graph/qfacebookgraphconnectionfeed.cpp \
     graph/qfacebookgraphcommoneducationmodel.cpp \
-    graph/qfacebookgraphcommonworkmodel.cpp
+    graph/qfacebookgraphcommonworkmodel.cpp \
+    graph/qfacebookgraphcommonfeedmodel.cpp \
+    graph/qfacebookgraphconnectiontagged.cpp
 
 HEADERS += qfacebookgraph.h\
         qfacebookgraph_global.h \
@@ -47,15 +47,15 @@ HEADERS += qfacebookgraph.h\
     graph/qfacebookgraphlink.h \
     graph/qfacebookgraphgroup.h \
     graph/qfacebookgraphevent.h \
-    graph/qfacebookgraphconnectionhomemodel.h \
-    graph/qfacebookgraphconnectionfeedmodel.h \
     graph/qfacebookgraphcheckin.h \
     graph/qfacebookgraphapplication.h \
     graph/qfacebookgraphalbum.h \
-    graph/qfacebookgraphconnectionhome.h \
     graph/qfacebookgraphconnectionfeed.h \
     graph/qfacebookgraphcommoneducationmodel.h \
-    graph/qfacebookgraphcommonworkmodel.h
+    graph/qfacebookgraphcommonworkmodel.h \
+    graph/qfacebookgraphconnectionhome.h \
+    graph/qfacebookgraphcommonfeedmodel.h \
+    graph/qfacebookgraphconnectiontagged.h
 
 
 target.path = $$[QT_INSTALL_LIBS]
@@ -77,14 +77,14 @@ graph_headers.files += graph/qfacebookgraphvideo.h \
     graph/qfacebookgraphlink.h \
     graph/qfacebookgraphgroup.h \
     graph/qfacebookgraphevent.h \
-    graph/qfacebookgraphconnectionhomemodel.h \
-    graph/qfacebookgraphconnectionfeedmodel.h \
     graph/qfacebookgraphcheckin.h \
     graph/qfacebookgraphapplication.h \
     graph/qfacebookgraphalbum.h \
     graph/qfacebookgraphconnectionhome.h \
     graph/qfacebookgraphconnectionfeed.h \
+    graph/qfacebookgraphconnectiontagged.h \
     graph/qfacebookgraphcommoneducationmodel.h \
+    graph/qfacebookgraphcommonfeedmodel.h \
     graph/qfacebookgraphcommonworkmodel.h
 
 graph_headers.path = $$[QT_INSTALL_HEADERS]/QFacebookGraph/graph

@@ -21,9 +21,6 @@
 #include <QList>
 
 #include <qfacebookgraph.h>
-#include <graph/qfacebookgraphconnectionhomemodel.h>
-
-typedef QList<QObject*> HomeModelList;
 
 class QFacebookGraphConnectionHome : public QFacebookGraph
 {
@@ -32,7 +29,7 @@ public:
     explicit QFacebookGraphConnectionHome(QString fbid = QString::null, QObject *parent = 0);
 
 public:
-    HomeModelList getHomeModel();
+    QList<QObject*> getModel();
     void previous(int howMany = 25 );
     void next(int howMany = 25);
     void update(int howMany = 25);
@@ -42,7 +39,7 @@ private:
     void requestDone(bool ok = false);
 
 private:
-    HomeModelList m_homeModel;
+    QList<QObject*> m_model;
     QString m_previous;
     QString m_next;
     QString m_fbid;

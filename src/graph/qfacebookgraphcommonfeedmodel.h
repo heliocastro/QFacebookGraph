@@ -14,8 +14,8 @@
  * limitations under the License.
 */
 
-#ifndef QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H
-#define QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H
+#ifndef QFACEBOOKGRAPHCOMMONFEEDMODEL_H
+#define QFACEBOOKGRAPHCOMMONFEEDMODEL_H
 
 #include <QObject>
 #include <QDateTime>
@@ -24,13 +24,13 @@
 #include <QUrl>
 #include <QVariantMap>
 
-class QFacebookGraphConnectionHomeModel : public QObject
+class QFacebookGraphCommonFeedModel : public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(QString fbid READ fbid WRITE setFbid NOTIFY fbidChanged)
     Q_PROPERTY(QVariantMap from READ from WRITE setFrom NOTIFY fromChanged)
-    Q_PROPERTY(QVariantMap to READ to WRITE setTo NOTIFY toChanged)
+    Q_PROPERTY(QVariantList to READ to WRITE setTo NOTIFY toChanged)
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QUrl link READ link WRITE setLink NOTIFY linkChanged)
     Q_PROPERTY(QUrl icon READ icon WRITE setIcon NOTIFY iconChanged)
@@ -44,9 +44,10 @@ class QFacebookGraphConnectionHomeModel : public QObject
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QString caption READ caption WRITE setCaption NOTIFY captionChanged)
     Q_PROPERTY(QVariantList comments READ comments WRITE setComments NOTIFY commentsChanged)
+    Q_PROPERTY(qulonglong count READ count WRITE setCount NOTIFY countChanged)
     
 public:
-    explicit QFacebookGraphConnectionHomeModel(QObject *parent = 0);
+    explicit QFacebookGraphCommonFeedModel(QObject *parent = 0);
 	
     QString fbid() const;
     void setFbid(const QString &fbid);
@@ -54,8 +55,8 @@ public:
     QVariantMap from() const;
     void setFrom(const QVariantMap &from);
 
-    QVariantMap to() const;
-    void setTo(const QVariantMap &to);
+    QVariantList to() const;
+    void setTo(const QVariantList &to);
 
     QString message() const;
     void setMessage(const QString &message);
@@ -90,6 +91,9 @@ public:
     qulonglong likes() const;
     void setLikes(qulonglong likes);
 
+    qulonglong count() const;
+    void setCount(qulonglong count);
+
     QString description() const;
     void setDescription(const QString &description);
 
@@ -113,11 +117,12 @@ signals:
     void captionChanged();
     void descriptionChanged();
     void commentsChanged();
+    void countChanged();
 
 private:
     QString m_fbid;
     QVariantMap m_from;
-    QVariantMap m_to;
+    QVariantList m_to;
     QString m_message;
     QUrl m_link;
     QUrl m_icon;
@@ -131,7 +136,8 @@ private:
     QString m_caption;
     QString m_description;
     QVariantList m_comments;
+    qulonglong m_count;
 };
 
-#endif //QFACEBOOKGRAPHCONNECTIONHOMEMODEL_H
+#endif //QFACEBOOKGRAPHCOMMONFEEDMODEL_H
 

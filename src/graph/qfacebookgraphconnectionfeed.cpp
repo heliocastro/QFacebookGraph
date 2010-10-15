@@ -18,6 +18,7 @@
 #include <QDebug>
 
 #include <graph/qfacebookgraphconnectionfeed.h>
+#include <graph/qfacebookgraphcommonfeedmodel.h>
 
 QFacebookGraphConnectionFeed::QFacebookGraphConnectionFeed(QString fbid, QObject *parent) :
     QFacebookGraph(parent)
@@ -82,7 +83,7 @@ void QFacebookGraphConnectionFeed::requestDone(bool ok) {
 }
 
 void QFacebookGraphConnectionFeed::populateModel() {
-    QFacebookGraphConnectionFeedModel *feedObj = new QFacebookGraphConnectionFeedModel();
+    QFacebookGraphCommonFeedModel *feedObj = new QFacebookGraphCommonFeedModel();
 
     QVariantList list = result().value("data").toList();
     QVariantList::const_iterator i;
@@ -120,6 +121,6 @@ void QFacebookGraphConnectionFeed::populateModel() {
         }
 
         m_feedModel.append(feedObj);
-        feedObj = new QFacebookGraphConnectionFeedModel();
+        feedObj = new QFacebookGraphCommonFeedModel();
     }
 }

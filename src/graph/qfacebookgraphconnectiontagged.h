@@ -14,40 +14,35 @@
  * limitations under the License.
 */
 
-
-#ifndef QFACEBOOKGRAPHCONNECTIONFEED_H
-#define QFACEBOOKGRAPHCONNECTIONFEED_H
+#ifndef QFACEBOOKGRAPHCONNECTIONTAGGED_H
+#define QFACEBOOKGRAPHCONNECTIONTAGGED_H
 
 #include <QObject>
 #include <QList>
 
 #include <qfacebookgraph.h>
 
-typedef QList<QObject*> FeedModelList;
-
-class QFacebookGraphConnectionFeed : public QFacebookGraph
+class QFacebookGraphConnectionTagged : public QFacebookGraph
 {
     Q_OBJECT
 public:
-    explicit QFacebookGraphConnectionFeed(QString fbid = QString::null, QObject *parent = 0);
+    explicit QFacebookGraphConnectionTagged(QString fbid = QString::null, QObject *parent = 0);
 
 public:
-    FeedModelList getFeedModel();
-    void update(int howMany = 25);
+    QList<QObject*> getModel();
     void previous(int howMany = 25 );
     void next(int howMany = 25);
-
+    void update(int howMany = 25);
 
 private:
     void populateModel();
     void requestDone(bool ok = false);
 
 private:
-    FeedModelList m_feedModel;
-    QFacebookGraph *m_graph;
+    QList <QObject*> m_model;
     QString m_previous;
     QString m_next;
     QString m_fbid;
 };
 
-#endif // QFACEBOOKGRAPHCONNECTIONFEED_H
+#endif // QFacebookGraphConnectionTagged_H

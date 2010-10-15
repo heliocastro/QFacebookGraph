@@ -40,7 +40,7 @@ QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
 
     ctxt = view->rootContext();
     ctxt->setContextProperty( "test", this );
-    ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->getHomeModel()));
+    ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->getModel()));
     ctxt->setContextProperty( "userObject", user);
     ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->educationModel()) );
     ctxt->setContextProperty( "userWorkModel", QVariant::fromValue( user->workModel()) );
@@ -66,7 +66,7 @@ bool QtGraphTest::hasValidToken() {
 
 
 void QtGraphTest::updateHomeView() {
-    homeList = home->getHomeModel();
+    homeList = home->getModel();
     ctxt->setContextProperty( "homeModel", QVariant::fromValue(homeList) );
 }
 

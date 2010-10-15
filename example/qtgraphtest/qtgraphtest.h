@@ -31,7 +31,7 @@ private:
     QFacebookGraphConnectionHome *home;
     QFacebookGraphUser *user;
     QSettings *settings;
-    HomeModelList homeList;
+    QList<QObject*> homeList;
 };
 
 #endif // QTGRAPHTEST_H
