@@ -138,35 +138,37 @@ Rectangle {
         Rectangle {
             id: listItem
             color: "white"
-            height: maintext.height; width: view.width
-
-            Column {
+            height: 80
+            width: view.width
+            Row {
                 spacing: 10
                 Rectangle {
+                    height: 50; width: 50
                     color: "transparent"
                     Image {
-                        id: userImage
-                        width: 48
-                        anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
                         source: "http://graph.facebook.com/" + from.id + "/picture"
                     }
                 }
-                Column {
+                Rectangle {
                     id: maintext
-                    spacing: 10
                     width: view.width - 50
-                    Text {
-                        height: font.pixelSize +2
-                        text: from.name
-                        font.bold: true
-                    }
-                    Text {
-                        id: msgtext
-                        width: view.width - userImage.width
-                        wrapMode: Text.WordWrap
-                        text: message
-                    }
-                    /*ListView {
+                    height: naming.height + msgtext.height
+                    Column {
+                        spacing: 4
+                        Text {
+                            id: naming
+                            height: font.pixelSize +2
+                            text: from.name
+                            font.bold: true
+                        }
+                        Text {
+                            id: msgtext
+                            width: view.width - userImage.width
+                            height: 40
+                            wrapMode: Text.WordWrap
+                            text: message
+                        }
+                        /*ListView {
                         model: comments
                         delegate:
                         Rectangle {
@@ -178,14 +180,16 @@ Rectangle {
                             }
                         }
                     }*/
-                    GridView {
-                        id: oca
-                        width: view.width - 100; height: 50
-                        model: actions
-                        interactive: false
-                        delegate: Text {
-                            text: "<a href=\"" + modelData.link + "\">" + modelData.name + "</a>"
-                            font.bold: true
+                        GridView {
+                            id: oca
+                            width: view.width - 100; height: 50
+                            model: actions
+                            interactive: false
+                            delegate: Text {
+                                text: "<a href=\"" + modelData.link + "\">" + modelData.name + "</a>"
+                                font.bold: false
+                                font.pointSize: 8
+                            }
                         }
                     }
                 }
@@ -195,11 +199,13 @@ Rectangle {
 
     ListView {
         id: view
-        anchors { fill: parent; bottomMargin: 30 }
+        anchors { fill: parent }
         model: itemModel
         preferredHighlightBegin: 0; preferredHighlightEnd: 0
         highlightRangeMode: ListView.StrictlyEnforceRange
         orientation: ListView.Horizontal
-        snapMode: ListView.SnapOneItem; flickDeceleration: 2000
+        snapMode: ListView.SnapOneItem;
+        flickDeceleration: 2000
+        spacing: 10
     }
 }
