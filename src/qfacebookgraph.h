@@ -58,6 +58,7 @@ public:
 private:
     void Call(const QUrl &url, HttpVerb httpVerb);
     QUrl baseUrl(const QString &path = QString::null);
+    void init();
 
 private slots:
     void httpFinished();

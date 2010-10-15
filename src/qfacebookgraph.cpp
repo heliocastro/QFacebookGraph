@@ -18,6 +18,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QNetworkProxy>
 #include <QObject>
 
 #include <qjson/parser.h>
@@ -31,20 +32,29 @@
 QFacebookGraph::QFacebookGraph( QObject *parent) :
     QObject(parent)
 {
-    m_accessToken = QString::null;
-    m_httpResult = QByteArray();
-    m_mapResult = QVariantMap();
-
-    m_url = QUrl(GRAPH_URL_HOST);
+    init();
 }
 
 QFacebookGraph::QFacebookGraph( const QString &apiKey, const QString &apiSecret ) {
+    init();
+    Q_UNUSED(apiKey);
+    Q_UNUSED(apiSecret);
+}
+
+void QFacebookGraph::init() {
     m_accessToken = QString::null;
     m_httpResult = QByteArray();
     m_mapResult = QVariantMap();
+    m_url = QUrl(GRAPH_URL_HOST);
 
-    Q_UNUSED(apiKey);
-    Q_UNUSED(apiSecret);
+    QString proxyenv(getenv("http_proxy"));
+    if( !proxyenv.isNull() ) {
+        QUrl proxyurl( proxyenv );
+        QNetworkProxy proxy;
+        proxy.setHostName(proxyurl.host());
+        proxy.setPort(proxyurl.port());
+        m_qnam.setProxy(proxy);
+    }
 }
 
 void QFacebookGraph::Get(const QString &path) {
