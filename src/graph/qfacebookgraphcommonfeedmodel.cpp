@@ -36,6 +36,7 @@ QFacebookGraphCommonFeedModel::QFacebookGraphCommonFeedModel(QObject *parent) :
     m_description = QString::null;
     m_likes = 0;
     m_count = 0;
+    m_privacy = QVariantMap();
 }
 
 QString QFacebookGraphCommonFeedModel::fbid() const {
@@ -210,5 +211,15 @@ void QFacebookGraphCommonFeedModel::setCaption(const QString &caption) {
     {
         m_caption = caption;
         emit captionChanged();
+    }
+}
+
+QVariantMap QFacebookGraphCommonFeedModel::privacy() const {
+    return m_privacy;
+}
+void QFacebookGraphCommonFeedModel::setPrivacy(const QVariantMap &privacy) {
+    if( m_privacy != privacy ) {
+        m_privacy = privacy;
+        emit privacyChanged();
     }
 }

@@ -86,6 +86,8 @@ void QFacebookGraphConnectionBase::populateModel() {
                 obj->setIcon(j.value().toUrl());
             if(j.key() == "picture")
                 obj->setPicture(j.value().toUrl());
+            if(j.key() == "privacy")
+                obj->setPrivacy(j.value().toMap());
             if(j.key() == "link")
                 obj->setLink(j.value().toUrl());
         }

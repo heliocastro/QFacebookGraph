@@ -45,6 +45,7 @@ class QFacebookGraphCommonFeedModel : public QObject
     Q_PROPERTY(QString caption READ caption WRITE setCaption NOTIFY captionChanged)
     Q_PROPERTY(QVariantList comments READ comments WRITE setComments NOTIFY commentsChanged)
     Q_PROPERTY(qulonglong count READ count WRITE setCount NOTIFY countChanged)
+    Q_PROPERTY(QVariantMap privacy READ privacy WRITE setPrivacy NOTIFY privacyChanged)
     
 public:
     explicit QFacebookGraphCommonFeedModel(QObject *parent = 0);
@@ -100,6 +101,9 @@ public:
     QString caption() const;
     void setCaption(const QString &caption);
 
+    QVariantMap privacy() const;
+    void setPrivacy(const QVariantMap &from);
+
 signals:
     void fbidChanged();
     void fromChanged();
@@ -118,6 +122,7 @@ signals:
     void descriptionChanged();
     void commentsChanged();
     void countChanged();
+    void privacyChanged();
 
 private:
     QString m_fbid;
@@ -137,6 +142,7 @@ private:
     QString m_description;
     QVariantList m_comments;
     qulonglong m_count;
+    QVariantMap m_privacy;
 };
 
 #endif //QFACEBOOKGRAPHCOMMONFEEDMODEL_H
