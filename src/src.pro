@@ -32,7 +32,8 @@ SOURCES += qfacebookgraph.cpp \
     graph/qfacebookgraphcommoneducationmodel.cpp \
     graph/qfacebookgraphcommonworkmodel.cpp \
     graph/qfacebookgraphcommonfeedmodel.cpp \
-    graph/qfacebookgraphconnectiontagged.cpp
+    graph/qfacebookgraphconnectiontagged.cpp \
+    graph/qfacebookgraphconnectionbase.cpp
 
 HEADERS += qfacebookgraph.h\
         qfacebookgraph_global.h \
@@ -55,7 +56,8 @@ HEADERS += qfacebookgraph.h\
     graph/qfacebookgraphcommonworkmodel.h \
     graph/qfacebookgraphconnectionhome.h \
     graph/qfacebookgraphcommonfeedmodel.h \
-    graph/qfacebookgraphconnectiontagged.h
+    graph/qfacebookgraphconnectiontagged.h \
+    graph/qfacebookgraphconnectionbase.h
 
 
 target.path = $$[QT_INSTALL_LIBS]
@@ -80,6 +82,7 @@ graph_headers.files += graph/qfacebookgraphvideo.h \
     graph/qfacebookgraphcheckin.h \
     graph/qfacebookgraphapplication.h \
     graph/qfacebookgraphalbum.h \
+    graph/qfacebookgraphconnectionbase.h \
     graph/qfacebookgraphconnectionhome.h \
     graph/qfacebookgraphconnectionfeed.h \
     graph/qfacebookgraphconnectiontagged.h \

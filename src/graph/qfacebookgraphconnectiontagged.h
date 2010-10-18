@@ -18,31 +18,18 @@
 #define QFACEBOOKGRAPHCONNECTIONTAGGED_H
 
 #include <QObject>
-#include <QList>
+#include <graph/qfacebookgraphconnectionbase.h>
 
-#include <qfacebookgraph.h>
-
-class QFacebookGraphConnectionTagged : public QFacebookGraph
+class QFacebookGraphConnectionTagged : public QFacebookGraphConnectionBase
 {
     Q_OBJECT
 public:
     explicit QFacebookGraphConnectionTagged(QString fbid = QString::null, QObject *parent = 0);
 
 public:
-    QList<QObject*> getModel();
-    void previous(int howMany = 25 );
-    void next(int howMany = 25);
+    void updatePrevious(int howMany = 25 );
+    void updateNext(int howMany = 25);
     void update(int howMany = 25);
-
-private:
-    void populateModel();
-    void requestDone(bool ok = false);
-
-private:
-    QList <QObject*> m_model;
-    QString m_previous;
-    QString m_next;
-    QString m_fbid;
 };
 
 #endif // QFacebookGraphConnectionTagged_H

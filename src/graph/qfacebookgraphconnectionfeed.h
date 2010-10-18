@@ -21,33 +21,20 @@
 #include <QObject>
 #include <QList>
 
-#include <qfacebookgraph.h>
+#include <graph/qfacebookgraphconnectionbase.h>
 
 typedef QList<QObject*> FeedModelList;
 
-class QFacebookGraphConnectionFeed : public QFacebookGraph
+class QFacebookGraphConnectionFeed : public QFacebookGraphConnectionBase
 {
     Q_OBJECT
 public:
     explicit QFacebookGraphConnectionFeed(QString fbid = QString::null, QObject *parent = 0);
 
 public:
-    FeedModelList getFeedModel();
     void update(int howMany = 25);
-    void previous(int howMany = 25 );
-    void next(int howMany = 25);
-
-
-private:
-    void populateModel();
-    void requestDone(bool ok = false);
-
-private:
-    FeedModelList m_feedModel;
-    QFacebookGraph *m_graph;
-    QString m_previous;
-    QString m_next;
-    QString m_fbid;
+    void updatePrevious(int howMany = 25 );
+    void updateNext(int howMany = 25);
 };
 
 #endif // QFACEBOOKGRAPHCONNECTIONFEED_H
