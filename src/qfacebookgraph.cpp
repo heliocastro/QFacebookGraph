@@ -47,8 +47,12 @@ void QFacebookGraph::init() {
     m_mapResult = QVariantMap();
     m_url = QUrl(GRAPH_URL_HOST);
 
-    if( getenv("http_proxy") != NULL ) {
-        QUrl proxyurl( getenv("http_proxy") );
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
+#else
+    QByteArray env = qgetenv("http_proxy");
+    if( !env.isNull() ) {
+        QUrl proxyurl( env );
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::HttpProxy);
         proxy.setHostName(proxyurl.host());
@@ -56,8 +60,8 @@ void QFacebookGraph::init() {
         proxy.setUser(proxyurl.userName());
         proxy.setPassword(proxyurl.password());
         QNetworkProxy::setApplicationProxy(proxy);
-        qDebug() << "Using proxy: " << proxyurl;
     }
+#endif
 }
 
 void QFacebookGraph::Get(const QString &path) {
