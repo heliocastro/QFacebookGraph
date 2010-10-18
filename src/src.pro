@@ -8,8 +8,6 @@ DESTDIR = ../lib
 
 DEFINES += QFACEBOOKGRAPH_LIBRARY
 
-LIBS += -Wl,--no-undefined
-
 PKGCONFIG += QJson
 
 SOURCES += qfacebookgraph.cpp \
