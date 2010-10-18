@@ -124,6 +124,7 @@ void QFacebookGraph::httpReadyRead() {
 
 void QFacebookGraph::httpFinished() {
     bool res = false;
+    int replyCode =  m_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
     if( m_reply->error() )
     {
@@ -132,8 +133,14 @@ void QFacebookGraph::httpFinished() {
         return;
     }
 
-    QJson::Parser parser;
-    m_mapResult = parser.parse(m_httpResult, &res).toMap();
+    if(replyCode == 302) {
+        res = true;
+        m_mapResult["url_redirect"] = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    }
+    else {
+        QJson::Parser parser;
+        m_mapResult = parser.parse(m_httpResult, &res).toMap();
+    }
 
     m_reply->deleteLater();
     m_reply = 0;
