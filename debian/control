@@ -16,3 +16,8 @@ Section: devel
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Qt API like to access Facebook Graph API - Development files
 
+Package: qfacebookgraph-examples
+Architecture: any
+Section: devel
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqtwebkit-qmlwebkitplugin | libqtwebkit4-declarative
+Description: QFacebokGraph examples

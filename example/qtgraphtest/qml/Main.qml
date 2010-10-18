@@ -146,6 +146,7 @@ Rectangle {
                     height: 50; width: 50
                     color: "transparent"
                     Image {
+                        anchors.verticalCenter: parent.verticalCenter
                         source: "http://graph.facebook.com/" + from.id + "/picture"
                     }
                 }
@@ -163,26 +164,27 @@ Rectangle {
                         }
                         Text {
                             id: msgtext
-                            width: view.width - userImage.width
-                            height: 40
+                            width: view.width - 100
+                            height: 30
                             wrapMode: Text.WordWrap
                             text: message
                         }
                         /*ListView {
-                        model: comments
-                        delegate:
-                        Rectangle {
-                            color:  "#8888FF"
-                            Column {
-                            Text { id: cheader; text: "Comments:"; font.bold: true }
-                            Text { id: cname; text: modelData.from.name; }
-                            Text { id: cmessage; text: modelData.message;  }
+                            id: listcomm
+                            model: comments
+                            height: 60
+                            delegate:
+                                Rectangle {
+                                color:  "#8888FF"
+                                Column {
+                                    Text { id: cheader; text: "Comments:"; font.bold: true }
+                                    Text { id: cname; text: modelData.from.name; }
+                                    Text { id: cmessage; text: modelData.message;  }
+                                }
                             }
-                        }
-                    }*/
+                        }*/
                         GridView {
-                            id: oca
-                            width: view.width - 100; height: 50
+                            width: view.width - 50; height: 10
                             model: actions
                             interactive: false
                             delegate: Text {
