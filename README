@@ -1,6 +1,6 @@
 QFacebookGraph - A Qt model/view based Facebook Graph API sdk.
 
-This is he 0.1 version ( alpha ) of QFacebooGraph library. Basic User object
+This is the 0.1 version ( alpha ) of QFacebooGraph library. Basic User object
 data can be used.
 Two examples are available under examples.
 
@@ -9,7 +9,7 @@ directly on public data without authentication. Is a console only example.
 It shows how to use directly the base class, and not one of the helper classes.
 
 Second one is a poor implemented qml based app, that have the single purpose to
-serve as a testbed to test helper classes. Is doing standard facebok auth using
+serve as a testbed to test helper classes. Is doing standard facebook auth using
 webkit and fetch some user data and user home wall feed.
 It shows how to use the helper classes.
 
