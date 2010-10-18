@@ -11,7 +11,7 @@ QFacebookGraphConnectionBase::QFacebookGraphConnectionBase(QString fbid, QObject
     m_model = QList<QObject*>();
 }
 
-QList<QObject*> QFacebookGraphConnectionBase::getModel() {
+QList<QObject*> QFacebookGraphConnectionBase::model() {
     return m_model;
 }
 
@@ -61,7 +61,8 @@ void QFacebookGraphConnectionBase::populateModel() {
             if(j.key() == "attribution")
                 obj->setAttribution(j.value().toString());
             if(j.key() == "created_time")
-                obj->setCreatedtime(j.value().toString());
+                obj->setCreatedTime( QDateTime::fromString( j.value().toString(),
+                                                           "yyyy-MM-dd'T'hh:mm:ss+0000") );
             if(j.key() == "id")
                 obj->setFbid(j.value().toString());
             if(j.key() == "from")
@@ -81,7 +82,8 @@ void QFacebookGraphConnectionBase::populateModel() {
             if(j.key() == "likes")
                 obj->setLikes(j.value().toULongLong());
             if(j.key() == "updated_time")
-                obj->setUpdatedtime(j.value().toString());
+                obj->setCreatedTime( QDateTime::fromString( j.value().toString(),
+                                                           "yyyy-MM-dd'T'hh:mm:ss+0000") );
             if(j.key() == "icon")
                 obj->setIcon(j.value().toUrl());
             if(j.key() == "picture")

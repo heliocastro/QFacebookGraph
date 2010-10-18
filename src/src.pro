@@ -36,7 +36,15 @@ SOURCES += qfacebookgraph.cpp \
     graph/qfacebookgraphconnectionbase.cpp \
     graph/qfacebookgraphconnectionposts.cpp \
     graph/qfacebookgraphconnectionpicture.cpp \
-    graph/qfacebookgraphconnectionfriends.cpp
+    graph/qfacebookgraphconnectionfriends.cpp \
+    graph/qfacebookgraphcommonmediamodel.cpp \
+    graph/qfacebookgraphconnectionmediabase.cpp \
+    graph/qfacebookgraphconnectioninterests.cpp \
+    graph/qfacebookgraphconnectionbooks.cpp \
+    graph/qfacebookgraphconnectionlikes.cpp \
+    graph/qfacebookgraphconnectiontelevision.cpp \
+    graph/qfacebookgraphconnectionmovies.cpp \
+    graph/qfacebookgraphconnectionmusic.cpp
 
 HEADERS += qfacebookgraph.h\
         qfacebookgraph_global.h \
@@ -63,7 +71,15 @@ HEADERS += qfacebookgraph.h\
     graph/qfacebookgraphconnectionbase.h \
     graph/qfacebookgraphconnectionposts.h \
     graph/qfacebookgraphconnectionpicture.h \
-    graph/qfacebookgraphconnectionfriends.h
+    graph/qfacebookgraphconnectionfriends.h \
+    graph/qfacebookgraphcommonmediamodel.h \
+    graph/qfacebookgraphconnectionmediabase.h \
+    graph/qfacebookgraphconnectioninterests.h \
+    graph/qfacebookgraphconnectionbooks.h \
+    graph/qfacebookgraphconnectionlikes.h \
+    graph/qfacebookgraphconnectiontelevision.h \
+    graph/qfacebookgraphconnectionmovies.h \
+    graph/qfacebookgraphconnectionmusic.h
 
 
 target.path = $$[QT_INSTALL_LIBS]

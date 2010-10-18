@@ -14,48 +14,38 @@
  * limitations under the License.
 */
 
-#ifndef QFACEBOOKGRAPHCONNECTIONBASE_H
-#define QFACEBOOKGRAPHCONNECTIONBASE_H
+#ifndef QFACEBOOKGRAPHCONNECTIONMEDIABASE_H
+#define QFACEBOOKGRAPHCONNECTIONMEDIABASE_H
 
 #include <QObject>
 #include <QList>
 
 #include <qfacebookgraph.h>
 
-class QFacebookGraphCommonFeedModel;
+class QFacebookGraphCommonMediaModel;
 
-class QFacebookGraphConnectionBase : public QFacebookGraph
+class QFacebookGraphConnectionMediaBase : public QFacebookGraph
 {
     Q_OBJECT
 public:
-    explicit QFacebookGraphConnectionBase(QString fbid = QString::null, QObject *parent = 0);
+    explicit QFacebookGraphConnectionMediaBase(QString fbid = QString::null, QObject *parent = 0);
 
 public:
     QList<QObject*> model();
     virtual void populateModel();
-    virtual void updatePrevious(int howMany = 25 );
-    virtual void updateNext(int howMany = 25);
     virtual void update(int howMany = 25);
 
     void setFbid(const QString &fbid);
     QString fbid() const;
 
-    void setPrevious(const QString &previous);
-    QString previous() const;
-
-    void setNext(const QString &next);
-    QString next() const;
-
-    void append( QFacebookGraphCommonFeedModel* obj );
+    void append( QFacebookGraphCommonMediaModel* obj );
 
 private:
     void requestDone(bool ok = false);
 
 private:
     QList<QObject*> m_model;
-    QString m_previous;
-    QString m_next;
     QString m_fbid;
 };
 
-#endif // QFACEBOOKGRAPHCONNECTIONBASE_H
+#endif // QFacebookGraphConnectionMediaBase_H

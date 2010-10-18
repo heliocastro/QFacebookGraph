@@ -29,8 +29,8 @@ QFacebookGraphCommonFeedModel::QFacebookGraphCommonFeedModel(QObject *parent) :
     m_actions = QVariantList();
     m_comments = QVariantList();
     m_type = QString::null;
-    m_createdTime = QString::null;
-    m_updatedTime = QString::null;
+    m_createdTime = QDateTime();
+    m_updatedTime = QDateTime();
     m_attribution = QString::null;
     m_caption = QString::null;
     m_description = QString::null;
@@ -142,20 +142,20 @@ void QFacebookGraphCommonFeedModel::setType(const QString &type) {
     }
 }
 
-QString QFacebookGraphCommonFeedModel::createdTime() const {
+QDateTime QFacebookGraphCommonFeedModel::createdTime() const {
     return m_createdTime;
 }
-void QFacebookGraphCommonFeedModel::setCreatedtime(const QString &createdTime) {
+void QFacebookGraphCommonFeedModel::setCreatedTime(const QDateTime &createdTime) {
     if( m_createdTime != createdTime ) {
         m_createdTime = createdTime;
         emit createdTimeChanged();
     }
 }
 
-QString QFacebookGraphCommonFeedModel::updatedTime() const {
+QDateTime QFacebookGraphCommonFeedModel::updatedTime() const {
     return m_updatedTime;
 }
-void QFacebookGraphCommonFeedModel::setUpdatedtime(const QString &updatedTime) {
+void QFacebookGraphCommonFeedModel::setUpdatedtime(const QDateTime &updatedTime) {
     if( m_updatedTime != updatedTime ) {
         m_updatedTime = updatedTime;
         emit updatedTimeChanged();

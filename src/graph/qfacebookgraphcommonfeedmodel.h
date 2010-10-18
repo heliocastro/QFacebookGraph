@@ -37,8 +37,8 @@ class QFacebookGraphCommonFeedModel : public QObject
     Q_PROPERTY(QUrl picture READ picture WRITE setPicture NOTIFY pictureChanged)
     Q_PROPERTY(QVariantList actions READ actions WRITE setActions NOTIFY actionsChanged)
     Q_PROPERTY(QString type READ type WRITE setType NOTIFY typeChanged)
-    Q_PROPERTY(QString createdTime READ createdTime WRITE setCreatedtime NOTIFY createdTimeChanged)
-    Q_PROPERTY(QString updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
+    Q_PROPERTY(QDateTime createdTime READ createdTime WRITE setCreatedTime NOTIFY createdTimeChanged)
+    Q_PROPERTY(QDateTime updatedTime READ updatedTime WRITE setUpdatedtime NOTIFY updatedTimeChanged)
     Q_PROPERTY(QString attribution READ attribution WRITE setAttribution NOTIFY attributionChanged)
     Q_PROPERTY(qulonglong likes READ likes WRITE setLikes NOTIFY likesChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
@@ -80,11 +80,11 @@ public:
     QString type() const;
     void setType(const QString &type);
 
-    QString createdTime() const;
-    void setCreatedtime(const QString &createdTime);
+    QDateTime createdTime() const;
+    void setCreatedTime(const QDateTime &createdTime);
 
-    QString updatedTime() const;
-    void setUpdatedtime(const QString &updatedTime);
+    QDateTime updatedTime() const;
+    void setUpdatedtime(const QDateTime &updatedTime);
 
     QString attribution() const;
     void setAttribution(const QString &attribution);
@@ -134,8 +134,8 @@ private:
     QUrl m_picture;
     QVariantList m_actions;
     QString m_type;
-    QString m_createdTime;
-    QString m_updatedTime;
+    QDateTime m_createdTime;
+    QDateTime m_updatedTime;
     QString m_attribution;
     qulonglong m_likes;
     QString m_caption;
