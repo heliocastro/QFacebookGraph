@@ -21,6 +21,7 @@
 
 #include <qfacebookgraph.h>
 #include <graph/qfacebookgraphconnectionhome.h>
+#include <graph/qfacebookgraphconnectioninterests.h>
 #include<graph/qfacebookgraphuser.h>
 
 #include "qtgraphtest.h"
@@ -40,7 +41,7 @@ QtGraphTest::QtGraphTest(QDeclarativeView *view, QObject *parent) :
 
     ctxt = view->rootContext();
     ctxt->setContextProperty( "test", this );
-    ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->getModel()));
+    ctxt->setContextProperty( "homeModel", QVariant::fromValue(home->model()));
     ctxt->setContextProperty( "userObject", user);
     ctxt->setContextProperty( "userEducationModel", QVariant::fromValue( user->educationModel()) );
     ctxt->setContextProperty( "userWorkModel", QVariant::fromValue( user->workModel()) );
@@ -66,7 +67,7 @@ bool QtGraphTest::hasValidToken() {
 
 
 void QtGraphTest::updateHomeView() {
-    homeList = home->getModel();
+    homeList = home->model();
     ctxt->setContextProperty( "homeModel", QVariant::fromValue(homeList) );
 }
 
@@ -105,4 +106,9 @@ void QtGraphTest::testUrl( const QString value ) {
     user->setToken( settings->value("token/token").toString() );
     connect(user, SIGNAL(modelPopulated()), this, SLOT(updateUserView()));
     user->update();
+
+    //just for test
+    QFacebookGraphConnectionInterests *pic = new QFacebookGraphConnectionInterests();
+    pic->setToken( settings->value("token/token").toString() );
+    pic->update();
 }
