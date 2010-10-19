@@ -8,13 +8,6 @@ Rectangle {
     width : 864
     height : 480
 
-    Keys.onPressed : {
-        if ( event.key == Qt.Key_Q ) {
-            Qt.quit()
-        }
-    }
-
-
     VisualItemModel {
         id: itemModel
 
